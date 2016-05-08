@@ -40,11 +40,8 @@ html
 	body
 
 		//- HEADER
-		include ../includes/layouts/header_new
-		block header
-
-		//- BODY
-		#body
+		div.mdl-layout.mdl-js-layout.mdl-layout--fixed-header 
+			include ../includes/layouts/header
 
 			//- NOTE:
 			//- There is no .container wrapping class around body blocks to allow more flexibility in design.
@@ -62,10 +59,10 @@ html
 
 
 		//- FOOTER
-		.container: #footer
+			.container: #footer
 
 			//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
-			p Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.
+				p Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.
 
 
 		//- JAVASCRIPT

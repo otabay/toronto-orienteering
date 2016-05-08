@@ -1,25 +1,24 @@
-#header: .container
-
-  //- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
-  //- ... or completely change this header to suit your design.
-
-  div(role="navigation").navbar.navbar-default
-    .container-fluid
-      .navbar-header
-        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-          span.sr-only Toggle navigation
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        a.navbar-brand(href='/') TorOr
-      .collapse.navbar-collapse
-        ul.nav.navbar-nav.navbar-left
-          each link in navLinks
-            li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
-        ul.nav.navbar-nav.navbar-right
-          if user
-            if user.canAccessKeystone
-              li: a(href='/keystone') Open Keystone
-            li: a(href='/keystone/signout') Sign Out
-          else
-            li: a(href='/keystone/signin') Sign In
+header.mdl-layout__header
+  div.mdl-layout__header-row
+    img(src="images/logo.jpg", alt="").mdl-layout-title.title-logo
+    nav.mdl-navigation.mdl-layout--large-screen-only
+      a(href='#').mdl-navigation__link Events
+      a(href='#').mdl-navigation__link Services
+      a(href='#').mdl-navigation__link Blog
+      a(href='#').mdl-navigation__link About
+    div.mdl-layout-spacer
+    nav.mdl-navigation.mdl-layout--large-screen-only  
+      if user
+        if user.canAccessKeystone
+          a(href='/keystone').mdl-navigation__link Open Keystone
+        a(href='/keystone/signout').mdl-navigation__link Sign Out
+      else
+        a(href='/keystone/signin').mdl-navigation__link Sign In
+div.mdl-layout__drawer
+  nav.mdl-navigation
+    a(href='#').mdl-navigation__link Home
+    a(href='#').mdl-navigation__link Events
+    a(href='#').mdl-navigation__link Services
+    a(href='#').mdl-navigation__link Blog
+    a(href='#').mdl-navigation__link About         
+block header-image
