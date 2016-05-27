@@ -1,24 +1,24 @@
 header.mdl-layout__header
   div.mdl-layout__header-row
-    img(src="images/logo.jpg", alt="").mdl-layout-title.title-logo
+    a(href='/'): img(src="images/logo.jpg", alt="Home").mdl-layout-title.title-logo
     nav.mdl-navigation.mdl-layout--large-screen-only
-      a(href='#').mdl-navigation__link Events
-      a(href='#').mdl-navigation__link Services
-      a(href='#').mdl-navigation__link Blog
-      a(href='#').mdl-navigation__link About
+      a(href='/events').mdl-navigation__link Events
+      a(href='/services').mdl-navigation__link Services
+      a(href='/blog').mdl-navigation__link Blog
+      a(href='/about').mdl-navigation__link About
     div.mdl-layout-spacer
     nav.mdl-navigation.mdl-layout--large-screen-only  
       if user
         if user.canAccessKeystone
-          a(href='/keystone').mdl-navigation__link Open Keystone
+          a(href='/keystone').mdl-navigation__link Admin
         a(href='/keystone/signout').mdl-navigation__link Sign Out
       else
         a(href='/keystone/signin').mdl-navigation__link Sign In
 div.mdl-layout__drawer
   nav.mdl-navigation
-    a(href='#').mdl-navigation__link Home
-    a(href='#').mdl-navigation__link Events
-    a(href='#').mdl-navigation__link Services
-    a(href='#').mdl-navigation__link Blog
-    a(href='#').mdl-navigation__link About         
+    a(href='/').mdl-navigation__link Home
+    a(href='/events').mdl-navigation__link Events
+    a(href='/services').mdl-navigation__link Services
+    a(href='/blog').mdl-navigation__link Blog
+    a(href='/about').mdl-navigation__link About         
 block header-image
