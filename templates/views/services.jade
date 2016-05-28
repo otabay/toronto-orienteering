@@ -1,9 +1,23 @@
 extends ../layouts/default
 
-block intro
-	.container
-		h1 Services
-		
+block sub-header
+	.mdl-layout__tab-bar.mdl-js-ripple-effect
+		a(href="#tab1").mdl-layout__tab.is-active Beginner Clinics
+		a(href="#tab2").mdl-layout__tab Advanced Clinics
+		a(href="#tab3").mdl-layout__tab Team Events
+		a(href="#tab4").mdl-layout__tab School Events	
+			
 block content
-	.container
-		p Services page
+	main.mdl-layout__content
+		section.mdl-layout__tab-panel.is-active(id="tab1")
+			.page-content
+				p Beginners Clinics
+		section.mdl-layout__tab-panel(id="tab2")
+			.page-content
+				p Advanced Clinics
+		section.mdl-layout__tab-panel(id="tab3")
+			.page-content
+				p Team Events
+		section.mdl-layout__tab-panel(id="tab4")
+			.page-content
+				p School Events

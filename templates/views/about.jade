@@ -1,9 +1,15 @@
 extends ../layouts/default
 
-block intro
-	.container
-		h1 About
-		
+block sub-header
+	.mdl-layout__tab-bar.mdl-js-ripple-effect
+		a(href="#tab1").mdl-layout__tab.is-active Board of Directors
+		a(href="#tab2").mdl-layout__tab Orienteering Links
+			
 block content
-	.container
-		p This is about us
+	main.mdl-layout__content
+		section.mdl-layout__tab-panel.is-active(id="tab1")
+			.page-content
+				p Board of Directors
+		section.mdl-layout__tab-panel(id="tab2")
+			.page-content
+				p Orienteering Links

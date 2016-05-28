@@ -1,6 +1,6 @@
 header.mdl-layout__header
   div.mdl-layout__header-row
-    a(href='/'): img(src="images/logo.jpg", alt="Home").mdl-layout-title.title-logo
+    a(href='/'): img(src="/images/logo.jpg", alt="Home").mdl-layout-title.title-logo
     nav.mdl-navigation.mdl-layout--large-screen-only
       a(href='/events').mdl-navigation__link Events
       a(href='/services').mdl-navigation__link Services
@@ -14,6 +14,7 @@ header.mdl-layout__header
         a(href='/keystone/signout').mdl-navigation__link Sign Out
       else
         a(href='/keystone/signin').mdl-navigation__link Sign In
+  block sub-header
 div.mdl-layout__drawer
   nav.mdl-navigation
     a(href='/').mdl-navigation__link Home
