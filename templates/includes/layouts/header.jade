@@ -4,7 +4,7 @@ header.mdl-layout__header
     nav.mdl-navigation.mdl-layout--large-screen-only
       a(href='/events').mdl-navigation__link Events
       a(href='/services').mdl-navigation__link Services
-      a(href='/blog').mdl-navigation__link Blog
+      a(href='/blog').mdl-navigation__link News
       a(href='/about').mdl-navigation__link About
     div.mdl-layout-spacer
     nav.mdl-navigation.mdl-layout--large-screen-only  
@@ -14,12 +14,13 @@ header.mdl-layout__header
         a(href='/keystone/signout').mdl-navigation__link Sign Out
       else
         a(href='/keystone/signin').mdl-navigation__link Sign In
+        a(href='/keystone/register').mdl-navigation__link Join Now 
   block sub-header
 div.mdl-layout__drawer
   nav.mdl-navigation
     a(href='/').mdl-navigation__link Home
     a(href='/events').mdl-navigation__link Events
     a(href='/services').mdl-navigation__link Services
-    a(href='/blog').mdl-navigation__link Blog
+    a(href='/blog').mdl-navigation__link News
     a(href='/about').mdl-navigation__link About         
 block header-image

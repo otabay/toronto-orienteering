@@ -3,3 +3,6 @@ div.header-background.mdl-layout
 		div.hero-content
 			h1.hero-title Toronto Orienteering  
 			h2.hero-subtitle Outdoor - Active - Urban
+			if !user
+				a(href="/keystone/register")
+					button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent Join Now!	
