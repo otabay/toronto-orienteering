@@ -5,68 +5,38 @@ exports = module.exports = function(req, res) {
 
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
-	var eventsCategory='events';
-	var weeklySeries='wednesday-night';
+	
+	var eventsCategoryName='events';
+	var weeklySeriesCategoryName='wednesday-night';
 
-	// Init locals
 	locals.section = 'events';
 	locals.filters = {
 		category: req.params.category
 	};
 	locals.data = {
 		events: [],
-		weeklyEvents: [],
-		categories: []
+		weeklySeries: []
 	};
-
-	function findCategory(categoryName) {
-		var l_categoryName = categoryName;
-		var l_category = null;
-		if (req.params.category) {
-			l_categoryName = locals.filters.category;
-		};
-		keystone.list('PostCategory').model.findOne({ key: l_categoryName }).exec(function(err, result) {
-			l_category = result;
-		});
-		return l_category;
-	};
-
-	function findCategoryPosts(categoryName){
-		var categoryPosts = [];
-		var q = keystone.list('Post').paginate({
-				page: req.query.page || 1,
-				perPage: 10,
-				maxPages: 10
-			})
-			.where('state', 'published')
-			.sort('-publishedDate')
-			.populate('author categories');
-
-		if (locals.data.category) {
-			q.where('categories').in([locals.data.eventsCategory]);
-		}
-
-		q.exec(function(err, results) {
-			categoryPosts = results;
-		});
-		return categoryPosts;
-	};
-
-	// Load the current category filter
+	
+	// Load events
 	view.on('init', function(next) {
-		locals.data.eventsCategory = findCategory(eventsCategory);
-		locals.data.events = findCategoryPosts(locals.data.eventsCategory);
-		next();
-
+		keystone.list('Post').schema.methods.postsForCategory(eventsCategoryName,  (function(posts, err){
+			if(err) next(err);
+			locals.data.events = posts;
+			next();
+		}));
 	});
 
-	// Load the posts
-	view.on('init', function(next) {
-
-
-
+	//Load wednesday night series
+	view.on('init', function(next) { 
+		keystone.list('Post').schema.methods.postsForCategory(weeklySeriesCategoryName,  (function(posts, err){
+			if(err) next(err);
+			locals.data.weeklySeries = posts;
+			next();
+		}));
 	});
 
+	
 	// Render the view
 	view.render('events');
 

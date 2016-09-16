@@ -13,6 +13,7 @@ PostCategory.add({
 	name: { type: String, required: true }
 });
 
+
 PostCategory.relationship({ ref: 'Post', path: 'categories' });
 
 PostCategory.register();

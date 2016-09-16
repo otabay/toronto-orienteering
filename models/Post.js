@@ -28,5 +28,22 @@ Post.schema.virtual('content.full').get(function() {
 	return this.content.extended || this.content.brief;
 });
 
+Post.schema.methods.postsForCategory = function(categoryKey, callback){
+
+	keystone.list('Post').model.find().populate('author')
+	.populate({
+		path: 'categories',
+		match: {key:categoryKey}
+	}).exec(function(err, posts) {
+		if (err) return callback(err);
+		if (!posts.length) {
+			callback();
+		} else {
+			 callback(posts);
+		}
+	});
+	
+};
+
 Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
 Post.register();

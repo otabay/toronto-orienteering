@@ -25,42 +25,17 @@ block content
 				h2 Season Schedule
 				.container: .row
 					.col-sm-8.col-md-9
-						if filters.category && !data.category
-							h3.text-muted Invalid Category.
+						if data.events.length
+							h4.text-weight-normal Showing #{utils.plural(data.events.length, '* post')}.
+							.blog
+								div
+								- console.log(data_events)
+								div
+								each post in data.events
+									+post(post)
+							
 						else
-							if data.events.results.length
-								if data.events.totalPages > 1
-									h4.text-weight-normal Showing 
-										strong #{data.events.first}
-										|  to 
-										strong #{data.events.last}
-										|  of 
-										strong #{data.events.total}
-										|  posts.
-								else
-									h4.text-weight-normal Showing #{utils.plural(data.events.results.length, '* post')}.
-								.blog
-									each post in data.events.results
-										+post(post)
-								
-								if data.events.totalPages > 1
-									ul.pagination
-										if data.events.previous
-											li: a(href='?page=' + data.events.previous): span.glyphicon.glyphicon-chevron-left
-										else
-											li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
-										each p, i in data.events.pages
-											li(class=data.events.currentPage == p ? 'active' : null)
-												a(href='?page=' + (p == '...' ? (i ? data.events.totalPages : 1) : p ))= p
-										if data.events.next
-											li: a(href='?page=' + data.events.next): span.glyphicon.glyphicon-chevron-right
-										else
-											li.disabled: a(href='?page=' + data.events.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
-							else
-								if data.category
-									h3.text-muted There are no posts in the category #{data.category.name}.
-								else
-									h3.text-muted There are no posts yet.
+							h3.text-muted There are no events yet.
 
 		section.mdl-layout__tab-panel(id="tab2")
 			.page-content
