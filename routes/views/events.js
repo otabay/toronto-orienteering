@@ -1,5 +1,4 @@
 var keystone = require('keystone');
-var async = require('async');
 
 exports = module.exports = function(req, res) {
 
@@ -10,9 +9,7 @@ exports = module.exports = function(req, res) {
 	var weeklySeriesCategoryName='wednesday-night';
 
 	locals.section = 'events';
-	locals.filters = {
-		category: req.params.category
-	};
+	
 	locals.data = {
 		events: [],
 		weeklySeries: []

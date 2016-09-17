@@ -30,11 +30,10 @@ Post.schema.virtual('content.full').get(function() {
 
 Post.schema.methods.postsForCategory = function(categoryKey, callback){
 
-	keystone.list('Post').model.find().populate('author')
-	.populate({
-		path: 'categories',
-		match: {key:categoryKey}
-	}).exec(function(err, posts) {
+	keystone.list('Post').model.find()
+	.populate('author categories')
+	.where({'categories.key':categoryKey})
+	.exec(function(err, posts) {
 		if (err) return callback(err);
 		if (!posts.length) {
 			callback();

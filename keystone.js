@@ -25,7 +25,20 @@ keystone.init({
 	'auto update': true,
 	'session': true,
 	'auth': true,
-	'user model': 'User'
+	'user model': 'User',
+
+	// 'wysiwyg override toolbar': false,
+	// 'wysiwyg menubar': true,
+	// 'wysiwyg images': true,
+	// 'wysiwyg skin': 'lightgray',
+	// 'wysiwyg additional buttons': 'searchreplace visualchars,'
+	// + ' charmap ltr rtl pagebreak paste, forecolor backcolor,'
+	// +' emoticons media, preview',
+	// 'wysiwyg additional plugins': 'example, table, advlist, anchor,'
+	// + ' autolink, autosave, bbcode, charmap, contextmenu, '
+	// + ' directionality, emoticons, fullpage, hr, media, pagebreak,'
+	// + ' paste, preview, searchreplace, textcolor,'
+	// + ' visualblocks, visualchars, wordcount',
 
 });
 
@@ -92,6 +105,7 @@ keystone.set('nav', {
 	'enquiries': 'enquiries',
 	'users': 'users'
 });
+
 
 // Start Keystone to connect to your database and initialise the web server
 

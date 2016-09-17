@@ -28,9 +28,6 @@ block content
 						if data.events.length
 							h4.text-weight-normal Showing #{utils.plural(data.events.length, '* post')}.
 							.blog
-								div
-								- console.log(data_events)
-								div
 								each post in data.events
 									+post(post)
 							

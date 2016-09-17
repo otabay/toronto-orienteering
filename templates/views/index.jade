@@ -12,10 +12,8 @@ block content
 						h2.mdl-card__title-text Next Event
 					div.mdl-card__supporting-text
 						h3.card-event-title 
-							a(href="/events") Orienteering Schools Meet
-						div.card-event-location Location: Albion Hills
-						div.card-event-date May 19, 2016
-						div.card-event-brief Enter your school in TOC’s Orienteering SCHOOL MEET, last year we had more than 300 students.
+							a(href="/events") #{data.event.title}
+						div.card-event-brief #{utils.htmlToText(data.event.content.brief)}
 					div.mdl-card__actions.mdl-card--border
 						a(href="#") Sign me up!
 			div.mdl-cell.mdl-cell--4-col					
@@ -24,9 +22,8 @@ block content
 						h2.mdl-card__title-text Next Wednesday Event
 					div.mdl-card__supporting-text
 						h3.card-event-title 
-							a(href="/events#tab2") Wednesday Evening Park Series
-						div.card-event-location Location: Sunnybrook
-						div.card-event-date May 12, 2016
+							a(href="/events#tab2") #{data.weeklySeriesEvent.title}
+						div.card-event-brief #{utils.htmlToText(data.weeklySeriesEvent.content.brief)}
 					div.mdl-card__actions.mdl-card--border
 						a(href="#") Sign me up!
 			div.mdl-cell.mdl-cell--4-col				
@@ -35,7 +32,8 @@ block content
 						h2.mdl-card__title-text Latest News
 					div.mdl-card__supporting-text
 						h3.card-event-title 
-							a(href="/blog") Whatever we have to say
+							a(href="/blog") #{data.news.title}
+						div.card-event-brief #{utils.htmlToText(data.news.content.brief)}	
 					div.mdl-card__actions.mdl-card--border
 						a(href="#") More News
 		div.mdl-grid
