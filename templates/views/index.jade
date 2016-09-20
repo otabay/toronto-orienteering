@@ -6,36 +6,39 @@ block header-image
 block content
 	main.mdl-layout__content
 		div.card-container.mdl-grid
-			div.mdl-cell.mdl-cell--4-col
-				div.event-card.mdl-card.mdl-shadow--2dp
-					div.mdl-card__title
-						h2.mdl-card__title-text Next Event
-					div.mdl-card__supporting-text
-						h3.card-event-title 
-							a(href="/events") #{data.event.title}
-						div.card-event-brief #{utils.htmlToText(data.event.content.brief)}
-					div.mdl-card__actions.mdl-card--border
-						a(href="#") Sign me up!
-			div.mdl-cell.mdl-cell--4-col					
-				div.event-card.mdl-card.mdl-shadow--2dp
-					div.mdl-card__title
-						h2.mdl-card__title-text Next Wednesday Event
-					div.mdl-card__supporting-text
-						h3.card-event-title 
-							a(href="/events#tab2") #{data.weeklySeriesEvent.title}
-						div.card-event-brief #{utils.htmlToText(data.weeklySeriesEvent.content.brief)}
-					div.mdl-card__actions.mdl-card--border
-						a(href="#") Sign me up!
-			div.mdl-cell.mdl-cell--4-col				
-				div.event-card.mdl-card.mdl-shadow--2dp
-					div.mdl-card__title
-						h2.mdl-card__title-text Latest News
-					div.mdl-card__supporting-text
-						h3.card-event-title 
-							a(href="/blog") #{data.news.title}
-						div.card-event-brief #{utils.htmlToText(data.news.content.brief)}	
-					div.mdl-card__actions.mdl-card--border
-						a(href="#") More News
+			if data.event
+				div.mdl-cell.mdl-cell--4-col
+					div.event-card.mdl-card.mdl-shadow--2dp
+						div.mdl-card__title
+							h2.mdl-card__title-text Next Event
+						div.mdl-card__supporting-text
+							h3.card-event-title 
+								a(href="/events") #{data.event.title}
+							div.card-event-brief #{utils.htmlToText(data.event.content.brief)}
+						div.mdl-card__actions.mdl-card--border
+							a(href="#") Sign me up!
+			if data.weeklySeriesEvent
+				div.mdl-cell.mdl-cell--4-col				
+					div.event-card.mdl-card.mdl-shadow--2dp
+						div.mdl-card__title
+							h2.mdl-card__title-text Next Wednesday Event
+						div.mdl-card__supporting-text
+							h3.card-event-title 
+								a(href="/events#tab2") #{data.weeklySeriesEvent.title}
+							div.card-event-brief #{utils.htmlToText(data.weeklySeriesEvent.content.brief)}
+						div.mdl-card__actions.mdl-card--border
+							a(href="#") Sign me up!
+			if data.news
+				div.mdl-cell.mdl-cell--4-col				
+					div.event-card.mdl-card.mdl-shadow--2dp
+						div.mdl-card__title
+							h2.mdl-card__title-text Latest News
+						div.mdl-card__supporting-text
+							h3.card-event-title 
+								a(href="/blog") #{data.news.title}
+							div.card-event-brief #{utils.htmlToText(data.news.content.brief)}	
+						div.mdl-card__actions.mdl-card--border
+							a(href="#") More News
 		div.mdl-grid
 			div.mdl-cell.mdl-cell--12-col
 				div.content-card.mdl-card

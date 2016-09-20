@@ -36,7 +36,17 @@ block content
 
 		section.mdl-layout__tab-panel(id="tab2")
 			.page-content
-				p Wednesday Evening Series		
+				h2 Wednesday Evening Series
+				.container: .row
+					.col-sm-8.col-md-9
+						if data.weeklySeries.length
+							h4.text-weight-normal Showing #{utils.plural(data.weeklySeries.length, '* post')}.
+							.blog
+								each post in data.weeklySeries
+									+post(post)
+							
+						else
+							h3.text-muted There are no events yet.		
 
 
 					

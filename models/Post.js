@@ -30,17 +30,26 @@ Post.schema.virtual('content.full').get(function() {
 
 Post.schema.methods.postsForCategory = function(categoryKey, callback){
 
-	keystone.list('Post').model.find()
-	.populate('author categories')
-	.where({'categories.key':categoryKey})
-	.exec(function(err, posts) {
-		if (err) return callback(err);
-		if (!posts.length) {
+	keystone.list('PostCategory').model.findOne({key:categoryKey}).exec(function(err,category){
+
+		if(err) return callback(err);
+		if(!category) {
+			console.log("Could not find category");
 			callback();
-		} else {
-			 callback(posts);
 		}
-	});
+		keystone.list('Post').model.find()
+		.populate('author')
+		.where('categories').in([category.id])
+		.exec(function(err, posts) {
+			if (err) return callback(err);
+			if (!posts.length) {
+				callback();
+			} else {
+			 	callback(posts);
+			}
+		});
+	})
+	
 	
 };
 
