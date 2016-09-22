@@ -55,3 +55,17 @@ Post.schema.methods.postsForCategory = function(categoryKey, callback){
 
 Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
 Post.register();
+
+
+var Event = new keystone.List('Event', { inherits: Post });
+Event.add({
+	startDate: { type: Types.Datetime, index: true },
+	endDate: { type: Types.Datetime},
+	location: {type: Types.Location, defaults: { country: 'Canada', city: 'Toronto' }},
+	intersection: { type: String},
+	coordinator: { type: Types.Relationship, ref: 'User', index: true },
+	notes: { type: Types.Html, wysiwyg: true, height: 400 }
+
+});
+
+Event.register();
