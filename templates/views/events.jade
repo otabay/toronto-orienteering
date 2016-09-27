@@ -22,7 +22,7 @@ block content
 	main.mdl-layout__content
 		section.mdl-layout__tab-panel.is-active(id="tab1")
 			.page-content
-				h2 Season Schedule
+				.container !{data.eventsContent.content.extended}
 				.container: .row
 					.col-sm-8.col-md-9
 						if data.events.length
@@ -36,7 +36,7 @@ block content
 
 		section.mdl-layout__tab-panel(id="tab2")
 			.page-content
-				h2 Wednesday Evening Series
+				.container !{data.weeklySeriesContent.content.extended}
 				.container: .row
 					.col-sm-8.col-md-9
 						if data.weeklySeries.length

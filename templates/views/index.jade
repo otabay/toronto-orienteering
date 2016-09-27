@@ -13,8 +13,8 @@ block content
 							h2.mdl-card__title-text Next Event
 						div.mdl-card__supporting-text
 							h3.card-event-title 
-								a(href="/events") #{data.event.title}
-							div.card-event-brief #{utils.htmlToText(data.event.content.brief)}
+								a(href="/events") !{data.event.title}
+							div.card-event-brief !{data.event.content.brief}
 						div.mdl-card__actions.mdl-card--border
 							a(href="#") Sign me up!
 			if data.weeklySeriesEvent
@@ -24,8 +24,8 @@ block content
 							h2.mdl-card__title-text Next Wednesday Event
 						div.mdl-card__supporting-text
 							h3.card-event-title 
-								a(href="/events#tab2") #{data.weeklySeriesEvent.title}
-							div.card-event-brief #{utils.htmlToText(data.weeklySeriesEvent.content.brief)}
+								a(href="/events#tab2") !{data.weeklySeriesEvent.title}
+							div.card-event-brief !{data.weeklySeriesEvent.content.brief}
 						div.mdl-card__actions.mdl-card--border
 							a(href="#") Sign me up!
 			if data.news
@@ -35,8 +35,8 @@ block content
 							h2.mdl-card__title-text Latest News
 						div.mdl-card__supporting-text
 							h3.card-event-title 
-								a(href="/blog") #{data.news.title}
-							div.card-event-brief #{utils.htmlToText(data.news.content.brief)}	
+								a(href="/blog") !{data.news.title}
+							div.card-event-brief !{data.news.content.brief}	
 						div.mdl-card__actions.mdl-card--border
 							a(href="#") More News
 		div.mdl-grid

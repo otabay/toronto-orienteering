@@ -6,7 +6,7 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
 
 	var eventsCategoryName='events';
-	var weeklySeriesCategoryName='wednesday-night';
+	var weeklySeriesCategoryName='weekly-series';
 	var newsCategoryName='blog';
 	
 	// locals.section is used to set the currently selected

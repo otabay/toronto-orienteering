@@ -6,13 +6,17 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
 	
 	var eventsCategoryName='events';
-	var weeklySeriesCategoryName='wednesday-night';
+	var weeklySeriesCategoryName='weekly-series';
+	var eventsContentSlug='content-events'
+	var weeklySeriesSlug='content-weekly-series'
 
 	locals.section = 'events';
 	
 	locals.data = {
 		events: [],
-		weeklySeries: []
+		weeklySeries: [],
+		eventsContent: null,
+		weeklySeriesContent: null
 	};
 	
 	// Load events
@@ -31,6 +35,36 @@ exports = module.exports = function(req, res) {
 			locals.data.weeklySeries = posts;
 			next();
 		}));
+	});
+
+	//load events content
+	view.on('init', function(next) {
+		
+		var q = keystone.list('Post').model.findOne({
+			state: 'published',
+			slug: eventsContentSlug
+		});
+		
+		q.exec(function(err, result) {
+			locals.data.eventsContent = result;
+			next(err);
+		});
+		
+	});
+
+	//load weekly series content
+	view.on('init', function(next) {
+		
+		var q = keystone.list('Post').model.findOne({
+			state: 'published',
+			slug: weeklySeriesSlug
+		});
+		
+		q.exec(function(err, result) {
+			locals.data.weeklySeriesContent = result;
+			next(err);
+		});
+		
 	});
 
 	
