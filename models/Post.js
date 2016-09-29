@@ -28,8 +28,12 @@ Post.schema.virtual('content.full').get(function() {
 	return this.content.extended || this.content.brief;
 });
 
-Post.schema.methods.postsForCategory = function(categoryKey, callback){
+Post.schema.methods.postsForCategory = function(categoryKey, type, callback){
 
+	if(type != 'Post' && type != 'Event'){
+		console.log("Error - specify Post or Event for the type");
+		callback();
+	}
 	keystone.list('PostCategory').model.findOne({key:categoryKey}).exec(function(err,category){
 
 		if(err) return callback(err);
@@ -37,9 +41,12 @@ Post.schema.methods.postsForCategory = function(categoryKey, callback){
 			console.log("Could not find category");
 			callback();
 		}
-		keystone.list('Post').model.find()
+		keystone.list(type).model.find()
 		.populate('author')
+		.populate('location')
+		.populate('coordinator')
 		.where('categories').in([category.id])
+		.where('state', 'published')
 		.exec(function(err, posts) {
 			if (err) return callback(err);
 			if (!posts.length) {
@@ -61,10 +68,9 @@ var Event = new keystone.List('Event', { inherits: Post });
 Event.add({
 	startDate: { type: Types.Datetime, index: true },
 	endDate: { type: Types.Datetime},
-	location: {type: Types.Location, defaults: { country: 'Canada', city: 'Toronto' }},
-	intersection: { type: String},
+	location: {type: Types.Relationship, ref: 'Location'},
 	coordinator: { type: Types.Relationship, ref: 'User', index: true },
-	notes: { type: Types.Html, wysiwyg: true, height: 400 }
+	notes: { type: Types.Html, wysiwyg: true, height: 200 }
 
 });
 

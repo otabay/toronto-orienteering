@@ -14,32 +14,35 @@ exports = module.exports = function(req, res) {
 	locals.section = 'home';
 
 	locals.data = {
-		event: {},
-		weeklySeriesEvent: {},
-		news: {}
+		event: null,
+		weeklySeriesEvent: null,
+		news: null
 	};
 
 	// Load last event
 	view.on('init', function(next) {
-		keystone.list('Post').schema.methods.postsForCategory(eventsCategoryName,  (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(eventsCategoryName, 'Event',  (function(posts, err){
 			if(err) next(err);
-			locals.data.event = posts[0];
+			if(typeof posts != "undefined")
+				locals.data.event = posts[0];
 			next();
 		}));
 	});
 
 	view.on('init', function(next) {
-		keystone.list('Post').schema.methods.postsForCategory(weeklySeriesCategoryName,  (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(weeklySeriesCategoryName, 'Event', (function(posts, err){
 			if(err) next(err);
-			locals.data.weeklySeriesEvent = posts[0];
+			if(typeof posts != "undefined")
+				locals.data.weeklySeriesEvent = posts[0];
 			next();
 		}));
 	});
 
 	view.on('init', function(next) {
-		keystone.list('Post').schema.methods.postsForCategory(newsCategoryName,  (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(newsCategoryName, 'Post',  (function(posts, err){
 			if(err) next(err);
-			locals.data.news = posts[0];
+			if(typeof posts != "undefined")
+				locals.data.news = posts[0];
 			next();
 		}));
 	});

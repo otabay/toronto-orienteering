@@ -21,18 +21,20 @@ exports = module.exports = function(req, res) {
 	
 	// Load events
 	view.on('init', function(next) {
-		keystone.list('Post').schema.methods.postsForCategory(eventsCategoryName,  (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(eventsCategoryName, 'Event', (function(posts, err){
 			if(err) next(err);
-			locals.data.events = posts;
+			if(typeof posts != "undefined")
+				locals.data.events = posts;
 			next();
 		}));
 	});
 
 	//Load wednesday night series
 	view.on('init', function(next) { 
-		keystone.list('Post').schema.methods.postsForCategory(weeklySeriesCategoryName,  (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(weeklySeriesCategoryName, 'Event',  (function(posts, err){
 			if(err) next(err);
-			locals.data.weeklySeries = posts;
+			if(typeof posts != "undefined")
+				locals.data.weeklySeries = posts;
 			next();
 		}));
 	});

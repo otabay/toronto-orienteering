@@ -1,16 +1,22 @@
 extends ../layouts/default
 
-mixin post(post)
-	.post(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
-		h2: a(href='/blog/post/' + post.slug)= post.title
-		p.lead.text-muted Posted 
-			if post.publishedDate
-				| on #{post._.publishedDate.format('MMMM Do, YYYY')} 
-			if post.author
-				| by #{post.author.name.first}
-		p!= post.content.brief
-		if post.content.extended
-			p.read-more: a(href='/blog/post/' + post.slug) Read more...
+
+mixin event(event)
+	.event(data-ks-editable=editable(user, { list: 'Post', id: event.id }))
+		div.mdl-card.mdl-cell.mdl-cell--8-col.mdl-shadow--2dp
+			div.mdl-card__title 
+				h3: a(href='/blog/post/' + event.slug)= event.title
+			div.mdl-card__supporting-text
+				if(event.content.brief)
+					!{event.content.brief}	
+				if(event.startDate) 
+					p <b>Date:</b>  !{event._.startDate.format('MMM, Do')}
+				if(event.location)						
+					p <b>Location:</b> !{event.location.name}
+				if(event.coordinator)	
+					p <b>Coordinator:</b> !{event.coordinator.name.full}
+				if(event.notes)	
+					p <b>Notes:</b> !{event.notes}			
 
 
 block sub-header
@@ -21,18 +27,14 @@ block sub-header
 block content
 	main.mdl-layout__content
 		section.mdl-layout__tab-panel.is-active(id="tab1")
-			.page-content
-				.container !{data.eventsContent.content.extended}
-				.container: .row
-					.col-sm-8.col-md-9
-						if data.events.length
-							h4.text-weight-normal Showing #{utils.plural(data.events.length, '* post')}.
-							.blog
-								each post in data.events
-									+post(post)
-							
-						else
-							h3.text-muted There are no events yet.
+			.container: !{data.eventsContent.content.extended}
+			.container: .row
+				.col-sm-8.col-md-9
+				if data.events.length
+					each event in data.events
+						+event(event)
+				else
+					h3.text-muted There are no events yet.
 
 		section.mdl-layout__tab-panel(id="tab2")
 			.page-content
@@ -40,10 +42,8 @@ block content
 				.container: .row
 					.col-sm-8.col-md-9
 						if data.weeklySeries.length
-							h4.text-weight-normal Showing #{utils.plural(data.weeklySeries.length, '* post')}.
-							.blog
-								each post in data.weeklySeries
-									+post(post)
+							each event in data.weeklySeries
+								+event(event)
 							
 						else
 							h3.text-muted There are no events yet.		
