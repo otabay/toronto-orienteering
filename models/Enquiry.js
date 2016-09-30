@@ -50,10 +50,10 @@ Enquiry.schema.methods.sendNotificationEmail = function(callback) {
 		new keystone.Email('enquiry-notification').send({
 			to: admins,
 			from: {
-				name: 'TorOr',
-				email: 'contact@toror.com'
+				name: 'TOC',
+				email: 'info@torontoorienteering.com'
 			},
-			subject: 'New Enquiry for TorOr',
+			subject: 'New Enquiry for Toronto Orienteering',
 			enquiry: enquiry
 		}, callback);
 		

@@ -11,8 +11,8 @@ var keystone = require('keystone');
 
 keystone.init({
 
-	'name': 'TorOr',
-	'brand': 'TorOr',
+	'name': 'TOC',
+	'brand': 'TOC',
 	
 	'less': 'public',
 	'static': 'public',
