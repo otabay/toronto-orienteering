@@ -68,10 +68,13 @@ var Event = new keystone.List('Event', { inherits: Post });
 Event.add({
 	startDate: { type: Types.Datetime, index: true },
 	endDate: { type: Types.Datetime},
+	registrationTime: { type: String},
 	location: {type: Types.Relationship, ref: 'Location'},
-	coordinator: { type: Types.Relationship, ref: 'User', index: true },
+	meetDirector: { type: Types.Relationship, ref: 'User', index: true },
+	courseSetter: { type: Types.Relationship, ref: 'User', index: true },
+	format: { type: Types.Html, wysiwyg: true, height: 200},
+	cost: { type: Types.Html, wysiwyg: true, height: 200},
 	notes: { type: Types.Html, wysiwyg: true, height: 200 }
-
 });
 
 Event.register();

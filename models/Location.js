@@ -14,8 +14,9 @@ Location.add({
 	name: { type: String, required: true },
 	intersection: { type: String },
 	directions: { type: Types.Html, wysiwyg: true, height: 200 },
-	mapUrl: { type: Types.Url},
-	mapEmbed: { type: String }
+	map: {type: Types.Relationship, ref: 'Map'},
+	locationMapUrl: { type: Types.Url},
+	locationMapEmbed: { type: String }
 });
 
 
