@@ -26,6 +26,7 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
+	'cookie secret': 'ThisIsmyLongNonSenseRandomString',
 
 	'wysiwyg override toolbar': false,
 	'wysiwyg menubar': true,
