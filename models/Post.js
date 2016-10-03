@@ -56,9 +56,20 @@ Post.schema.methods.postsForCategory = function(categoryKey, type, callback){
 			}
 		});
 	})
-	
-	
 };
+
+Post.schema.methods.loadPost = function(slug, callback){
+
+	var q = keystone.list('Post').model.findOne({
+			state: 'published',
+			slug: slug
+		});
+		
+		q.exec(function(err, result) {
+			callback(err, result);
+		});
+};
+
 
 Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
 Post.register();
@@ -74,7 +85,8 @@ Event.add({
 	courseSetter: { type: Types.Relationship, ref: 'User', index: true },
 	format: { type: Types.Html, wysiwyg: true, height: 200},
 	cost: { type: Types.Html, wysiwyg: true, height: 200},
-	notes: { type: Types.Html, wysiwyg: true, height: 200 }
+	notes: { type: Types.Html, wysiwyg: true, height: 200 },
+	documents: { type: Types.Relationship, ref: 'Document', many: true },
 });
 
 Event.register();

@@ -10,6 +10,11 @@ sudo ln -sf /usr/local/n/versions/node/6.6.0/bin/node /usr/bin/node
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 sudo apt-get update
+sudo apt-get install -y mongodb-org
+
+sudo apt-get install build-essential
+sudo apt-get install tcl8.5
+
 wget http://download.redis.io/releases/redis-stable.tar.gz
 tar xzf redis-stable.tar.gz
 cd redis-stable/
@@ -18,15 +23,45 @@ make test
 sudo make install
 cd utils
 sudo ./install_server.sh
+cd ../..
+sudo apt-get install git
+git clone https://github.com/otabay/toronto-orienteering
+
+sudo apt-get install unzip
+unzip dump.zip
+mongorestore -d toc dump/toror
+
+sudo npm install pm2 -g
+sudo pm2 startup ubuntu
 
 
-service mongod stop
-service mongod start
-service mongod restart
+sudo apt-get install nginx
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.orig
+sudo vim /etc/nginx/sites-available/default
+
+server { 
+	listen 80;
+	server_name toronto-orienteering;
+	location / { 
+		proxy_pass http://127.0.0.1:3000;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection 'upgrade';
+		proxy_set_header Host $host;
+		proxy_cache_bypass $http_upgrade;
+	}
+}
+
+sudo service nginx restart
 
 
-service redis_6379 stop
-service redis_6379 start
-service redis_6379 restart
+sudo service mongod stop
+sudo service mongod start
+sudo service mongod restart
+
+
+sudo service redis_6379 stop
+sudo service redis_6379 start
+sudo service redis_6379 restart
 
 
