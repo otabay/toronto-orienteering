@@ -1,3 +1,4 @@
+include ../mixins/content-posts
 extends ../layouts/default
 
 block sub-header
@@ -8,8 +9,6 @@ block sub-header
 block content
 	main.mdl-layout__content
 		section.mdl-layout__tab-panel.is-active(id="tab1")
-			.page-content
-				p Board of Directors
+			+content-post(data.directorsContent)
 		section.mdl-layout__tab-panel(id="tab2")
-			.page-content
-				p Orienteering Links
+			+content-post(data.orienteeringLinksContent)
