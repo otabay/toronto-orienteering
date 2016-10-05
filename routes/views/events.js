@@ -15,8 +15,8 @@ exports = module.exports = function(req, res) {
 	locals.data = {
 		events: [],
 		weeklySeries: [],
-		eventsContent: null,
-		weeklySeriesContent: null
+		eventsContent: {},
+		weeklySeriesContent: {}
 	};
 	
 	// Load events
@@ -41,32 +41,18 @@ exports = module.exports = function(req, res) {
 
 	//load events content
 	view.on('init', function(next) {
-		
-		var q = keystone.list('Post').model.findOne({
-			state: 'published',
-			slug: eventsContentSlug
-		});
-		
-		q.exec(function(err, result) {
+		keystone.list('Post').schema.methods.loadPost(eventsContentSlug, function(err, result){
 			locals.data.eventsContent = result;
 			next(err);
 		});
-		
 	});
 
 	//load weekly series content
 	view.on('init', function(next) {
-		
-		var q = keystone.list('Post').model.findOne({
-			state: 'published',
-			slug: weeklySeriesSlug
-		});
-		
-		q.exec(function(err, result) {
+		keystone.list('Post').schema.methods.loadPost(weeklySeriesSlug, function(err, result){
 			locals.data.weeklySeriesContent = result;
 			next(err);
 		});
-		
 	});
 
 	

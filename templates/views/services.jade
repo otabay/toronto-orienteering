@@ -1,23 +1,20 @@
+include ../mixins/content-posts
 extends ../layouts/default
 
 block sub-header
 	.mdl-layout__tab-bar.mdl-js-ripple-effect
 		a(href="#tab1").mdl-layout__tab.is-active Beginner Clinics
 		a(href="#tab2").mdl-layout__tab Advanced Clinics
-		a(href="#tab3").mdl-layout__tab Team Events
+		a(href="#tab3").mdl-layout__tab Team Building
 		a(href="#tab4").mdl-layout__tab School Events	
 			
 block content
 	main.mdl-layout__content
 		section.mdl-layout__tab-panel.is-active(id="tab1")
-			.page-content
-				p Beginners Clinics
+			+content-post(data.beginnersClinicContent)
 		section.mdl-layout__tab-panel(id="tab2")
-			.page-content
-				p Advanced Clinics
+			+content-post(data.advancedClinicContent)
 		section.mdl-layout__tab-panel(id="tab3")
-			.page-content
-				p Team Events
+			+content-post(data.teamBuildingContent)
 		section.mdl-layout__tab-panel(id="tab4")
-			.page-content
-				p School Events
+			+content-post(data.schoolEventsContent)

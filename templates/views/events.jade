@@ -1,3 +1,4 @@
+include ../mixins/content-posts
 extends ../layouts/default
 
 
@@ -27,7 +28,7 @@ block sub-header
 block content
 	main.mdl-layout__content
 		section.mdl-layout__tab-panel.is-active(id="tab1")
-			.container: !{data.eventsContent.content.extended}
+			+content-post(data.eventsContent)
 			.container: .row
 				.col-sm-8.col-md-9
 				if data.events.length
@@ -38,7 +39,7 @@ block content
 
 		section.mdl-layout__tab-panel(id="tab2")
 			.page-content
-				.container !{data.weeklySeriesContent.content.extended}
+				+content-post(data.weeklySeriesContent)
 				.container: .row
 					.col-sm-8.col-md-9
 						if data.weeklySeries.length
