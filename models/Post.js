@@ -80,6 +80,7 @@ Event.add({
 	startDate: { type: Types.Datetime, index: true },
 	endDate: { type: Types.Datetime},
 	registrationTime: { type: String},
+	registrationLink:{ type: Types.Url},
 	location: {type: Types.Relationship, ref: 'Location'},
 	meetDirector: { type: Types.Relationship, ref: 'User', index: true, many:true },
 	courseSetter: { type: Types.Relationship, ref: 'User', index: true, many:true },

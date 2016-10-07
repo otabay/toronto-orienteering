@@ -3,7 +3,7 @@ extends ../layouts/default
 block header-image
 	include ../includes/layouts/header_image
 
-mixin eventCard(event, cardTitle, actionTitle, actionUrl)
+mixin eventCard(event, cardTitle, actionTitle, titlePath, actionUrl)
 	if event 
 		div.mdl-cell.mdl-cell--4-col
 			div.event-card.mdl-card.mdl-shadow--2dp
@@ -11,7 +11,7 @@ mixin eventCard(event, cardTitle, actionTitle, actionUrl)
 					h2.mdl-card__title-text !{cardTitle}
 				div.mdl-card__supporting-text
 					h3.card-event-title 
-						a(href='/blog/post/' + event.slug)= event.title
+						a(href=titlePath + event.slug)= event.title
 					div.card-event-brief
 						if(event.startDate && event.location.name) 
 							b !{event._.startDate.format('MMMM, Do')} at 
@@ -24,9 +24,9 @@ mixin eventCard(event, cardTitle, actionTitle, actionUrl)
 block content
 	main.mdl-layout__content
 		div.card-container.mdl-grid
-			+eventCard(data.event, "Next Event", "Sign me up!", "#")
-			+eventCard(data.weeklySeriesEvent, "Next Wednesday Event", "Sign me up!", "#")
-			+eventCard(data.news, "Latest News", "More News", "/blog")
+			+eventCard(data.event, "Next Event", "Sign me up!", "/events/event/", "#")
+			+eventCard(data.weeklySeriesEvent, "Next Wednesday Event", "Sign me up!", "/events/event/", "#")
+			+eventCard(data.news, "Latest News", "More News", "'/blog/post/'","/blog")
 		div.mdl-grid
 			div.mdl-cell.mdl-cell--12-col
 				div.content-card.mdl-card
