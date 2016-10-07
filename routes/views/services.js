@@ -8,7 +8,7 @@ exports = module.exports = function(req, res) {
 	var beginnersClinicContentSlug='content-beginners-clinic';
 	var advancedClinicContentSlug='content-advanced-clinic';
 	var teamBuildingContentSlug='content-team-building';
-	var schoolEventsContentSlug='content-school-events';
+	var schoolEventsContentSlug='content-orienteering-for-schools';
 
 	// locals.section is used to set the currently selected
 	// item in the header navigation.

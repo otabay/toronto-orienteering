@@ -5,33 +5,43 @@ block header-image
 
 mixin eventCard(event, cardTitle, actionTitle, titlePath, actionUrl)
 	if event 
-		div.mdl-cell.mdl-cell--4-col
-			div.event-card.mdl-card.mdl-shadow--2dp
-				div.mdl-card__title
+		.mdl-cell.mdl-cell--4-col
+			.event-card.mdl-card.mdl-shadow--2dp
+				.mdl-card__title
 					h2.mdl-card__title-text !{cardTitle}
-				div.mdl-card__supporting-text
+				.mdl-card__supporting-text
 					h3.card-event-title 
 						a(href=titlePath + event.slug)= event.title
-					div.card-event-brief
+					.card-event-brief
 						if(event.startDate && event.location.name) 
 							b !{event._.startDate.format('MMMM, Do')} at 
 							b !{event.location.name}
 						p !{event.content.brief}
-				div.mdl-card__actions.mdl-card--border
+				.mdl-card__actions.mdl-card--border
 					a(href=actionUrl)= actionTitle
 
+mixin serviceCard(service)
+	.mdl-cell.mdl-cell--3-col
+		.event-card.mdl-card.mdl-shadow--2dp
+			.mdl-card__title
+					h2.mdl-card__title-text !{service.friendlyTitle}				
+			.mdl-card__supporting-text
+				!= service.content.brief
+			.mdl-card__actions.mdl-card--border
+					a(href="/services#"+service.slug) Learn More!	
 
 block content
 	main.mdl-layout__content
-		div.card-container.mdl-grid
+		.card-container.mdl-grid
 			+eventCard(data.event, "Next Event", "Sign me up!", "/events/event/", "#")
 			+eventCard(data.weeklySeriesEvent, "Next Wednesday Event", "Sign me up!", "/events/event/", "#")
 			+eventCard(data.news, "Latest News", "More News", "'/blog/post/'","/blog")
-		div.mdl-grid
+		.mdl-grid
+			h3 New to Orienteering?
 			div.mdl-cell.mdl-cell--12-col
-				div.content-card.mdl-card
-					div.mdl-card__title
-						h2.mdl-card__title-text New to Orienteering?
-					div.mdl-card__supporting-text
-						p Orienteering, in the classical sense, is “cross-country running using a map and a compass.” Often called “cunning running” or “adventure running”, this is a thinking sport where you have to navigate a preset course of “control” locations in a park or forest using only your map, compass and your wits. The controls are visited in order but you choose your own routes between controls based on your navigational skills and physical condition. Although orienteering meets are typically competitive events, you can also enjoy the sport as a recreational activity – navigating a recreational course at your own pace either individually or in a group. A beginner’s clinic is usually available an hour or two before the first start of an event.
-						
+				p Orienteering, in the classical sense, is “cross-country running using a map and a compass.” Often called “cunning running” or “adventure running”, this is a thinking sport where you have to navigate a preset course of “control” locations in a park or forest using only your map, compass and your wits. The controls are visited in order but you choose your own routes between controls based on your navigational skills and physical condition. Although orienteering meets are typically competitive events, you can also enjoy the sport as a recreational activity – navigating a recreational course at your own pace either individually or in a group. A beginner’s clinic is usually available an hour or two before the first start of an event.
+		.mdl-grid
+			h3 Our Services								
+		.mdl-grid					
+			each service in data.servicesContent
+				+serviceCard(service)								

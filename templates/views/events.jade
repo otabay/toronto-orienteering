@@ -3,21 +3,20 @@ extends ../layouts/default
 
 
 mixin event(event)
-	.event(data-ks-editable=editable(user, { list: 'Post', id: event.id }))
-		div.mdl-card.mdl-cell.mdl-cell--8-col.mdl-shadow--2dp
-			div.mdl-card__title 
-				h3: a(href='/events/event/' + event.slug)= event.title
-			div.mdl-card__supporting-text
-				if(event.content.brief)
-					!{event.content.brief}	
-				if(event.startDate) 
-					p <b>Date:</b>  !{event._.startDate.format('MMM, Do')}
-				if(event.location)						
-					p <b>Location:</b> !{event.location.name}
-				if(event.coordinator)	
-					p <b>Coordinator:</b> !{event.coordinator.name.full}
-				if(event.notes)	
-					p <b>Notes:</b> !{event.notes}			
+	.mdl-card.mdl-cell.mdl-cell--8-col.mdl-shadow--2dp(data-ks-editable=editable(user, { list: 'Post', id: event.id }))
+		div.mdl-card__title 
+			h3: a(href='/events/event/' + event.slug)= event.title
+		div.mdl-card__supporting-text
+			if(event.content.brief)
+				!{event.content.brief}	
+			if(event.startDate) 
+				p <b>Date:</b>  !{event._.startDate.format('MMM, Do')}
+			if(event.location)						
+				p <b>Location:</b> !{event.location.name}
+			if(event.coordinator)	
+				p <b>Coordinator:</b> !{event.coordinator.name.full}
+			if(event.notes)	
+				p <b>Notes:</b> !{event.notes}			
 
 
 block sub-header
@@ -26,10 +25,10 @@ block sub-header
 		a(href="#tab2").mdl-layout__tab Wednesday Evening Series
 
 block content
-	main.mdl-layout__content 
+	main.container.mdl-layout__content 
 		section.mdl-layout__tab-panel.is-active(id="tab1")
-			.row: .col-sm-10.col-sm-offset-1.col-md-8
-				+content-post(data.eventsContent)
+			+content-post(data.eventsContent)
+			.mdl-grid
 				if data.events.length
 					each event in data.events
 						+event(event)
@@ -37,14 +36,13 @@ block content
 					h3.text-muted There are no events yet.
 
 		section.mdl-layout__tab-panel(id="tab2")
-			.row: .col-sm-10.col-sm-offset-1.col-md-8
-				+content-post(data.weeklySeriesContent)
-				if data.weeklySeries.length
-					each event in data.weeklySeries
-						+event(event)
-					
-				else
-					h3.text-muted There are no events yet.		
+			+content-post(data.weeklySeriesContent)
+			.mdl-grid
+			if data.weeklySeries.length
+				each event in data.weeklySeries
+					+event(event)
+			else
+				h3.text-muted There are no events yet.		
 
 
 					

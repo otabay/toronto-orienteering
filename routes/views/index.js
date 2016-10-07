@@ -8,6 +8,7 @@ exports = module.exports = function(req, res) {
 	var eventsCategoryName='events';
 	var weeklySeriesCategoryName='weekly-series';
 	var newsCategoryName='blog';
+	var servicesCategoryName='service'
 	
 	// locals.section is used to set the currently selected
 	// item in the header navigation.
@@ -16,7 +17,8 @@ exports = module.exports = function(req, res) {
 	locals.data = {
 		event: null,
 		weeklySeriesEvent: null,
-		news: null
+		news: null,
+		servicesContent: []
 	};
 
 	// Load last event
@@ -43,6 +45,15 @@ exports = module.exports = function(req, res) {
 			if(err) next(err);
 			if(typeof posts != "undefined")
 				locals.data.news = posts[0];
+			next();
+		}));
+	});
+	//Load services content
+	view.on('init', function(next) { 
+		keystone.list('Post').schema.methods.postsForCategory(servicesCategoryName, 'Post',  (function(posts, err){
+			if(err) next(err);
+			if(typeof posts != "undefined")
+				locals.data.servicesContent = posts;
 			next();
 		}));
 	});

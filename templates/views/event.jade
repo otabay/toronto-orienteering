@@ -1,96 +1,98 @@
 extends ../layouts/default
 
 block content
-	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8
-		p: a(href='/events') &larr; back to the events
-		hr
-		if !data.event
-			h2 Invalid Event.
-		else
-			header
-				h1= data.event.title
-				h5 Posted 
-					if data.event.publishedDate
-						| on #{data.event._.publishedDate.format('MMMM Do, YYYY')} 
-					if data.event.author
-						| by #{data.event.author.name.first}
-			.event.post-content
-				if data.event.image.exists
-					.image-wrap: img(src=data.event._.image.fit(750,450)).img-responsive
-				!= data.event.content.full
-					table
-						if data.event.startDate
-							tr 
-								td 
-									b Start time
-								td 
-									| #{data.event._.startDate.format('dddd, MMMM Do, h:mm a')}
-						if data.event.registrationTime
-							tr 
-								td 
-									b Registration
-								td
-									p 
-										b Time: 
-										!= data.event.registrationTime
-									p: a(href="#{data.event.registrationLink}") Register Online				
-						if data.event.location
-							tr 
-								td 
-									b Location	
-								td 
-									a(href='#{data.event.location.locationMapUrl}') #{data.event.location.name}
-									!= data.event.location.locationMapEmbed
-						if data.event.location.directions
-							tr
-								td
-									b Directions
-								td
-									!= data.event.location.directions
-						if data.event.location.map
-							tr
-								td
-									b Map
-								td
-									p
-										b Scale: 
-										| #{data.event.location.map.scale.replace('/',':')}
-									p 
-										b Contour Interval: 
-										| #{data.event.location.map.contourInterval.replace('M','m')}						
-									p
-										b Revisions: 
-										!= data.event.location.map.revision
+	main.container.mdl-layout__content
+		.mdl-grid
+			.mdl-cell.mdl-cell--10-col
+				p: a(href='/events') &larr; back to the events
+				hr
+				if !data.event
+					h2 Invalid Event.
+				else
+					header
+						h1= data.event.title
+						h5 Posted 
+							if data.event.publishedDate
+								| on #{data.event._.publishedDate.format('MMMM Do, YYYY')} 
+							if data.event.author
+								| by #{data.event.author.name.first}
+					.event.post-content
+						if data.event.image.exists
+							.image-wrap: img(src=data.event._.image.fit(750,450)).img-responsive
+						!= data.event.content.full
+							table
+								if data.event.startDate
+									tr 
+										td 
+											b Start time
+										td 
+											| #{data.event._.startDate.format('dddd, MMMM Do, h:mm a')}
+								if data.event.registrationTime
+									tr 
+										td 
+											b Registration
+										td
+											p 
+												b Time: 
+												!= data.event.registrationTime
+											p: a(href="#{data.event.registrationLink}") Register Online				
+								if data.event.location
+									tr 
+										td 
+											b Location	
+										td 
+											a(href='#{data.event.location.locationMapUrl}') #{data.event.location.name}
+											!= data.event.location.locationMapEmbed
+								if data.event.location.directions
+									tr
+										td
+											b Directions
+										td
+											!= data.event.location.directions
+								if data.event.location.map
+									tr
+										td
+											b Map
+										td
+											p
+												b Scale: 
+												| #{data.event.location.map.scale.replace('/',':')}
+											p 
+												b Contour Interval: 
+												| #{data.event.location.map.contourInterval.replace('M','m')}						
+											p
+												b Revisions: 
+												!= data.event.location.map.revision
 
-						if data.event.meetDirector || data.event.courseSetter
-							tr 
-								td 
-									b Organizers
-								td 
-									if data.event.meetDirector
-										p
-											b Meet directors: 
-											each person in data.event.meetDirector 
-												!= person.name.full
-										p
-											b Course setters: 
-											each person in data.event.courseSetter 
-												!= person.name.full		
-						if data.event.format
-							tr 
-								td 
-									b Format	
-								td 
-									!= data.event.format
-						if data.event.cost
-							tr 
-								td 
-									b Cost	
-								td 
-									!= data.event.cost
-						if data.event.notes
-							tr 
-								td 
-									b Notes	
-								td 
-									!= data.event.notes										
+								if data.event.meetDirector || data.event.courseSetter
+									tr 
+										td 
+											b Organizers
+										td 
+											if data.event.meetDirector
+												p
+													b Meet directors: 
+													each person in data.event.meetDirector 
+														!= person.name.full
+												p
+													b Course setters: 
+													each person in data.event.courseSetter 
+														!= person.name.full		
+								if data.event.format
+									tr 
+										td 
+											b Format	
+										td 
+											!= data.event.format
+								if data.event.cost
+									tr 
+										td 
+											b Cost	
+										td 
+											!= data.event.cost
+								if data.event.notes
+									tr 
+										td 
+											b Notes	
+										td 
+											!= data.event.notes										

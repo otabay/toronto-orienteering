@@ -5,15 +5,7 @@ mixin post(post)
 		h2: a(href='/blog/post/' + post.slug)= post.title
 		p.lead.text-muted Posted 
 			if post.publishedDate
-				| on #{post._.publishedDate.format('MMMM Do, YYYY')} 
-			if post.categories && post.categories.length
-				| in 
-				each cat, i in post.categories
-					a(href='/blog/' + cat.key)= cat.name
-					if i < post.categories.length - 1
-						| , 
-					else
-						|  
+				| on #{post._.publishedDate.format('MMMM Do, YYYY')}   
 			if post.author
 				| by #{post.author.name.first}
 		if post.image.exists
@@ -22,16 +14,12 @@ mixin post(post)
 		if post.content.extended
 			p.read-more: a(href='/blog/post/' + post.slug) Read more...
 
-block intro
-	.container
-		h1= data.category ? data.category.name : 'Blog'	
 
 block content
-	.container: .row
-		.col-sm-8.col-md-9
-			if filters.category && !data.category
-				h3.text-muted Invalid Category.
-			else
+	main.container.mdl-layout__content
+		h1 News
+		.mdl-grid 
+			.mdl-cell.mdl-cell--10-col
 				if data.posts.results.length
 					if data.posts.totalPages > 1
 						h4.text-weight-normal Showing 
@@ -65,11 +53,3 @@ block content
 						h3.text-muted There are no posts in the category #{data.category.name}.
 					else
 						h3.text-muted There are no posts yet.
-		
-		if data.categories.length
-			.col-sm-4.col-md-3
-				h2 Categories
-				.list-group(style='margin-top: 70px;')
-					a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
-					each cat in data.categories
-						a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
