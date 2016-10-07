@@ -20,6 +20,13 @@ exports = module.exports = function(req, res) {
 		var q = keystone.list('Event').model.findOne({
 			state: 'published',
 			slug: locals.filters.event
+		}).populate({
+			path: 'location',
+			model: 'Location',
+			populate: {
+				path: 'map',
+				model: 'Map'
+			}
 		}).populate('author categories location meetDirector courseSetter documents');
 		
 		q.exec(function(err, result) {
@@ -27,8 +34,7 @@ exports = module.exports = function(req, res) {
 			next(err);
 		});
 		
-	});
-	
+	});	
 	
 	// Render the view
 	view.render('event');

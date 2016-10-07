@@ -6,7 +6,7 @@ mixin event(event)
 	.event(data-ks-editable=editable(user, { list: 'Post', id: event.id }))
 		div.mdl-card.mdl-cell.mdl-cell--8-col.mdl-shadow--2dp
 			div.mdl-card__title 
-				h3: a(href='/blog/post/' + event.slug)= event.title
+				h3: a(href='/events/event/' + event.slug)= event.title
 			div.mdl-card__supporting-text
 				if(event.content.brief)
 					!{event.content.brief}	
@@ -21,16 +21,15 @@ mixin event(event)
 
 
 block sub-header
-	.mdl-layout__tab-bar.mdl-js-ripple-effect
+	.mdl-layout__tab-bar#tabs
 		a(href="#tab1").mdl-layout__tab.is-active Season Schedule
 		a(href="#tab2").mdl-layout__tab Wednesday Evening Series
 
 block content
-	main.mdl-layout__content
+	main.mdl-layout__content 
 		section.mdl-layout__tab-panel.is-active(id="tab1")
-			+content-post(data.eventsContent)
-			.container: .row
-				.col-sm-8.col-md-9
+			.row: .col-sm-10.col-sm-offset-1.col-md-8
+				+content-post(data.eventsContent)
 				if data.events.length
 					each event in data.events
 						+event(event)
@@ -38,16 +37,14 @@ block content
 					h3.text-muted There are no events yet.
 
 		section.mdl-layout__tab-panel(id="tab2")
-			.page-content
+			.row: .col-sm-10.col-sm-offset-1.col-md-8
 				+content-post(data.weeklySeriesContent)
-				.container: .row
-					.col-sm-8.col-md-9
-						if data.weeklySeries.length
-							each event in data.weeklySeries
-								+event(event)
-							
-						else
-							h3.text-muted There are no events yet.		
+				if data.weeklySeries.length
+					each event in data.weeklySeries
+						+event(event)
+					
+				else
+					h3.text-muted There are no events yet.		
 
 
 					
