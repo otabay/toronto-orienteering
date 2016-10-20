@@ -43,12 +43,15 @@ block content
 			+eventCard(data.event, "Next Event", "Sign me up!", "/events/event/", "#")
 			+eventCard(data.weeklySeriesEvent, "Next Wednesday Event", "Sign me up!", "/events/event/", "#")
 			+eventCard(data.news, "Latest News", "More News", "'/blog/post/'","/blog")
-		.mdl-grid.section
-			h3.section-title Discover Orienteering
-			div.mdl-cell.mdl-cell--12-col
-				p Orienteering, in the classical sense, is “cross-country running using a map and a compass.” Often called “cunning running” or “adventure running”, this is a thinking sport where you have to navigate a preset course of “control” locations in a park or forest using only your map, compass and your wits. The controls are visited in order but you choose your own routes between controls based on your navigational skills and physical condition. Although orienteering meets are typically competitive events, you can also enjoy the sport as a recreational activity – navigating a recreational course at your own pace either individually or in a group. A beginner’s clinic is usually available an hour or two before the first start of an event.
-		.mdl-grid.section
-			h3.section-title Getting Started								
-		.mdl-grid					
-			each service in data.servicesContent
-				+serviceCard(service)								
+		.section
+			.section-title
+				h3 Discover Orienteering
+			.mdl-grid
+				div.mdl-cell.mdl-cell--12-col
+					p Orienteering, in the classical sense, is “cross-country running using a map and a compass.” Often called “cunning running” or “adventure running”, this is a thinking sport where you have to navigate a preset course of “control” locations in a park or forest using only your map, compass and your wits. The controls are visited in order but you choose your own routes between controls based on your navigational skills and physical condition. Although orienteering meets are typically competitive events, you can also enjoy the sport as a recreational activity – navigating a recreational course at your own pace either individually or in a group. A beginner’s clinic is usually available an hour or two before the first start of an event.
+		.section
+			.section-title
+				h3 Getting Started
+			.mdl-grid																
+				each service in data.servicesContent
+					+serviceCard(service)								
