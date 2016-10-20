@@ -35,7 +35,8 @@ block content
 											p 
 												b Time: 
 												!= data.event.registrationTime
-											p: a(href="#{data.event.registrationLink}") Register Online				
+											if(data.event.registrationLink)	
+												p: a(href="#{data.event.registrationLink}") Register Online				
 								if data.event.location
 									tr 
 										td 

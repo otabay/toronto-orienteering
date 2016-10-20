@@ -49,7 +49,7 @@ Post.schema.methods.postsForCategory = function(categoryKey, type, callback){
 		.populate('coordinator')
 		.where('categories').in([category.id])
 		.where('state', 'published')
-		.sort('order startDate')
+		.sort('order -startDate')
 		.exec(function(err, posts) {
 			if (err) return callback(err);
 			if (!posts.length) {

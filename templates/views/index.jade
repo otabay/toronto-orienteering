@@ -13,12 +13,19 @@ mixin eventCard(event, cardTitle, actionTitle, titlePath, actionUrl)
 					h3.card-event-title 
 						a(href=titlePath + event.slug)= event.title
 					.card-event-brief
-						if(event.startDate && event.location.name) 
-							b !{event._.startDate.format('MMMM, Do')} at 
-							b !{event.location.name}
 						p !{event.content.brief}
+				.card-location-time		
+					if event.location
+						.card-location
+							span.icon.icon-location 
+								a(href=event.location.locationMapUrl target="_blank") !{event.location.name}
+					if event.startDate
+						.card-time
+							span.icon.icon-datetime !{event._.startDate.format('MMMM, Do')}
 				.mdl-card__actions.mdl-card--border
-					a(href=actionUrl)= actionTitle
+						a(href='/events/event/' + event.slug) More Info ...
+						if(event.registrationLink)
+							a(href=event.registrationLink target="_blank")= actionTitle
 
 mixin serviceCard(service)
 	.mdl-cell.mdl-cell--3-col
