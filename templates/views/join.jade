@@ -1,0 +1,7 @@
+include ../mixins/content-posts
+extends ../layouts/default
+
+			
+block content
+	main.container.mdl-layout__content
+		+content-post(data.joinContent)
