@@ -7,7 +7,7 @@ mixin event(event)
 		.card-container
 			.card-image
 				if(event.image.exists)
-					.image-wrap: img(src=event.image height=200 width=200).img-responsive
+					.image-wrap: img(src=event._.image.fit(200,200)).img-responsive
 				else
 					.image-wrap: img(src="../images/event.jpg" height=200 width=200).img-responsive
 			.card-content		
