@@ -19,7 +19,7 @@ mixin event(event)
 					if(event.coordinator)	
 						p <b>Coordinator:</b> !{event.coordinator.name.full}
 					if(event.notes)	
-						p <b>Notes:</b> !{event.notes}
+						p !{event.notes}
 		.card-location-time		
 			if event.location
 				.card-location

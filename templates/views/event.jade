@@ -17,9 +17,9 @@ block content
 							if data.event.publishedDate
 								| #{data.event._.publishedDate.format('MMMM Do, YYYY')} 
 					if data.event.image.exists
-						.image-wrap: img(src=data.event._.image.fit(750,450)).img-responsive
+						.image-wrap: img(src=data.event._.image.fit(750,450)).img-responsive.centered-image
 					else
-						.image-wrap: img(src="../../images/event.jpg" height=300 width=400).img-responsive		
+						.image-wrap: img(src="../../images/event.jpg").img-responsive.centered-image		
 					.event.post-content		
 						!= data.event.content.full
 							table
