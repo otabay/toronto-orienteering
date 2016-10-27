@@ -27,7 +27,6 @@ exports = module.exports = function(req, res) {
 		q.exec(function(err, result) {
 			locals.data.post = result;
 			//populate meta data
-			locals.data.meta.type = "article";
 			locals.data.meta.fullUrl = result.fullPostUrl;
 			locals.data.meta.publishedDate = result.publishedDate;
 			if(result.image.exists){

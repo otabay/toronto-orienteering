@@ -11,16 +11,25 @@ block content
 				else
 					header
 						h1= data.event.title
-						h5 
-							if data.event.author
-								| #{data.event.author.name.first} | 
-							if data.event.publishedDate
-								| #{data.event._.publishedDate.format('MMMM Do, YYYY')} 
-					if data.event.image.exists
-						.image-wrap: img(src=data.event._.image.fit(750,450)).img-responsive.centered-image
-					else
-						.image-wrap: img(src="../../images/event.jpg").img-responsive.centered-image		
-					.event.post-content		
+						.post-subtitle
+							h5 
+								if data.event.author
+									| #{data.event.author.name.first} | 
+								if data.event.publishedDate
+									| #{data.event._.publishedDate.format('MMMM Do, YYYY')}
+						.post-social
+							a(href="https://twitter.com/intent/tweet?text=#{data.event.title}&url=#{data.event.fullEventUrl}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;")
+								img(src="../../images/twitter.png").icon.social-icon
+							a(href="https://www.facebook.com/sharer/sharer.php?u=#{data.event.fullPostUrl}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;")
+								img(src="../../images/facebook.png").icon.social-icon
+							a(href="https://plus.google.com/share?url=#{data.event.fullPostUrl}" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;")
+								img(src="../../images/google.png").icon.social-icon
+		
+					.event.post-content
+						if data.event.image.exists
+							img(src=data.event._.image.fit(750,450)).img-responsive.centered-image
+						else
+							img(src="../../images/event.jpg").img-responsive.centered-image		
 						!= data.event.content.full
 							table
 								if data.event.startDate

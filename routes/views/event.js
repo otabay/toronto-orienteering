@@ -28,7 +28,6 @@ exports = module.exports = function(req, res) {
                 function(err, result){    
 					locals.data.event = doc;
 					//setup meta info
-					locals.data.meta.type = "event";
 					locals.data.meta.fullUrl = doc.fullEventUrl;
 					locals.data.meta.publishedDate = doc.publishedDate;
 					if(doc.image.exists){
