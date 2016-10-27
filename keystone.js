@@ -110,6 +110,8 @@ keystone.set('nav', {
 	'users': 'users'
 });
 
+keystone.set('baseUrl', (keystone.get('env') == 'production') ? 'http://torontoorienteering.com/' : 'http://localhost:3000/');
+
 
 // Start Keystone to connect to your database and initialise the web server
 

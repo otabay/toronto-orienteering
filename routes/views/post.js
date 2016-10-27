@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+var _ = require('underscore');
 
 exports = module.exports = function(req, res) {
 	
@@ -11,7 +12,8 @@ exports = module.exports = function(req, res) {
 		post: req.params.post
 	};
 	locals.data = {
-		posts: []
+		post: {},
+		meta: {}
 	};
 	
 	// Load the current post
@@ -24,6 +26,20 @@ exports = module.exports = function(req, res) {
 		
 		q.exec(function(err, result) {
 			locals.data.post = result;
+			//populate meta data
+			locals.data.meta.type = "article";
+			locals.data.meta.fullUrl = result.fullPostUrl;
+			locals.data.meta.publishedDate = result.publishedDate;
+			if(result.image.exists){
+				locals.data.meta.imageUrl = result.image.url;
+			}
+			if(result.meta.exists) {
+				locals.data.meta.title = result.meta.title;
+				locals.data.meta.description = result.meta.description;
+			} else {
+				locals.data.meta.title = result.title;
+				locals.data.meta.description = result.brief;
+			}
 			next(err);
 		});
 		

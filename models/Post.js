@@ -22,12 +22,24 @@ Post.add({
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }
 	},
+	meta: {
+        title: { type: String},
+        description: { type: String}
+    },
 	categories: { type: Types.Relationship, ref: 'PostCategory', many: true },
 	order: { type: Number }
 });
 
 Post.schema.virtual('content.full').get(function() {
 	return this.content.extended || this.content.brief;
+});
+
+Post.schema.virtual('fullPostUrl').get(function() {
+    return keystone.get('baseUrl') + 'blog/post/' + this.slug;
+});
+
+Post.schema.virtual('fullEventUrl').get(function() {
+    return keystone.get('baseUrl') + 'events/event/' + this.slug;
 });
 
 Post.schema.methods.postsForCategory = function(categoryKey, type, callback){

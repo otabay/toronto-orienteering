@@ -11,7 +11,8 @@ exports = module.exports = function(req, res) {
 		event: req.params.event
 	};
 	locals.data = {
-		event: {}
+		event: {},
+		meta: {}
 	};
 	
 	// Load the current post
@@ -24,8 +25,22 @@ exports = module.exports = function(req, res) {
 		
 		q.exec(function(err, doc) {
 			keystone.list('Location').model.populate(doc.location, {path:'map'},
-                   function(err, result){    
+                function(err, result){    
 					locals.data.event = doc;
+					//setup meta info
+					locals.data.meta.type = "event";
+					locals.data.meta.fullUrl = doc.fullEventUrl;
+					locals.data.meta.publishedDate = doc.publishedDate;
+					if(doc.image.exists){
+						locals.data.meta.imageUrl = doc.image.url;
+					}
+					if(doc.meta.exists) {
+						locals.data.meta.title = doc.meta.title;
+						locals.data.meta.description = doc.meta.description;	
+					} else {
+						locals.data.meta.title = doc.title;
+						locals.data.meta.description = doc.brief;
+					}
 					next(err);
 			});
 		

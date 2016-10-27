@@ -9,6 +9,7 @@
  */
 
 var _ = require('underscore');
+var keystone = require('keystone');
 
 
 /**
@@ -33,6 +34,11 @@ exports.initLocals = function(req, res, next) {
 	];
 
 	locals.user = req.user;
+
+	/**
+ 	* Base url for the site
+ 	*/
+	locals.baseUrl = keystone.get('baseUrl');
 
 	next();
 
