@@ -40,6 +40,11 @@ exports.initLocals = function(req, res, next) {
  	*/
 	locals.baseUrl = keystone.get('baseUrl');
 
+	locals.page = {
+		title: 'Toronto Orienteering',
+		path: req.url.split("?")[0] // strip the query - handy for redirecting back to the page
+	};
+
 	next();
 
 };

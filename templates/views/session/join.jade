@@ -1,0 +1,14 @@
+include ../../mixins/content-posts
+extends ../../layouts/default
+	
+block content
+	.container-xs		 			
+		.page-content
+			+auth-forms({ modal: false, initial: 'join' })
+			+content-post(data.joinContent)
+
+block js
+	script.
+		jQuery(function($) {
+			$('.auth-form').find('.form-control').eq(0).focus().select();
+		});
