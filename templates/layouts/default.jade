@@ -63,24 +63,22 @@ html
 	body
 
 		//- HEADER
-		div.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
-			include ../includes/layouts/header
+		include ../includes/layouts/header
+		//- NOTE:
+		//- There is no .container wrapping class around body blocks to allow more flexibility in design.
+		//- Remember to include it in your templates when you override the intro and content blocks!
 
-			//- NOTE:
-			//- There is no .container wrapping class around body blocks to allow more flexibility in design.
-			//- Remember to include it in your templates when you override the intro and content blocks!
+		//- The Intro block appears above flash messages (used for temporary information display)
+		block intro
 
-			//- The Intro block appears above flash messages (used for temporary information display)
-			block intro
+		//- Flash messages allow you to display once-off status messages to users, e.g. form
+		//- validation errors, success messages, etc.
+		+flash-messages(messages)
 
-			//- Flash messages allow you to display once-off status messages to users, e.g. form
-			//- validation errors, success messages, etc.
-			+flash-messages(messages)
-
-			//- The content block should contain the body of your template's content
-			block content
-			
-			include ../includes/layouts/footer
+		//- The content block should contain the body of your template's content
+		block content
+		
+		include ../includes/layouts/footer
 
 		//- JAVASCRIPT
 

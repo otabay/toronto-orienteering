@@ -3,56 +3,64 @@ extends ../layouts/default
 block header-image
 	include ../includes/layouts/header_image
 
-mixin eventCard(event, cardTitle, actionTitle, titlePath, actionUrl)
-	if event 
-		.mdl-cell.mdl-cell--4-col
-			.event-card.mdl-card.mdl-shadow--2dp
-				.mdl-card__title
-					h2.mdl-card__title-text !{cardTitle}
-				.mdl-card__supporting-text
-					h3.card-event-title 
-						a(href=titlePath + event.slug)= event.title
-					.card-event-brief
-						p !{event.content.brief}
-				.card-location-time		
-					if event.location
-						.card-location
-							span.icon.icon-location 
-								a(href=event.location.locationMapUrl target="_blank") !{event.location.name}
-					if event.startDate
-						.card-time
-							span.icon.icon-datetime !{event._.startDate.format('MMMM, Do')}
-				.mdl-card__actions.mdl-card--border
-						a(href='/events/event/' + event.slug) More Info ...
-						if(event.registrationLink)
-							a(href=event.registrationLink target="_blank")= actionTitle
-
 mixin serviceCard(service)
-	.mdl-cell.mdl-cell--3-col
-		.event-card.mdl-card.mdl-shadow--2dp
-			.mdl-card__title
-					h2.mdl-card__title-text !{service.friendlyTitle}				
-			.mdl-card__supporting-text
-				!= service.content.brief
-			.mdl-card__actions.mdl-card--border
-					a(href="/services#"+service.slug) Learn More!	
+	.col-md-6
+		h1 !{service.friendlyTitle}
+		p.lead !{service.content.brief}
+		.btn-group
+			a(href="/services#"+service.slug) Learn More!
+
+mixin eventCard(event, actionTitle, titlePath)
+	if event 
+		.col-md-4
+			.event-header
+				.event-title.pull-left
+					a(href=titlePath + event.slug)= event.title
+				if event.startDate
+						span.icon.pull-right !{event._.startDate.format('MMMM, Do')}
+			.card-event-brief
+				p !{event.content.brief}		
+				if event.location
+					.card-location
+						span.icon.icon-location 
+							a(href=event.location.locationMapUrl target="_blank") !{event.location.name}
+			.btn-group
+				a(href='/events/event/' + event.slug) More Info ...
+				if(event.registrationLink)
+					a(href=event.registrationLink target="_blank")= actionTitle									
+
+
 
 block content
-	main.mdl-layout__content
-		.card-container.mdl-grid
-			+eventCard(data.event, "Next Event", "Sign me up!", "/events/event/", "#")
-			+eventCard(data.weeklySeriesEvent, "Next Wednesday Event", "Sign me up!", "/events/event/", "#")
-			+eventCard(data.news, "Latest News", "More News", "'/blog/post/'","/blog")
-		.section
-			.section-title
-				h3 Discover Orienteering
-			.mdl-grid
-				.mdl-cell.mdl-cell--12-col
+	.section.events-news-section
+		.container
+			.row
+				.col-md-8
+					h2.section-title Events
+					span.icon-title
+					.section
+						.container
+							.row
+								+eventCard(data.event, "Sign me up!", "/events/event/")
+								+eventCard(data.weeklySeriesEvent, "Sign me up!", "/events/event/")
+				.col-md-4.news-col
+					h1.section-title News
+					.section
+						.container
+							.row
+								+eventCard(data.news,"More News", "'/blog/post/'")				
+	.section
+		.container
+			.row
+				.col-md-6
+					h1 Discover Orienteering
 					p Orienteering, in the classical sense, is “cross-country running using a map and a compass.” Often called “cunning running” or “adventure running”, this is a thinking sport where you have to navigate a preset course of “control” locations in a park or forest using only your map, compass and your wits. The controls are visited in order but you choose your own routes between controls based on your navigational skills and physical condition. Although orienteering meets are typically competitive events, you can also enjoy the sport as a recreational activity – navigating a recreational course at your own pace either individually or in a group. A beginner’s clinic is usually available an hour or two before the first start of an event.
-		.section
-			.section-title
-				h3 Getting Started
-			.mdl-grid																
+				.col-md-6
+					img(src='/images/header.jpg').img-responsive.img-rounded
+	.section
+		.container
+			.row
+				.col-md-12																
 				each service in data.servicesContent
-					+serviceCard(service)
+					+serviceCard(service)				
 

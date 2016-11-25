@@ -1,29 +1,45 @@
-header.mdl-layout__header
-  div.mdl-layout__header-row
-    a(href='/'): img(src="/images/logo.png", alt="Home").mdl-layout-title.title-logo
-    span.mdl-layout-title.mdl-layout--small-screen-only Toronto Orienteering
-    nav.mdl-navigation.mdl-layout--large-screen-only
-      a(href='/events').mdl-navigation__link Events
-      a(href='/services').mdl-navigation__link Services
-      a(href='/blog').mdl-navigation__link News
-      a(href='/about').mdl-navigation__link About
-      a(href='/join').mdl-navigation__link Join!
-    div.mdl-layout-spacer
-    nav.mdl-navigation.mdl-layout--large-screen-only  
-      if user
-        if user.canAccessKeystone
-          a(href='/keystone').mdl-navigation__link Admin
-        a(href='/keystone/signout').mdl-navigation__link Sign Out
-      else
-        a(href='/keystone/signin').mdl-navigation__link Sign In
-        a(href='/keystone/register').mdl-navigation__link Join Now 
-  block sub-header
-div.mdl-layout__drawer
-  nav.mdl-navigation
-    a(href='/').mdl-navigation__link Home
-    a(href='/events').mdl-navigation__link Events
-    a(href='/services').mdl-navigation__link Services
-    a(href='/blog').mdl-navigation__link News
-    a(href='/about').mdl-navigation__link About
-    a(href='/join').mdl-navigation__link Join!         
-block header-image
+.cover
+  .navbar.navbar-inverse
+    .container
+      .navbar-header
+        button(type="button", data-toggle="collapse", data-target="navbar-ex-collapse").navbar-toggle
+          span.sr-only Toggle Navigation
+          // TODO 3 times?
+          span.iconbar    
+      .collapse#navbar-ex-collapse.navbar-collapse
+        ul.nav.navbar-left.navbar-nav
+          li.active
+            a(href='/') Home
+          li.dropdown
+            a(href="/events", data-toggle="dropdown", role="button", aria-expanded="false").dropdown-toggle Events
+              i.fa.fa-caret-down
+            ul(role="menu").dropdown-menu
+              li
+                a(href="#") Season Schedule 
+              li
+                a(href="#") Weekly Park Series
+          li.dropdown
+            a(href="/services", data-toggle="dropdown", role="button", aria-expanded="false").dropdown-toggle Services
+              i.fa.fa-caret-down
+            ul(role="menu").dropdown-menu
+              li
+                a(href="#") Beginners Clinic 
+              li
+                a(href="#") Advanced Clinics
+              li
+                a(href="#") Team Building
+              li
+                a(href="#") School Events
+          li
+            a(href='/blog') News
+          li.dropdown
+            a(href="/about", data-toggle="dropdown", role="button", aria-expanded="false").dropdown-toggle About Us
+              i.fa.fa-caret-down
+            ul(role="menu").dropdown-menu
+              li
+                a(href="#") Board of Directors 
+              li
+                a(href="#") Orienteering Links
+            li
+              a(href='/join') Join us!         
+  block header-image
