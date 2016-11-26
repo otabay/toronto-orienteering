@@ -1,3 +1,7 @@
+.cover-image {
+  background-image : url('/images/hero_bg.jpg')
+}
+
 .hero-title {
 	font-size: 34px;
 	font-style: italic;
@@ -23,23 +27,41 @@
 	word-spacing: 10px;
 }
 
+.fa {
+	padding-left: 4px;
+}
+
 .events-news-section {
 	padding-top: 0px;
 }
 
 .news-col {
-	background-color: #ddd;
+	background-color: #e5e5e5;
 }
 
 .icon-title {
-	background-image: url(../images/text_triangle.png);
+	background-image: url(/images/text_triangle.png);
 	background-repeat: no-repeat;
 	background-position: right top;
-	padding-right: 30px;
+	padding-right: 24px;
+	background-position-y: 7px;
 }
 
-.card-time {
-  float: right;
+.event-brief {
+	min-height: 120px;
+}
+
+.event-header {
+	font-size: 20px;
+	padding-bottom: 50px;
+}
+
+.event-col{
+	border-right: 1px solid @gray-light;
+}
+
+.event-date {
+  color: #FF9A00;
 }
 
 .post-content table {
@@ -60,29 +82,35 @@
 .section-title {
 	margin-left: 10px;
 	text-transform: uppercase;
+	font-style: italic;
+	font-weight: bolder;
+	border-bottom: 1px solid @gray-light;
 }
 
-.card-location-time {
-	padding:16px;
-	font-size: 14px;
-}
 .card-location {
-	width: 55%;
-  	float: left;
+	padding-bottom: 20px;
 }
 
+.card-location a {
+	color: @gray-light;
+	text-decoration: underline;
+}
 
+.btn-primary {
+  border-radius: 0px;
+  text-transform: uppercase;
+  margin-right: 20px;
+}
 
 .icon {
 	background-position: left center;
 	background-repeat: no-repeat;
-	padding-left: 30px; /* Or size of icon + spacing */
+	padding-left: 20px; /* Or size of icon + spacing */
 	padding-top: 8px;
-	padding-bottom: 8px;
 }
 
 .icon-location {
-	background-image: url(../images/location-24.png);
+	background-image: url(/images/icon_location.png);
 }
 
 .card-container {

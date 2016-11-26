@@ -12,22 +12,23 @@ mixin serviceCard(service)
 
 mixin eventCard(event, actionTitle, titlePath)
 	if event 
-		.col-md-4
+		.col-md-4.event-col
 			.event-header
 				.event-title.pull-left
-					a(href=titlePath + event.slug)= event.title
+					p !{event.title}
 				if event.startDate
-						span.icon.pull-right !{event._.startDate.format('MMMM, Do')}
-			.card-event-brief
+						.event-date.pull-right 
+							p !{event._.startDate.format('MMM, Do')}
+			.event-brief
 				p !{event.content.brief}		
-				if event.location
-					.card-location
-						span.icon.icon-location 
-							a(href=event.location.locationMapUrl target="_blank") !{event.location.name}
+			if event.location
+				.card-location
+					span.icon.icon-location 
+						a(href=event.location.locationMapUrl target="_blank") !{event.location.name}
 			.btn-group
-				a(href='/events/event/' + event.slug) More Info ...
+				a(href='/events/event/' + event.slug).btn.btn-primary More Info
 				if(event.registrationLink)
-					a(href=event.registrationLink target="_blank")= actionTitle									
+					a(href=event.registrationLink target="_blank").btn.btn-primary= actionTitle									
 
 
 
@@ -37,14 +38,15 @@ block content
 			.row
 				.col-md-8
 					h2.section-title Events
-					span.icon-title
+						span.icon-title
 					.section
 						.container
 							.row
 								+eventCard(data.event, "Sign me up!", "/events/event/")
 								+eventCard(data.weeklySeriesEvent, "Sign me up!", "/events/event/")
 				.col-md-4.news-col
-					h1.section-title News
+					h2.section-title News
+						span.icon-title
 					.section
 						.container
 							.row
