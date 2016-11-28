@@ -31,12 +31,30 @@
 	padding-left: 4px;
 }
 
+.section {
+	padding: 0 0;
+}
+
 .events-news-section {
 	padding-top: 0px;
 }
 
 .news-col {
 	background-color: #e5e5e5;
+	min-height: 400px;
+}
+
+.news-brief {
+	min-height: 160px;
+}
+
+.news-btn {
+	background-color: #0aa0cb;
+	border-color: #0997c9;
+}
+
+.news-btn:hover, .news-btn:focus, .news-btn:active, .news-btn.active {
+	background-color: #0887c0;
 }
 
 .icon-title {
@@ -56,12 +74,38 @@
 	padding-bottom: 50px;
 }
 
-.event-col{
-	border-right: 1px solid @gray-light;
+.border-right{
+	border-right: 1px solid @gray-lighter;
 }
 
 .event-date {
   color: #FF9A00;
+}
+
+.discover-text{
+	background-color: @brand-primary;
+	color: white;
+	height: 300px;
+}
+
+.discover-text h1 {
+	font-weight: bolder;
+	padding-top: 20px;
+	padding-left: 20px;
+}
+
+.discover-text p {
+	padding: 35px 20px;
+	font-size: 18px;
+}
+
+.discover-image{
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.discover-image img {
+	height: 300px;
 }
 
 .post-content table {
@@ -84,6 +128,7 @@
 	text-transform: uppercase;
 	font-style: italic;
 	font-weight: bolder;
+	padding-top: 30px;
 	border-bottom: 1px solid @gray-light;
 }
 
