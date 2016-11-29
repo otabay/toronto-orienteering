@@ -3,16 +3,22 @@ extends ../layouts/default
 block header-image
 	include ../includes/layouts/header_image
 
-mixin serviceCard(service)
-	.col-md-6.service-card
+mixin serviceCard(service, i)
+	- var cardClass = "col-md-6 service-card"
+	if(i < 2 ) 
+		- var cardClass = cardClass + " border-bottom";
+	if( i%2 ==0 ) 
+		-var cardClass = cardClass + " border-right";
+	div(class=cardClass)
 		.h3 !{service.friendlyTitle}
-		p.lead !{service.content.brief}
+		.service-brief
+			p.lead !{service.content.brief}
 		.btn-group
-			a(href="/services#"+service.slug).btn.btn-primary Learn More!
+			a(href="/services#"+service.slug).btn.btn-primary Learn More !
 
 mixin eventCard(event, actionTitle, titlePath, hasBorder)
 	if event
-		div(class="#{ hasBorder? 'col-md-6 border-right' : 'col-md-6' }") 
+		div(class="#{ hasBorder? 'col-md-6 border-right event-col' : 'col-md-6 event-col' }") 
 			.event-header
 				.event-title.pull-left
 					p !{event.title}
@@ -32,7 +38,7 @@ mixin eventCard(event, actionTitle, titlePath, hasBorder)
 
 mixin newsCard(event, titlePath)
 	if event
-		.col-md-12 
+		.col-md-12.news-content-col 
 			.event-header
 				.event-title.pull-left
 					p !{event.title}
@@ -42,7 +48,7 @@ mixin newsCard(event, titlePath)
 			.news-brief
 				p !{event.content.brief}		
 			.btn-group
-				a(href= titlePath + event.slug).btn.btn-primary.news-btn More Info
+				a(href= titlePath + event.slug).btn.btn-primary.news-btn More News
 
 
 block content
@@ -68,11 +74,10 @@ block content
 					p Orienteering, in the classical sense, is “cross-country running using a map and a compass.” Often called “cunning running” or “adventure running”, this is a thinking sport where you have to navigate a preset course of “control” locations in a park or forest using only your map, compass and your wits.
 				.col-md-6.discover-image
 					img(src='/images/header.jpg').img-responsive
-	.section
+	.section.services-section
 		.container
 			h2.section-title How can we help?
-					span.icon-title
-			.row																
-				each service in data.servicesContent
-					+serviceCard(service)				
+					span.icon-title																
+			each service,i in data.servicesContent
+				+serviceCard(service,i)				
 
