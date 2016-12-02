@@ -10,6 +10,14 @@
 	word-spacing: 12px;
 }
 
+.hero-container {
+	min-height: 500px;
+}
+
+.hero-column {
+	margin-top: 150px;
+}
+
 .hero-devider {
 	background-image: url(/images/hero_details.png);
 	background-repeat: no-repeat;
@@ -41,7 +49,7 @@
 
 .news-col {
 	background-color: #e5e5e5;
-	min-height: 430px;
+	min-height: 450px;
 }
 
 .news-content-col {
@@ -73,17 +81,33 @@
 	min-height: 120px;
 }
 
+.event-brief-main {
+	min-height: 60px;
+}
+
 .event-header {
 	font-size: 20px;
 	padding-bottom: 50px;
 }
 
+.event-panel {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	width: 80%;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+.event-footer {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
 .border-right{
-	border-right: 1px solid @gray-lighter;
+	border-right: 1px solid @gray-light;
 }
 
 .border-bottom {
-	border-bottom: 1px solid @gray-lighter;
+	border-bottom: 1px solid @gray-light;
 }
 
 .event-date {
@@ -150,12 +174,11 @@
 }
 
 .section-title {
-	margin-left: 10px;
 	text-transform: uppercase;
 	font-style: italic;
 	font-weight: bolder;
 	padding-top: 30px;
-	border-bottom: 1px solid @gray-light;
+	padding-bottom: 20px;
 }
 
 .card-location {
@@ -184,12 +207,16 @@
 	background-image: url(/images/icon_location.png);
 }
 
-.card-container {
-	flex-direction: row;
-}
 .card-image {
 	float: left;
 	margin-right: 10px;
+}
+
+.event-panel {
+	min-height: 200px;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
 .event-list-item {

@@ -56,13 +56,13 @@ block content
 		.container
 			.row
 				.col-md-8
-					h2.section-title Events
+					h2.section-title.border-bottom Events
 						span.icon-title
 					.row
 						+eventCard(data.event, "Sign me up!", "/events/event/", true)
 						+eventCard(data.weeklySeriesEvent, "Sign me up!", "/events/event/", false)
 				.col-md-4.news-col
-					h2.section-title News
+					h2.section-title.border-bottom News
 						span.icon-title
 					.row
 						+newsCard(data.news, "'/blog/post/'")				
@@ -76,7 +76,7 @@ block content
 					img(src='/images/header.jpg').img-responsive
 	.section.services-section
 		.container
-			h2.section-title How can we help?
+			h2.section-title.border-bottom How can we help?
 					span.icon-title																
 			each service,i in data.servicesContent
 				+serviceCard(service,i)				
