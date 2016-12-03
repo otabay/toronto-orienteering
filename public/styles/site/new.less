@@ -17,6 +17,7 @@
 @border-radius-large: @border-radius-base * 1.25;
 @border-radius-small: @border-radius-base * 0.5;
 @navbar-margin-bottom: 0px;
+@navbar-color: rgba(0,0,0,0.7);
 
 /* Google web fonts support */
 
@@ -165,7 +166,7 @@ body {
     top: 0px;
     width: 100%;
     border: none;
-    background-color: rgba(0,0,0,0.7);
+    background-color: @navbar-color;
     .navbar-nav li.active a {
       background-color: transparent !important;
     }
@@ -390,4 +391,44 @@ monospace;
   .col-lg-bottom {
     vertical-align: bottom;
   }
+}
+
+.nav-tabs { 
+  border-bottom: 2px solid #DDD; 
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { 
+  border-width: 0; 
+}
+
+.nav-tabs > li > a { 
+  border: none; 
+  color: #666; 
+}
+        
+.nav-tabs > li.active > a, .nav-tabs > li > a:hover { 
+  border: none; 
+  color: @brand-primary !important; 
+  background: transparent; 
+}
+
+.nav-tabs > li > a::after { 
+  content: ""; 
+  background: @brand-primary; 
+  height: 2px; 
+  position: absolute; 
+  width: 100%; 
+  left: 0px; 
+  bottom: -1px; 
+  transition: all 250ms ease 0s; 
+  transform: scale(0); 
+}
+
+.nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after {
+   transform: scale(1); 
+}
+
+.tab-nav > li > a::after {
+   background: #21527d none repeat scroll 0% 0%; 
+   color: #fff; 
 }

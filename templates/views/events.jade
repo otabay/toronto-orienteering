@@ -24,58 +24,33 @@ mixin event(event)
 								span.icon.icon-location 
 									a(href=event.location.locationMapUrl target="_blank") !{event.location.name}				
 						.event-brief-main
-							p !{event.content.brief}		
-				
+							p !{event.content.brief}
 
-mixin event2(event)
-	.col-md-10.event-list-item(data-ks-editable=editable(user, { list: 'Post', id: event.id }))
-		.card-container
-			.card-image
-				if(event.image.exists)
-					.image-wrap: img(src=event._.image.fit(200,200)).img-responsive
+
+
+block sub-header
+	ul.nav.nav-tabs
+		li(role="presentation").active
+			a(href="#tab1" role="tab" data-toggle="tab") 2016 Event Schedule
+		li(role="presentation")
+			a(href="#tab2" role="tab" data-toggle="tab") Weekly Series	
+
+block content
+	.tab-content
+		div(role="tabpanel").tab-pane.active#tab1
+			.container
+				+content-post(data.eventsContent)
+				if data.events.length
+					each event in data.events
+						+event(event)
 				else
-					.image-wrap: img(src="../images/event.jpg" height=200 width=200).img-responsive
-			.card-content		
-				.event-title 
-					h3: a(href='/events/event/' + event.slug)= event.title
-				.event-brief
-					if(event.content.brief)
-						!{event.content.brief}	
-					if(event.coordinator)	
-						p <b>Coordinator:</b> !{event.coordinator.name.full}
-					if(event.notes)	
-						p !{event.notes}
-		.card-location-time		
-			if event.location
-				.card-location
-					span.icon.icon-location 
-						a(href=event.location.locationMapUrl target="_blank") !{event.location.name}
-			if event.startDate
-				.card-time
-					span.icon.icon-datetime !{event._.startDate.format('MMMM, Do')}
-		.btn-group
-			a.btn.btn-primary(href='/events/event/' + event.slug) More Info
-			if(event.registrationLink)
-				a.btn.btn-primary(href=event.registrationLink target="_blank") Register					
-
-
-
-block content 
-	.section
-		.container
-			+content-post(data.eventsContent)
-			if data.events.length
-				each event in data.events
-					+event(event)
-			else
-				h3.text-muted There are no events yet.
-
-	.section
-		.container
-			+content-post(data.weeklySeriesContent)
-			.row
-			if data.weeklySeries.length
-				each event in data.weeklySeries
-					+event(event)
-			else
-				h3.text-muted There are no events yet.
+					h3.text-muted There are no events yet.
+		div(role="tabpanel").tab-pane#tab2
+			.container
+				+content-post(data.weeklySeriesContent)
+				.row
+				if data.weeklySeries.length
+					each event in data.weeklySeries
+						+event(event)
+				else
+					h3.text-muted There are no events yet.			
