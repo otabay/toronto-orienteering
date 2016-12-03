@@ -39,19 +39,17 @@ block sub-header
 						a(href="#tab2" role="tab" data-toggle="tab") Weekly Series	
 
 block content
-	.tab-content
-		div(role="tabpanel").tab-pane.active#tab1
-			.container
+	.container.main-container
+		.tab-content
+			div(role="tabpanel").tab-pane.active#tab1
 				+content-post(data.eventsContent)
 				if data.events.length
 					each event in data.events
 						+event(event)
 				else
 					h3.text-muted There are no events yet.
-		div(role="tabpanel").tab-pane#tab2
-			.container
+			div(role="tabpanel").tab-pane#tab2
 				+content-post(data.weeklySeriesContent)
-				.row
 				if data.weeklySeries.length
 					each event in data.weeklySeries
 						+event(event)

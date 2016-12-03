@@ -16,10 +16,10 @@ mixin post(post)
 
 
 block content
-	main.container.mdl-layout__content
+	.container.main-container
 		h1 News
-		.mdl-grid 
-			.mdl-cell.mdl-cell--10-col
+		.row 
+			.col-md-12
 				if data.posts.results.length
 					if data.posts.totalPages > 1
 						h4.text-weight-normal Showing 
