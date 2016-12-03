@@ -29,11 +29,14 @@ mixin event(event)
 
 
 block sub-header
-	ul.nav.nav-tabs
-		li(role="presentation").active
-			a(href="#tab1" role="tab" data-toggle="tab") 2016 Event Schedule
-		li(role="presentation")
-			a(href="#tab2" role="tab" data-toggle="tab") Weekly Series	
+	.container.sub-nav
+		.row
+			.col-md-12
+				ul.nav.nav-tabs#myTabs
+					li(role="presentation").active
+						a(href="#tab1" role="tab" data-toggle="tab") 2016 Event Schedule
+					li(role="presentation")
+						a(href="#tab2" role="tab" data-toggle="tab") Weekly Series	
 
 block content
 	.tab-content
@@ -53,4 +56,8 @@ block content
 					each event in data.weeklySeries
 						+event(event)
 				else
-					h3.text-muted There are no events yet.			
+					h3.text-muted There are no events yet.
+
+block js
+	script
+		$(document).ready(function(){$('#myTabs a[href="' + window.location.hash + '"]').tab('show')});							

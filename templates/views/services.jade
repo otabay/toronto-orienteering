@@ -1,20 +1,32 @@
 include ../mixins/content-posts
 extends ../layouts/default
 
+
 block sub-header
-	.mdl-layout__tab-bar.mdl-js-ripple-effect
-		a(href="#tab1").mdl-layout__tab.is-active Beginner Clinics
-		a(href="#tab2").mdl-layout__tab Advanced Clinics
-		a(href="#tab3").mdl-layout__tab Team Building
-		a(href="#tab4").mdl-layout__tab School Events	
+	.container.sub-nav
+		.row
+			.col-md-12
+				ul.nav.nav-tabs#myTabs
+					li(role="presentation").active
+						a(href="#tab1" role="tab" data-toggle="tab") Beginner Clinics
+					li(role="presentation")
+						a(href="#tab2" role="tab" data-toggle="tab") Advanced Clinics
+					li(role="presentation")
+						a(href="#tab3" role="tab" data-toggle="tab") Team Building
+					li(role="presentation")
+						a(href="#tab4" role="tab" data-toggle="tab") School Events		
 			
 block content
-	main.container.mdl-layout__content
-		section.mdl-layout__tab-panel.is-active(id="tab1")
+	.tab-content.container
+		div(role="tabpanel").tab-pane.active#tab1
 			+content-post(data.beginnersClinicContent)
-		section.mdl-layout__tab-panel(id="tab2")
+		div(role="tabpanel").tab-pane#tab2
 			+content-post(data.advancedClinicContent)
-		section.mdl-layout__tab-panel(id="tab3")
+		div(role="tabpanel").tab-pane#tab3
 			+content-post(data.teamBuildingContent)
-		section.mdl-layout__tab-panel(id="tab4")
+		div(role="tabpanel").tab-pane#tab4
 			+content-post(data.schoolEventsContent)
+
+block js
+	script
+		$(document).ready(function(){$('#myTabs a[href="' + window.location.hash + '"]').tab('show')});

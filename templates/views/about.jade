@@ -2,13 +2,22 @@ include ../mixins/content-posts
 extends ../layouts/default
 
 block sub-header
-	.mdl-layout__tab-bar.mdl-js-ripple-effect
-		a(href="#tab1").mdl-layout__tab.is-active Board of Directors
-		a(href="#tab2").mdl-layout__tab Orienteering Links
+	.container.sub-nav
+		.row
+			.col-md-12
+				ul.nav.nav-tabs#myTabs
+					li(role="presentation").active
+						a(href="#tab1" role="tab" data-toggle="tab") Board of Directors
+					li(role="presentation")
+						a(href="#tab2" role="tab" data-toggle="tab") Orienteering Links	
 			
 block content
-	main.container.mdl-layout__content
-		section.mdl-layout__tab-panel.is-active(id="tab1")
+	.tab-content.container
+		div(role="tabpanel").tab-pane.active#tab1
 			+content-post(data.directorsContent)
-		section.mdl-layout__tab-panel(id="tab2")
+		div(role="tabpanel").tab-pane#tab2
 			+content-post(data.orienteeringLinksContent)
+
+block js
+	script
+		$(document).ready(function(){$('#myTabs a[href="' + window.location.hash + '"]').tab('show')});
