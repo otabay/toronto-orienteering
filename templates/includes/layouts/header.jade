@@ -2,17 +2,18 @@
   .navbar.navbar-inverse
     .container
       .navbar-header
-        button(type="button", data-toggle="collapse", data-target="navbar-ex-collapse").navbar-toggle
+        button(type="button", data-toggle="collapse", data-target="#navbar-ex-collapse").navbar-toggle
           span.sr-only Toggle Navigation
-          // TODO 3 times?
-          span.iconbar    
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar    
       .collapse#navbar-ex-collapse.navbar-collapse
         ul.nav.navbar-left.navbar-nav
-          li.active
+          li
             a(href='/') Home
           li.dropdown
             a(href="/events", data-toggle="dropdown", role="button", aria-expanded="false").dropdown-toggle Events
-              i.fa.fa-caret-down
+              span.caret
             ul(role="menu").dropdown-menu
               li
                 a(href="/events/#tab1") Season Schedule 
@@ -20,7 +21,7 @@
                 a(href="/events/#tab2") Weekly Park Series
           li.dropdown
             a(href="/services", data-toggle="dropdown", role="button", aria-expanded="false").dropdown-toggle Services
-              i.fa.fa-caret-down
+              span.caret
             ul(role="menu").dropdown-menu
               li
                 a(href="/services/#tab1") Beginners Clinic 
@@ -34,7 +35,7 @@
             a(href='/blog') News
           li.dropdown
             a(href="/about", data-toggle="dropdown", role="button", aria-expanded="false").dropdown-toggle About Us
-              i.fa.fa-caret-down
+              span.caret
             ul(role="menu").dropdown-menu
               li
                 a(href="/about/#tab1") Board of Directors 
