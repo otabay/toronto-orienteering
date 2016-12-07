@@ -1,5 +1,4 @@
 var keystone = require('keystone');
-var Enquiry = keystone.list('Enquiry');
 
 exports = module.exports = function(req, res) {
 	
@@ -22,14 +21,13 @@ exports = module.exports = function(req, res) {
 		servicesContent: []
 	};
 
-	locals.enquiryTypes = Enquiry.fields.enquiryType.ops;
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
 	locals.enquirySubmitted = false;
 
 	// Load last event
 	view.on('init', function(next) {
-		keystone.list('Post').schema.methods.postsForCategory(eventsCategoryName, 'Event',  (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(eventsCategoryName, 'Event', locals.year,  (function(posts, err){
 			if(err) next(err);
 			if(typeof posts != "undefined")
 				locals.data.event = posts[0];
@@ -38,7 +36,7 @@ exports = module.exports = function(req, res) {
 	});
 
 	view.on('init', function(next) {
-		keystone.list('Post').schema.methods.postsForCategory(weeklySeriesCategoryName, 'Event', (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(weeklySeriesCategoryName, 'Event', locals.year,  (function(posts, err){
 			if(err) next(err);
 			if(typeof posts != "undefined")
 				locals.data.weeklySeriesEvent = posts[0];
@@ -47,7 +45,7 @@ exports = module.exports = function(req, res) {
 	});
 
 	view.on('init', function(next) {
-		keystone.list('Post').schema.methods.postsForCategory(newsCategoryName, 'Post',  (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(newsCategoryName, 'Post', locals.year, (function(posts, err){
 			if(err) next(err);
 			if(typeof posts != "undefined")
 				locals.data.news = posts[0];
@@ -56,7 +54,7 @@ exports = module.exports = function(req, res) {
 	});
 	//Load services content
 	view.on('init', function(next) { 
-		keystone.list('Post').schema.methods.postsForCategory(servicesCategoryName, 'Post',  (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(servicesCategoryName, 'Post', null, (function(posts, err){
 			if(err) next(err);
 			if(typeof posts != "undefined")
 				locals.data.servicesContent = posts;

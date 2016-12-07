@@ -42,7 +42,8 @@ Post.schema.virtual('fullEventUrl').get(function() {
     return keystone.get('baseUrl') + 'events/event/' + this.slug;
 });
 
-Post.schema.methods.postsForCategory = function(categoryKey, type, callback){
+
+Post.schema.methods.postsForCategory = function(categoryKey, type, year, callback){
 
 	if(type != 'Post' && type != 'Event'){
 		console.log("Error - specify Post or Event for the type");
@@ -55,14 +56,25 @@ Post.schema.methods.postsForCategory = function(categoryKey, type, callback){
 			console.log("Could not find category" + categoryKey);
 			callback();
 		}
-		keystone.list(type).model.find()
+		var q = keystone.list(type).model.find()
 		.populate('author')
 		.populate('location')
 		.populate('coordinator')
 		.where('categories').in([category.id])
 		.where('state', 'published')
-		.sort('order -startDate')
-		.exec(function(err, posts) {
+		.sort('order -startDate');
+		if(year) {
+			var fromDate = new Date(year,0,0);
+			var toDate = new Date(year + 1,0,0);
+			if(type == 'Event') {
+				q.where('startDate').gt(fromDate).lt(toDate);
+			} else if (type == 'Post') {
+				q.where('publishedDate').gt(fromDate).lt(toDate);
+			}
+
+			
+		}
+		q.exec(function(err, posts) {
 			if (err) return callback(err);
 			if (!posts.length) {
 				callback();

@@ -13,6 +13,7 @@ exports = module.exports = function(req, res) {
 	locals.section = 'events';
 	
 	locals.data = {
+		year: 0,
 		events: [],
 		weeklySeries: [],
 		eventsContent: {},
@@ -21,7 +22,7 @@ exports = module.exports = function(req, res) {
 	
 	// Load events
 	view.on('init', function(next) {
-		keystone.list('Post').schema.methods.postsForCategory(eventsCategoryName, 'Event', (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(eventsCategoryName, 'Event', locals.year, (function(posts, err){
 			if(err) next(err);
 			if(typeof posts != "undefined")
 				locals.data.events = posts;
@@ -31,7 +32,7 @@ exports = module.exports = function(req, res) {
 
 	//Load wednesday night series
 	view.on('init', function(next) { 
-		keystone.list('Post').schema.methods.postsForCategory(weeklySeriesCategoryName, 'Event',  (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(weeklySeriesCategoryName, 'Event', locals.year, (function(posts, err){
 			if(err) next(err);
 			if(typeof posts != "undefined")
 				locals.data.weeklySeries = posts;

@@ -40,6 +40,13 @@ exports.initLocals = function(req, res, next) {
  	*/
 	locals.baseUrl = keystone.get('baseUrl');
 
+	var currentDate = new Date();
+	var currentYear = currentDate.getFullYear();
+	// if(currentDate.getMonth() > 10) {
+	// 	currentYear++;
+	// }
+	locals.year =  currentYear;
+
 	next();
 
 };
