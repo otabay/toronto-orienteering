@@ -107,7 +107,9 @@ keystone.set('nav', {
 	'documents': 'documents',
 	'posts': ['posts', 'post-categories'],
 	'enquiries': 'enquiries',
-	'users': 'users'
+	'users': 'users',
+	'configurations': 'configurations'
+
 });
 
 keystone.set('baseUrl', (keystone.get('env') == 'production') ? 'http://torontoorienteering.com/' : 'http://localhost:3000/');

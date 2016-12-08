@@ -13,7 +13,6 @@ exports = module.exports = function(req, res) {
 	locals.section = 'events';
 	
 	locals.data = {
-		year: 0,
 		events: [],
 		weeklySeries: [],
 		eventsContent: {},

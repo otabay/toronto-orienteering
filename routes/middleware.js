@@ -40,14 +40,18 @@ exports.initLocals = function(req, res, next) {
  	*/
 	locals.baseUrl = keystone.get('baseUrl');
 
-	var currentDate = new Date();
-	var currentYear = currentDate.getFullYear();
-	// if(currentDate.getMonth() > 10) {
-	// 	currentYear++;
-	// }
-	locals.year =  currentYear;
-
-	next();
+	if(!locals.year){
+		locals.year  = new Date().getFullYear();
+	}
+	keystone.list('Configuration').model.findOne().exec(function(err,config){
+		if(err) {
+			console.log("Could not get configuration");
+			next();
+		} else if (config){
+			locals.year = config.currentYear;
+			next();
+		}
+	});
 
 };
 

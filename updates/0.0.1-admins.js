@@ -10,7 +10,8 @@
 exports.create = {
 	User: [
 		{ 'name.first': 'Admin', 'name.last': 'User', email: 'otabay@gmail.com', password: 'admin', isAdmin: true }
-	]
+	],
+	Configuration: [{'currentYear': new Date().getFullYear()}]
 };
 
 /*
