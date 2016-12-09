@@ -85,6 +85,42 @@ Post.schema.methods.postsForCategory = function(categoryKey, type, year, callbac
 	})
 };
 
+Post.schema.methods.postYears = function(categoryKey, type, callback){
+
+	if(type != 'Post' && type != 'Event'){
+		console.log("Error - specify Post or Event for the type");
+		callback();
+	}
+	keystone.list('PostCategory').model.findOne({key:categoryKey}).exec(function(err,category){
+
+		if(err) return callback(err);
+		if(!category) {
+			console.log("Could not find category" + categoryKey);
+			callback();
+		}
+		var q = keystone.list(type).model.find()
+		.where('categories').in([category.id])
+		.where('state', 'published');
+		q.exec(function(err, posts) {
+			
+			if (err) return callback(err);
+			var years = [];
+			posts.forEach(function(element) {
+				var year = 0
+				if(type=='Post') {
+					year = post.publishedDate.getFullYear();
+				} else if (type == 'Event'){
+					year = post.startDate.getFullYear();
+				}
+				if(years.indexOf(year) == -1) {
+					years.push(year);
+				}
+			}, this);
+			callback(years);
+		});
+	})
+};
+
 Post.schema.methods.loadPost = function(slug, callback){
 
 	var q = keystone.list('Post').model.findOne({
