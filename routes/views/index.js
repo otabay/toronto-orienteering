@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+var request =  require('request');
 
 exports = module.exports = function(req, res) {
 	
@@ -23,7 +24,6 @@ exports = module.exports = function(req, res) {
 
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
-	locals.enquirySubmitted = false;
 
 	// Load last event
 	view.on('init', function(next) {
@@ -62,24 +62,17 @@ exports = module.exports = function(req, res) {
 		}));
 	});
 
-	// On POST requests, add the Enquiry item to the database
-	view.on('post', { action: 'contact' }, function(next) {
+	view.on('post', { action: 'subscribe' }, function(next) {
 		
-		var newEnquiry = new Enquiry.model(),
-			updater = newEnquiry.getUpdateHandler(req);
-		
-		updater.process(req.body, {
-			flashErrors: true,
-			fields: 'name, email, phone, enquiryType, message',
-			errorMessage: 'There was a problem submitting your enquiry:'
-		}, function(err) {
-			if (err) {
-				locals.validationErrors = err.errors;
+		var email = req.body.email;
+		request.post({url:'http://link.whc.ca/oi/443/277481752927e3ac0bb55efd1ff07dca', form:{email:email, goto:'', iehack:'&#9760;'}}, function (error, response, body) {
+			if (!error && response.statusCode == 200) {
+				 res.send("success");
 			} else {
-				locals.enquirySubmitted = true;
+				 res.send("error");
 			}
-			next();
 		});
+		
 		
 	});
 	

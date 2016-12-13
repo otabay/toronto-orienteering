@@ -102,7 +102,37 @@ html
 				$('.nav-tabs').stickyTabs(options);
 
 				$('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+			});	
+
+		script.
+			$("#subscribeForm").submit(function(event){
+				// cancels the form submission
+				event.preventDefault();
+				submitForm();
 			});
 
+			function submitForm(){
+				// Initiate Variables With Form Content
+				var email = $("#email").val();
+			
+				$.ajax({
+					type: "POST",
+					url: "/",
+					data: "email=" + email + "&action=subscribe",
+					success : function(text){
+						if (text == "success"){
+							formSuccess();
+						} else {
+							formError();
+						}
+					}
+				});
+			}
+			function formSuccess(){
+				$( "#subscribeMessageSuccess" ).removeClass( "hidden" );
+			}
+			function formError(){
+				$( "#subscribeMessageError" ).removeClass( "hidden" );
+			} 
 		//- Include template-specific javascript files by extending the js block
 		block js
