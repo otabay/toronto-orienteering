@@ -1,5 +1,4 @@
 var keystone = require('keystone');
-var request =  require('request');
 
 exports = module.exports = function(req, res) {
 	
@@ -21,9 +20,6 @@ exports = module.exports = function(req, res) {
 		news: null,
 		servicesContent: []
 	};
-
-	locals.formData = req.body || {};
-	locals.validationErrors = {};
 
 	// Load last event
 	view.on('init', function(next) {
@@ -60,20 +56,6 @@ exports = module.exports = function(req, res) {
 				locals.data.servicesContent = posts;
 			next();
 		}));
-	});
-
-	view.on('post', { action: 'subscribe' }, function(next) {
-		
-		var email = req.body.email;
-		request.post({url:'http://link.whc.ca/oi/443/277481752927e3ac0bb55efd1ff07dca', form:{email:email, goto:'', iehack:'&#9760;'}}, function (error, response, body) {
-			if (!error && response.statusCode == 200) {
-				 res.send("success");
-			} else {
-				 res.send("error");
-			}
-		});
-		
-		
 	});
 	
 	// Render the view
