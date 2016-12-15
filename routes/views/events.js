@@ -16,7 +16,9 @@ exports = module.exports = function(req, res) {
 		events: [],
 		weeklySeries: [],
 		eventsContent: {},
-		weeklySeriesContent: {}
+		weeklySeriesContent: {},
+		eventsYears:[],
+		weeklySeriesYears:[]
 	};
 	
 	// Load events
@@ -51,6 +53,22 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		keystone.list('Post').schema.methods.loadPost(weeklySeriesSlug, function(err, result){
 			locals.data.weeklySeriesContent = result;
+			next(err);
+		});
+	});
+
+	//get event years
+	view.on('init', function(next) {
+		keystone.list('Post').schema.methods.postYears(eventsCategoryName, 'Event', function(err, result){
+			locals.data.eventYears = result;
+			next(err);
+		});
+	});
+
+	//get event years
+	view.on('init', function(next) {
+		keystone.list('Post').schema.methods.postYears(weeklySeriesCategoryName, 'Event', function(err, result){
+			locals.data.weeklySeriesYears = result;
 			next(err);
 		});
 	});

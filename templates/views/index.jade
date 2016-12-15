@@ -37,19 +37,22 @@ mixin eventCard(event, actionTitle, titlePath, hasBorder)
 				if(event.registrationLink)
 					a(href=event.registrationLink target="_blank").btn.btn-primary= actionTitle
 
-mixin newsCard(event, titlePath)
-	if event
-		.col-md-12.news-content-col 
-			.event-header
-				.event-title.pull-left
-					p !{event.title}
-				if event.publishedDate
-						.event-date.pull-right 
-							p !{event._.publishedDate.format('MMM, Do')}
-			.news-brief
-				p !{event.content.brief}		
-			.btn-group
-				a(href= titlePath + event.slug).btn.btn-primary.news-btn More News
+mixin newsCard(events, titlePath)
+	if events && events.length>0
+		each event in events
+			.col-md-12.news-content-col 
+				.news-header
+					.event-title.pull-left
+						p !{event.title}
+					if event.publishedDate
+							.event-date.pull-right 
+								p !{event._.publishedDate.format('MMM, Do')}
+				.news-brief
+					p !{event.content.brief}
+				a(href=titlePath + event.slug) Read More
+
+		.btn-group.news-btn-group
+			a(href= titlePath).btn.btn-primary.news-btn More News
 
 
 block content
@@ -63,7 +66,7 @@ block content
 						+eventCard(data.event, "Sign me up!", "/events/event/", true)
 						+eventCard(data.weeklySeriesEvent, "Sign me up!", "/events/event/", false)
 				.col-md-4.news-col
-					h2.section-title.border-bottom News
+					h2.section-title.border-bottom Latest News
 						span.icon-title
 					.row
 						+newsCard(data.news, "/blog/post/")				

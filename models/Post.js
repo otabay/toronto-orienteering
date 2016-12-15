@@ -106,18 +106,18 @@ Post.schema.methods.postYears = function(categoryKey, type, callback){
 			
 			if (err) return callback(err);
 			var years = [];
-			posts.forEach(function(element) {
+			posts.forEach(function(post) {
 				var year = 0
-				if(type=='Post') {
+				if(type=='Post' && post.publishedDate) {
 					year = post.publishedDate.getFullYear();
-				} else if (type == 'Event'){
+				} else if (type == 'Event' && post.startDate){
 					year = post.startDate.getFullYear();
 				}
 				if(years.indexOf(year) == -1) {
 					years.push(year);
 				}
 			}, this);
-			callback(years);
+			callback(null,years);
 		});
 	})
 };

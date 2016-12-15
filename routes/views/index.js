@@ -9,6 +9,8 @@ exports = module.exports = function(req, res) {
 	var weeklySeriesCategoryName='weekly-series';
 	var newsCategoryName='blog';
 	var servicesCategoryName='service'
+
+	var numberOfNews = 3;
 	
 	// locals.section is used to set the currently selected
 	// item in the header navigation.
@@ -17,7 +19,7 @@ exports = module.exports = function(req, res) {
 	locals.data = {
 		event: null,
 		weeklySeriesEvent: null,
-		news: null,
+		news: [],
 		servicesContent: []
 	};
 
@@ -25,36 +27,58 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		keystone.list('Post').schema.methods.postsForCategory(eventsCategoryName, 'Event', locals.year,  (function(posts, err){
 			if(err) next(err);
-			if(typeof posts != "undefined")
-				locals.data.event = posts[0];
-			next();
+			if(typeof posts != "undefined"){
+				var nextPost = posts[0];
+				var today = new Date().getDate();
+				posts.reverse().forEach(function(post) {
+					if(post.startDate && post.startDate.getDate() > today)
+					{
+						nextPost = post;
+					}
+				}, this);
+				locals.data.event = nextPost;
+				next();
+			}
 		}));
 	});
 
 	view.on('init', function(next) {
 		keystone.list('Post').schema.methods.postsForCategory(weeklySeriesCategoryName, 'Event', locals.year,  (function(posts, err){
 			if(err) next(err);
-			if(typeof posts != "undefined")
-				locals.data.weeklySeriesEvent = posts[0];
-			next();
+			if(typeof posts != "undefined"){
+				var nextPost = posts[0];
+				var today = new Date().getDate();
+				posts.reverse().forEach(function(post) {
+					if(post.startDate && post.startDate.getDate() > today)
+					{
+						nextPost = post;
+					}
+				}, this);
+				locals.data.event = nextPost;
+				next();
+			}
+				
 		}));
 	});
 
 	view.on('init', function(next) {
 		keystone.list('Post').schema.methods.postsForCategory(newsCategoryName, 'Post', locals.year, (function(posts, err){
 			if(err) next(err);
-			if(typeof posts != "undefined")
-				locals.data.news = posts[0];
-			next();
+			if(typeof posts != "undefined"){
+				locals.data.news = posts.slice(0, numberOfNews);
+				next();
+			}	
 		}));
 	});
 	//Load services content
 	view.on('init', function(next) { 
 		keystone.list('Post').schema.methods.postsForCategory(servicesCategoryName, 'Post', null, (function(posts, err){
 			if(err) next(err);
-			if(typeof posts != "undefined")
+			if(typeof posts != "undefined"){
 				locals.data.servicesContent = posts;
-			next();
+				next();
+			}
+				
 		}));
 	});
 	
