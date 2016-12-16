@@ -54,7 +54,7 @@ exports = module.exports = function(req, res) {
 						nextPost = post;
 					}
 				}, this);
-				locals.data.event = nextPost;
+				locals.data.weeklySeriesEvent = nextPost;
 				next();
 			}
 				

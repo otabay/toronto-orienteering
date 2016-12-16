@@ -17,7 +17,7 @@ exports = module.exports = function(req, res) {
 		weeklySeries: [],
 		eventsContent: {},
 		weeklySeriesContent: {},
-		eventsYears:[],
+		eventYears:[],
 		weeklySeriesYears:[]
 	};
 	

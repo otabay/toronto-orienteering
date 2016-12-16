@@ -10,8 +10,9 @@
       .collapse#navbar-ex-collapse.navbar-collapse
         ul.nav.navbar-left.navbar-nav
           li
-            a(href='/') Home
-          li.dropdown
+            a(href='/')
+              img(src="/images/logo_white.png")
+          li.dropdown.nav-text
             a(href="/events", data-toggle="dropdown", role="button", aria-expanded="false").dropdown-toggle Events
               span.caret
             ul(role="menu").dropdown-menu
@@ -19,7 +20,7 @@
                 a(href="/events/#tab1") !{year} Season Schedule 
               li
                 a(href="/events/#tab2") Weekly Park Series
-          li.dropdown
+          li.dropdown.nav-text
             a(href="/services", data-toggle="dropdown", role="button", aria-expanded="false").dropdown-toggle Services
               span.caret
             ul(role="menu").dropdown-menu
@@ -31,9 +32,9 @@
                 a(href="/services/#tab3") Team Building
               li
                 a(href="/services/#tab4") School Events
-          li
+          li.nav-text
             a(href='/blog') News
-          li.dropdown
+          li.dropdown.nav-text
             a(href="/about", data-toggle="dropdown", role="button", aria-expanded="false").dropdown-toggle About Us
               span.caret
             ul(role="menu").dropdown-menu
@@ -41,7 +42,7 @@
                 a(href="/about/#tab1") Board of Directors 
               li
                 a(href="/about/#tab2") Orienteering Links
-            li
+            li.nav-text
               a(href='/join') Become a member         
   block header-image
   block sub-header

@@ -4,7 +4,7 @@ extends ../layouts/default
 
 mixin event(event)
 	if event
-		li.media.event-panel
+		li.media.event-panel.border-top
 			.media-left
 				if(event.image.exists)
 					img(src=event._.image.fit(200,200) height=200 width=200).media-object
@@ -13,26 +13,30 @@ mixin event(event)
 			.media-body		 
 				.media-heading.event-header
 					.event-title.pull-left
-						a(href='/events/event/' + event.slug) !{event.title}
+						!{event.title}
 					if event.startDate
 							.event-date.pull-right 
 								p !{event._.startDate.format('MMM, Do')}
+				.event-brief-main
+					p !{event.content.brief}
 				if event.location
 					.card-location
 						span.icon.icon-location 
 							a(href=event.location.locationMapUrl target="_blank") !{event.location.name}				
-				.event-brief-main
-					p !{event.content.brief}
-
+				.btn-group
+					a(href='/events/event/' + event.slug).btn.btn-primary More Info
 							
 
-mixin pastEvents(title, years, link)
-	h3 !{title}
-		if (years.length > 0)
-			ul
-				each year in years
-					li 
-						a(href=link + '?year=' + year) !{year}	
+mixin pastEvents(years, link)
+	if (years.length > 0)
+		h2.section-title.pull-right
+			.dropdown
+				a(href="#" data-toggle="dropdown").dropdown-toggle.dropdown-years 2016
+					span.caret-lg
+				ul.dropdown-menu
+					each year in years
+						li 
+							a(href=link + '?year=' + year) !{year}	
 
 block sub-header
 	.container.sub-nav
@@ -48,7 +52,13 @@ block content
 	.container.main-container
 		.tab-content
 			div(role="tabpanel").tab-pane.active#tab1
-				+content-post(data.eventsContent)
+				.row
+					.col-md-7
+						h2.section-title Event Schedule
+							span.icon-title
+					.col-md-3
+						+pastEvents(data.eventYears, '/events#tab1')
+							
 				.row
 					.col-md-10
 						if data.events.length
@@ -56,9 +66,7 @@ block content
 								each event in data.events
 									+event(event)
 						else
-							h3.text-muted There are no events yet.
-					.col-md-2
-						+pastEvents('Past Events', data.eventYears, '/events#tab1')		
+							h3.text-muted There are no events yet.		
 			div(role="tabpanel").tab-pane#tab2
 				+content-post(data.weeklySeriesContent)
 				.row
@@ -69,4 +77,4 @@ block content
 						else
 							h3.text-muted There are no events yet.
 					.col-md-3
-						+pastEvents('Past Weekly Series', data.weeklySeriesYears, '/events#tab2')			
+						+pastEvents(data.weeklySeriesYears, '/events#tab2')			
