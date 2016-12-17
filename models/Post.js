@@ -67,7 +67,7 @@ Post.schema.methods.postsForCategory = function(categoryKey, type, year, callbac
 			var toDate = new Date(year + 1,0,0);
 			if(type == 'Event') {
 				q.where('startDate').gt(fromDate).lt(toDate);
-				q.sort('order -startDate')
+				q.sort('order startDate')
 			} else if (type == 'Post') {
 				q.where('publishedDate').gt(fromDate).lt(toDate);
 				q.sort('order -publishedDate');

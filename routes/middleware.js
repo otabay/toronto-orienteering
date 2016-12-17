@@ -40,8 +40,8 @@ exports.initLocals = function(req, res, next) {
  	*/
 	locals.baseUrl = keystone.get('baseUrl');
 
-	if(!locals.year){
-		locals.year  = new Date().getFullYear();
+	if(!locals.defaultYear){
+		locals.defaultYear  = new Date().getFullYear();
 	}
 	keystone.list('Configuration').model.findOne().exec(function(err,config){
 		if(err) {

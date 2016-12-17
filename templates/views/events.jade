@@ -7,7 +7,7 @@ mixin event(event)
 		li.media.event-panel.border-top
 			.media-left
 				if(event.image.exists)
-					img(src=event._.image.fit(200,200) height=200 width=200).media-object
+					img(src=event._.image.fit(200,200)).media-object
 				else
 					img(src="../images/event.jpg" height=200 width=200).media-object
 			.media-body		 
@@ -27,16 +27,16 @@ mixin event(event)
 					a(href='/events/event/' + event.slug).btn.btn-primary More Info
 							
 
-mixin pastEvents(years, link)
+mixin pastEvents(years, tab)
 	if (years.length > 0)
 		h2.section-title.pull-right
-			.dropdown
-				a(href="#" data-toggle="dropdown").dropdown-toggle.dropdown-years 2016
+			.dropdown.dropdown-years
+				a(href="#" data-toggle="dropdown").dropdown-toggle !{year}
 					span.caret-lg
 				ul.dropdown-menu
 					each year in years
 						li 
-							a(href=link + '?year=' + year) !{year}	
+							a(href='/events/' + year + tab) !{year}	
 
 block sub-header
 	.container.sub-nav
@@ -44,7 +44,7 @@ block sub-header
 			.col-md-12
 				ul.nav.nav-tabs#myTabs
 					li(role="presentation").active
-						a(href="#tab1" role="tab" data-toggle="tab") !{year} Event Schedule
+						a(href="#tab1" role="tab" data-toggle="tab") !{defaultYear} Event Schedule
 					li(role="presentation")
 						a(href="#tab2" role="tab" data-toggle="tab") Weekly Park Series	
 
@@ -53,14 +53,13 @@ block content
 		.tab-content
 			div(role="tabpanel").tab-pane.active#tab1
 				.row
-					.col-md-7
+					.col-md-6
 						h2.section-title Event Schedule
 							span.icon-title
-					.col-md-3
-						+pastEvents(data.eventYears, '/events#tab1')
-							
+					.col-md-2
+						+pastEvents(data.eventYears, '#tab1')				
 				.row
-					.col-md-10
+					.col-md-8
 						if data.events.length
 							ul.media-list
 								each event in data.events
@@ -68,13 +67,19 @@ block content
 						else
 							h3.text-muted There are no events yet.		
 			div(role="tabpanel").tab-pane#tab2
-				+content-post(data.weeklySeriesContent)
 				.row
-					.col-md-9
+					.col-md-8
+						+content-post(data.weeklySeriesContent)
+				.row
+					.col-md-6
+						h2.section-title Park Series Schedule
+							span.icon-title
+					.col-md-2
+						+pastEvents(data.weeklySeriesYears, '#tab2')
+				.row
+					.col-md-8
 						if data.weeklySeries.length
 							each event in data.weeklySeries
 								+event(event)
 						else
-							h3.text-muted There are no events yet.
-					.col-md-3
-						+pastEvents(data.weeklySeriesYears, '/events#tab2')			
+							h3.text-muted There are no events yet.			

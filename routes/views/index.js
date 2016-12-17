@@ -30,7 +30,7 @@ exports = module.exports = function(req, res) {
 			if(typeof posts != "undefined"){
 				var nextPost = posts[0];
 				var today = new Date().getDate();
-				posts.reverse().forEach(function(post) {
+				posts.forEach(function(post) {
 					if(post.startDate && post.startDate.getDate() > today)
 					{
 						nextPost = post;
@@ -48,7 +48,7 @@ exports = module.exports = function(req, res) {
 			if(typeof posts != "undefined"){
 				var nextPost = posts[0];
 				var today = new Date().getDate();
-				posts.reverse().forEach(function(post) {
+				posts.forEach(function(post) {
 					if(post.startDate && post.startDate.getDate() > today)
 					{
 						nextPost = post;
