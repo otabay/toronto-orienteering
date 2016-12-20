@@ -62,18 +62,15 @@ Post.schema.methods.postsForCategory = function(categoryKey, type, year, callbac
 		.populate('coordinator')
 		.where('categories').in([category.id])
 		.where('state', 'published')
-		if(year) {
-			var fromDate = new Date(year,0,0);
-			var toDate = new Date(year + 1,0,0);
-			if(type == 'Event') {
+		if(type == 'Event') {
+			if(year) {
+				var fromDate = new Date(year,0,0);
+				var toDate = new Date(year + 1,0,0);
 				q.where('startDate').gt(fromDate).lt(toDate);
-				q.sort('order startDate')
-			} else if (type == 'Post') {
-				q.where('publishedDate').gt(fromDate).lt(toDate);
-				q.sort('order -publishedDate');
 			}
-
-			
+			q.sort('order startDate')
+		} else if (type == 'Post') {
+			q.sort('order -publishedDate');
 		}
 		q.exec(function(err, posts) {
 			if (err) return callback(err);

@@ -12,7 +12,7 @@ exports = module.exports = function(req, res) {
 
 	locals.section = 'events';
 	
-	locals.year = req.params.year?req.params.year:locals.defaultYear;
+	locals.year = req.params.year?parseInt(req.params.year):locals.defaultYear;
 
 	locals.data = {
 		events: [],

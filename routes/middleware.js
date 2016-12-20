@@ -48,7 +48,7 @@ exports.initLocals = function(req, res, next) {
 			console.log("Could not get configuration");
 			next();
 		} else if (config){
-			locals.year = config.currentYear;
+			locals.defaultYear = config.currentYear;
 			next();
 		}
 	});
