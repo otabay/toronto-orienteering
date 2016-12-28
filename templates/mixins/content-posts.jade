@@ -4,7 +4,7 @@ mixin content-post(post)
 			.post-content: !{post.content.extended}
 
 
-mixin event(event, showPublishedDate)
+mixin event(event, showPublishedDate, rootUrl)
 	if event
 		li.media.event-panel.border-top
 			.media-left
@@ -20,7 +20,7 @@ mixin event(event, showPublishedDate)
 							.event-date.pull-right 
 								p !{event._.startDate.format('MMM, Do')} 		
 				.event-brief-main
-					if event.publishedDate
+					if (event.publishedDate && showPublishedDate)
 						.event-date
 							p.small posted on !{event._.publishedDate.format('MMM, Do, YYYY')} by !{event.author.name.first}
 					p !{event.content.brief}
@@ -29,5 +29,5 @@ mixin event(event, showPublishedDate)
 						span.icon.icon-location 
 							a(href=event.location.locationMapUrl target="_blank") !{event.location.name}				
 				.btn-group
-					a(href='/events/event/' + event.slug).btn.btn-primary More Info			
+					a(href=rootUrl + event.slug).btn.btn-primary More Info			
 	

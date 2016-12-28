@@ -3,14 +3,14 @@ extends ../layouts/default
 block content
 	.container
 		.row
-			.col-md-12
+			.col-md-10
 				p: a(href='/events') &larr; back to the events
 				hr
 				if !data.event
 					h2 Invalid Event.
 				else
 					.row
-						.col-md-8
+						.col-md-10
 							header
 								h1.pull-left= data.event.title
 								.post-social
@@ -21,7 +21,7 @@ block content
 									a(href="https://plus.google.com/share?url=#{data.event.fullPostUrl}" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;")
 										img(src="../../images/google.png").icon.social-icon
 				
-							.event.post-content
+							.post-content
 								if data.event.image.exists
 									img(src=data.event._.image.fit(750,450)).img-responsive.centered-image		
 								!= data.event.content.full
