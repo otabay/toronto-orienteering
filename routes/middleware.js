@@ -39,6 +39,7 @@ exports.initLocals = function(req, res, next) {
  	* Base url for the site
  	*/
 	locals.baseUrl = keystone.get('baseUrl');
+	locals.googleAnalyticsId = keystone.get('googleAnalyticsId');
 
 	if(!locals.defaultYear){
 		locals.defaultYear  = new Date().getFullYear();

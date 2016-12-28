@@ -20,7 +20,6 @@ block content
 										img(src="../../images/facebook.png").icon.social-icon
 									a(href="https://plus.google.com/share?url=#{data.event.fullPostUrl}" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;")
 										img(src="../../images/google.png").icon.social-icon
-				
 							.post-content
 								if data.event.image.exists
 									img(src=data.event._.image.fit(750,450)).img-responsive.centered-image		

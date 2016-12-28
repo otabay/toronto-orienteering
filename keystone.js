@@ -88,10 +88,10 @@ keystone.set('email locals', {
 
 keystone.set('email rules', [{
 	find: '/images/',
-	replace: (keystone.get('env') == 'production') ? 'http://www.your-server.com/images/' : 'http://localhost:3000/images/'
+	replace: (keystone.get('env') == 'production') ? 'http://www.torontoorienteering.com/images/' : 'http://localhost:3000/images/'
 }, {
 	find: '/keystone/',
-	replace: (keystone.get('env') == 'production') ? 'http://www.your-server.com/keystone/' : 'http://localhost:3000/keystone/'
+	replace: (keystone.get('env') == 'production') ? 'http://www.torontoorienteering.com/keystone/' : 'http://localhost:3000/keystone/'
 }]);
 
 // Load your project's email test routes
@@ -114,6 +114,7 @@ keystone.set('nav', {
 
 keystone.set('baseUrl', (keystone.get('env') == 'production') ? 'http://torontoorienteering.com/' : 'http://localhost:3000/');
 
+keystone.set('googleAnalyticsId', process.env.GOOGLE_ANALYTICS_TRACKING_ID);
 
 // Start Keystone to connect to your database and initialise the web server
 
