@@ -1,30 +1,5 @@
 include ../mixins/content-posts
 extends ../layouts/default
-
-
-mixin event(event)
-	if event
-		li.media.event-panel.border-top
-			.media-left
-				if(event.image.exists)
-					img(src=event._.image.fit(200,200)).media-object
-				else
-					img(src="../images/event.jpg" height=200 width=200).media-object
-			.media-body		 
-				.media-heading.event-header
-					.event-title.pull-left
-						!{event.title}
-					if event.startDate
-							.event-date.pull-right 
-								p !{event._.startDate.format('MMM, Do')}
-				.event-brief-main
-					p !{event.content.brief}
-				if event.location
-					.card-location
-						span.icon.icon-location 
-							a(href=event.location.locationMapUrl target="_blank") !{event.location.name}				
-				.btn-group
-					a(href='/events/event/' + event.slug).btn.btn-primary More Info
 							
 
 mixin pastEvents(years, tab)
@@ -63,7 +38,7 @@ block content
 						if data.events.length
 							ul.media-list
 								each event in data.events
-									+event(event)
+									+event(event, true)
 						else
 							h3.text-muted There are no events yet.		
 			div(role="tabpanel").tab-pane#tab2
@@ -80,6 +55,6 @@ block content
 					.col-md-8
 						if data.weeklySeries.length
 							each event in data.weeklySeries
-								+event(event)
+								+event(event, true)
 						else
 							h3.text-muted There are no events yet.			

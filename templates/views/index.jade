@@ -42,11 +42,11 @@ mixin newsCard(events, titlePath)
 		each event in events
 			.col-md-12.news-content-col 
 				.news-header
-					.event-title.pull-left
+					.event-title
 						p !{event.title}
-					if event.publishedDate
-							.event-date.pull-right 
-								p !{event._.publishedDate.format('MMM, Do')}
+				if event.publishedDate
+					.event-date
+						p.small posted on !{event._.publishedDate.format('MMM, Do, YYYY')} by !{event.author.name.first}		
 				.news-brief
 					p !{event.content.brief}
 				a(href=titlePath + event.slug) Read More

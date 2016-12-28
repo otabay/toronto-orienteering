@@ -1,3 +1,4 @@
+include ../mixins/content-posts
 extends ../layouts/default
 
 mixin post(post)
@@ -19,7 +20,7 @@ block content
 	.container.main-container
 		h1 News
 		.row 
-			.col-md-12
+			.col-md-8
 				if data.posts.results.length
 					if data.posts.totalPages > 1
 						h4.text-weight-normal Showing 
@@ -31,9 +32,9 @@ block content
 							|  posts.
 					else
 						h4.text-weight-normal Showing #{utils.plural(data.posts.results.length, '* post')}.
-					.blog
+					ul.media-list
 						each post in data.posts.results
-							+post(post)
+							+event(post, false)
 					
 					if data.posts.totalPages > 1
 						ul.pagination
