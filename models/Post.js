@@ -149,6 +149,7 @@ Event.add({
 	cost: { type: Types.Html, wysiwyg: true, height: 200},
 	notes: { type: Types.Html, wysiwyg: true, height: 200 },
 	documents: { type: Types.Relationship, ref: 'Document', many: true },
+	results: {type: Types.Relationship, ref: 'Document', many: true}
 });
 
 Event.register();

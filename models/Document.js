@@ -12,8 +12,18 @@ var Document = new keystone.List('Document', {
 
 Document.add({
 	name: { type: String, required: true },
-	documentContent: { type: Types.S3File }
+	title: { type: String },
+	documentContent: { 
+		type: Types.S3File,
+		filename: function(item, filename){
+		// prefix file name with object id
+		return item.key + '-' + filename; 
+		}
+	}
 });
 
+Document.schema.virtual('fullDocUrl').get(function() {
+    return 'https://s3.amazonaws.com/' + keystone.get('s3bucket') + '/' + this.documentContent.filename;
+});
 
 Document.register();

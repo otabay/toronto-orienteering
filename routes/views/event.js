@@ -21,7 +21,7 @@ exports = module.exports = function(req, res) {
 		var q = keystone.list('Event').model.findOne({
 			state: 'published',
 			slug: locals.filters.event
-		}).populate('author categories location meetDirector courseSetter documents');
+		}).populate('author categories location meetDirector courseSetter documents results');
 		
 		q.exec(function(err, doc) {
 			keystone.list('Location').model.populate(doc.location, {path:'map'},

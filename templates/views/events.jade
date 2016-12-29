@@ -38,7 +38,7 @@ block content
 						if data.events.length
 							ul.media-list
 								each event in data.events
-									+event(event, false, '/events/event/')
+									+event(event, true, false, '/events/event/')
 						else
 							h3.text-muted There are no events yet.		
 			div(role="tabpanel").tab-pane#tab2
@@ -56,6 +56,6 @@ block content
 						if data.weeklySeries.length
 							ul.media-list
 								each event in data.weeklySeries
-									+event(event, false, '/events/event/')
+									+event(event, true, false, '/events/event/')
 						else
 							h3.text-muted There are no events yet.			
