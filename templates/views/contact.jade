@@ -1,30 +1,9 @@
+include ../mixins/content-posts
 extends ../layouts/default
 
-		
 block content
-	.container
-		if enquirySubmitted
-			h3 Thanks for getting in touch.
-		else
-			.section
-				.section-title
-					h3 Contact us
-				.mdl-grid
-					.mdl-cell.mdl-cell--12-col
-						form(method='post')
-							input(type='hidden', name='action', value='contact')
-							.contact-info
-								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label(class=validationErrors.name ? 'has-error' : null)
-									label.mdl-textfield__label Name
-									input(type='text', name='name.full', value=formData['name.full']).mdl-textfield__input
-								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label(class=validationErrors.email ? 'has-error' : null)
-									label.mdl-textfield__label Email
-									input(type='email', name='email', value=formData.email).mdl-textfield__input
-								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-									label.mdl-textfield__label Phone (optional)
-									input(type='text', name='phone', value=formData.phone).mdl-textfield__input
-							.contact-message
-								.mdl-textfield.mdl-js-textfield(class=validationErrors.message ? 'has-error' : null)
-									textarea(name='message', placeholder='Leave us a message...' type='text' rows=4)= formData.message
-							.form-actions
-								button(type='submit').mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored Send
+	.container.main-container.raised-container
+		+content-post(data.contactUsContent)
+		.row
+			.col-md-4
+				+subscribe()

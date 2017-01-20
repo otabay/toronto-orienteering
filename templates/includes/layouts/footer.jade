@@ -1,3 +1,5 @@
+include ../../mixins/content-posts
+
 .footer.section.section-primary
   .container
     .row.footer-contact
@@ -11,14 +13,7 @@
     .row.border-bottom
       .col-md-6.col-md-offset-3
         p.footer-label Subscribe to our newsletter 
-        form(method="get" accept-charset='UTF-8' name='oi_form' action='http://link.whc.ca/oi/443/277481752927e3ac0bb55efd1ff07dca')
-          input(type='hidden', name='goto', value='')
-          input(type='hidden', name='iehack' value='&#9760;')
-          .form-group
-            .input-group
-              input(type='email' id="email" placeholder="Enter your email" name='email' required).form-control
-              span.input-group-btn
-                  button(type="submit").btn.btn-primary Subscribe      
+        +subscribe()      
     .row.footer-links
       .col-md-3
         h4 Events

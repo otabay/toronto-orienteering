@@ -10,7 +10,7 @@ exports = module.exports = function(req, res) {
 	var newsCategoryName='blog';
 	var servicesCategoryName='service'
 
-	var numberOfNews = 3;
+	var numberOfNews = 2;
 	
 	// locals.section is used to set the currently selected
 	// item in the header navigation.

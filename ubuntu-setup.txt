@@ -9,8 +9,12 @@ sudo n stable
 sudo ln -sf /usr/local/n/versions/node/6.6.0/bin/node /usr/bin/node
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
+cat /var/log/mongodb/mongod.log
+
 sudo apt-get update
 sudo apt-get install -y mongodb-org
+sudo nano /etc/systemd/system/mongodb.service
 
 sudo apt-get install build-essential
 sudo apt-get install tcl8.5

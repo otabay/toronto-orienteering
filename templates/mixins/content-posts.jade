@@ -1,5 +1,8 @@
 mixin content-post(post)
 	.row
+		if(post.image.exists)
+			.col-md-12
+				img(src=post._.image.fit(600,600)).media-object
 		.col-md-12
 			.post-content: !{post.content.extended}
 
@@ -29,5 +32,15 @@ mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 						span.icon.icon-location 
 							a(href=event.location.locationMapUrl target="_blank") !{event.location.name}				
 				.btn-group
-					a(href=rootUrl + event.slug).btn.btn-primary More Info			
+					a(href=rootUrl + event.slug).btn.btn-primary More Info
+
+mixin subscribe()
+	form(method="get" accept-charset='UTF-8' name='oi_form' action='http://link.whc.ca/oi/443/277481752927e3ac0bb55efd1ff07dca')
+		input(type='hidden', name='goto', value='')
+		input(type='hidden', name='iehack' value='&#9760;')
+		.form-group
+			.input-group
+				input(type='email' id="email" placeholder="Enter your email" name='email' required).form-control
+				span.input-group-btn
+					button(type="submit").btn.btn-primary Subscribe								
 	

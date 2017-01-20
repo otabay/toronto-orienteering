@@ -9,9 +9,8 @@
           span.icon-bar    
       .collapse#navbar-ex-collapse.navbar-collapse
         ul.nav.navbar-left.navbar-nav
-          li
-            a(href='/')
-              img(src="/images/logo_white.png")
+          li.nav-text
+            a(href='/') Home
           li.dropdown.nav-text
             a(href="/events", data-toggle="dropdown", role="button", aria-expanded="false").dropdown-toggle Events
               span.caret
@@ -42,6 +41,8 @@
                 a(href="/about/#tab1") Board of Directors 
               li
                 a(href="/about/#tab2") Orienteering Links
+            li.nav-text
+              a(href='/contact') Contact Us
             li.nav-text
               a(href='/join') Become a member         
   block header-image
