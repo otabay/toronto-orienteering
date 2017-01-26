@@ -49,7 +49,7 @@ mixin newsCard(events, titlePath)
 						p.small posted on !{event._.publishedDate.format('MMM, Do, YYYY')} by !{event.author.name.first}		
 				.news-brief
 					p !{event.content.brief}
-				a(href=titlePath + event.slug) Read More
+				a(href=titlePath + event.slug).news-more Read More >
 
 		.btn-group.news-btn-group
 			a(href= titlePath).btn.btn-primary.news-btn More News
@@ -77,7 +77,7 @@ block content
 					h1 Discover Orienteering
 					p Orienteering, in the classical sense, is “cross-country running using a map and a compass.” Often called “cunning running” or “adventure running”, this is a thinking sport where you have to navigate a preset course of “control” locations in a park or forest using only your map, compass and your wits.
 				.col-md-6.discover-image
-					img(src='/images/header.jpg').img-responsive
+					img(src='/images/discover.jpg').img-responsive
 	.section.services-section
 		.container
 			h2.section-title.border-bottom How can we help?

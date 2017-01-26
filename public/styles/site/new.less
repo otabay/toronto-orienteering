@@ -17,11 +17,11 @@
 @border-radius-large: @border-radius-base * 1.25;
 @border-radius-small: @border-radius-base * 0.5;
 @navbar-margin-bottom: 0px;
-@navbar-color: rgba(0,0,0,0.7);
+@navbar-color: rgba(0,0,0,0.5);
 
 /* Google web fonts support */
 
-@import url('https://fonts.googleapis.com/css?family=@{headings-font-family}|@{font-family-base}');
+@import url('https://fonts.googleapis.com/css?family=@{font-family}');
 
 /* TODO: webkit need this why ?*/
 
@@ -220,8 +220,7 @@ body {
 20%); // #333
 @gray : lighten(@gray-base,
 33.5%); // #555
-@gray-light : lighten(@gray-base,
-46.7%); // #777
+@gray-light : #b3b1b1; // #777
 @gray-lighter : lighten(@gray-base,
 93.5%); // #eee
 @brand-primary : #45CB0A;
@@ -260,6 +259,7 @@ Monaco,
 Consolas,
 "Courier New",
 monospace;
+@font-family: Roboto:400,700,700i;
 @font-family-base : Roboto;
 @font-size-base : 14px;
 @font-size-large : ceil((@font-size-base * 1.25)); // ~18px
@@ -275,7 +275,7 @@ monospace;
 //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
 @line-height-computed : floor((@font-size-base * @line-height-base)); // ~20px
 //** By default, this inherits from the `<body>`.
-@headings-font-family : Roboto:700,700i;
+@headings-font-family : Roboto;
 @headings-font-weight : 500;
 @headings-line-height : 1.1;
 @headings-color : inherit;
@@ -436,4 +436,9 @@ monospace;
 .navbar-nav>li>a {
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+  padding-left: 20px;
+  padding-right: 20px;
 }
