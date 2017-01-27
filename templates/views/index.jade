@@ -13,7 +13,7 @@ mixin serviceCard(service, i)
 	div(class=cardClass)
 		.h3 !{service.friendlyTitle}
 		.service-brief
-			p.lead !{service.content.brief}
+			!{service.content.brief}
 		.btn-group
 			a(href="/services#tab"+tabIndex).btn.btn-primary Learn More
 
@@ -47,8 +47,8 @@ mixin newsCard(events, titlePath)
 				if event.publishedDate
 					.event-date
 						p.small posted on !{event._.publishedDate.format('MMM, Do, YYYY')} by !{event.author.name.first}		
-				.news-brief
-					p !{event.content.brief}
+				.news-brief.truncate-text
+					!{event.content.brief}
 				a(href=titlePath + event.slug).news-more Read More >
 
 		.btn-group.news-btn-group
