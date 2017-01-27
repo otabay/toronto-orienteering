@@ -4,8 +4,8 @@ extends ../layouts/default
 
 mixin pastEvents(years, tab)
 	if (years.length > 0)
-		h2.section-title.pull-right
-			.dropdown.dropdown-years
+		.section-title.pull-right
+			.dropdown.dropdown-years.h2
 				a(href="#" data-toggle="dropdown").dropdown-toggle !{year}
 					span.caret-lg
 				ul.dropdown-menu

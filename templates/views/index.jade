@@ -21,7 +21,7 @@ mixin eventCard(event, actionTitle, titlePath, hasBorder)
 	if event
 		div(class="#{ hasBorder? 'col-md-6 border-right event-col' : 'col-md-6 event-col' }") 
 			.event-header
-				.event-title.pull-left
+				.pull-left
 					p !{event.title}
 				if event.startDate
 						.event-date.pull-right 
@@ -70,7 +70,7 @@ block content
 						span.icon-title
 					.row
 						+newsCard(data.news, "/blog/post/")				
-	.section.discover-section
+	.section
 		.container
 			.row
 				.col-md-6.discover-text

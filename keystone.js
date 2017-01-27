@@ -36,7 +36,7 @@ keystone.init({
 	+' emoticons media, preview',
 	'wysiwyg additional plugins': 'table, advlist, anchor,'
 	+ ' autolink, autosave, charmap, contextmenu, '
-	+ ' directionality, emoticons, fullpage, hr, media, pagebreak,'
+	+ ' directionality, emoticons, hr, media, pagebreak,'
 	+ ' paste, preview, searchreplace, textcolor,'
 	+ ' visualblocks, visualchars, wordcount',
 

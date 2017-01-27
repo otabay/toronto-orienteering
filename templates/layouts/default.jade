@@ -11,25 +11,25 @@ html
 		if data.meta
 			if data.meta.title
 				<title>!{data.meta.title}</title>
-				<meta property="og:title" content="!{data.meta.title}">
+				<meta name="og:title" content="!{data.meta.title}">
 				<meta name="twitter:title" content="!{data.meta.title}">
 			if data.meta.description
 				<meta name="description" content="!{data.meta.description}">
-				<meta property="og:description" content="!{data.meta.description}">
+				<meta name="og:description" content="!{data.meta.description}">
 				<meta name="twitter:description" content="!{data.meta.description}">
 			
-			<meta property="og:type" content="article">
+			<meta name="og:type" content="article">
 			<meta name="twitter:card" content="summary_large_image">
 			if data.meta.imageUrl
-				<meta property="og:image" content="!{data.meta.imageUrl}">
+				<meta name="og:image" content="!{data.meta.imageUrl}">
 				<meta name="twitter:image:src" content="!{data.meta.imageUrl}">
-			<meta property="og:url" content="!{data.meta.fullUrl}">
+			<meta name="og:url" content="!{data.meta.fullUrl}">
 			<meta name="twitter:url" content="!{data.meta.fullUrl}">
-			<meta property="article:published_time" content="!{data.meta.publishedDate}">				
+			<meta name="article:published_time" content="!{data.meta.publishedDate}">				
 		else
 			title= title || 'Toronto Orienteering'
 			<meta name="description" content="Outdoor Active Urban">            
-			<meta property="og:image" content=!{baseUrl}images/logo.png>
+			<meta name="og:image" content=!{baseUrl}images/logo.png>
 			<meta name="twitter:image:src" content=!{baseUrl}images/logo.png>
 			<meta name="keywords" content="orienteering, adventure running, map, compass, toronto">			
 
@@ -79,7 +79,7 @@ html
 		include ../includes/layouts/footer
 
 		//- JAVASCRIPT
-
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/html-inspector/0.8.2/html-inspector.js"></script>
 		//- jQuery 1.11.3 is included by default, and required by both Bootstrap
 		//- and the KeystoneJS Content Editor. If you are not targeting IE8,
 		//- you can upgrade to 2.1.4 (also bundled) for better performance.

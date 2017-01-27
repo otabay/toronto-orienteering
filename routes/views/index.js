@@ -25,7 +25,7 @@ exports = module.exports = function(req, res) {
 
 	// Load last event
 	view.on('init', function(next) {
-		keystone.list('Post').schema.methods.postsForCategory(eventsCategoryName, 'Event', locals.year,  (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(eventsCategoryName, 'Event', locals.defaultYear,  (function(posts, err){
 			if(err) next(err);
 			if(typeof posts != "undefined"){
 				var nextPost = posts[0];
@@ -43,7 +43,7 @@ exports = module.exports = function(req, res) {
 	});
 
 	view.on('init', function(next) {
-		keystone.list('Post').schema.methods.postsForCategory(weeklySeriesCategoryName, 'Event', locals.year,  (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(weeklySeriesCategoryName, 'Event', locals.defaultYear,  (function(posts, err){
 			if(err) next(err);
 			if(typeof posts != "undefined"){
 				var nextPost = posts[0];
@@ -62,7 +62,7 @@ exports = module.exports = function(req, res) {
 	});
 
 	view.on('init', function(next) {
-		keystone.list('Post').schema.methods.postsForCategory(newsCategoryName, 'Post', locals.year, (function(posts, err){
+		keystone.list('Post').schema.methods.postsForCategory(newsCategoryName, 'Post', locals.defaultYear, (function(posts, err){
 			if(err) next(err);
 			if(typeof posts != "undefined"){
 				locals.data.news = posts.slice(0, numberOfNews);
