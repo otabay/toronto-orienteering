@@ -27,7 +27,7 @@ mixin eventCard(event, actionTitle, titlePath, hasBorder)
 						.event-date.pull-right 
 							p !{event._.startDate.format('MMM, Do')}
 			.event-brief
-				p !{event.content.brief}		
+				!{event.content.brief}		
 			if event.location
 				.card-location
 					span.icon.icon-location 
@@ -77,7 +77,7 @@ block content
 					h1 Discover Orienteering
 					p Orienteering, in the classical sense, is “cross-country running using a map and a compass.” Often called “cunning running” or “adventure running”, this is a thinking sport where you have to navigate a preset course of “control” locations in a park or forest using only your map, compass and your wits.
 				.col-md-6.discover-image
-					img(src='/images/discover.jpg').img-responsive
+					img(src='/images/discover.jpg' alt="Discover Orienteering").img-responsive
 	.section.services-section
 		.container
 			h2.section-title.border-bottom How can we help?

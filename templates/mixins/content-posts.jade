@@ -26,7 +26,7 @@ mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 					if (event.publishedDate && showPublishedDate)
 						.event-date
 							p.small posted on !{event._.publishedDate.format('MMM, Do, YYYY')} by !{event.author.name.first}
-					p !{event.content.brief}
+					!{event.content.brief}
 				if event.location
 					.card-location
 						span.icon.icon-location 
