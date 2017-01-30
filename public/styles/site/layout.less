@@ -39,8 +39,17 @@
 	min-height: 500px;
 }
 
-.hero-column {
-	margin-top: 110px;
+
+@media (min-width: @screen-sm-min) {
+	.hero-column {
+		margin-top: 110px;
+	}
+}
+
+@media(min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
+	.hero-column {
+		margin-top: 70px;
+	}
 }
 
 .hero-divider {
