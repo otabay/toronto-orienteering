@@ -18,7 +18,17 @@
 }
 
 .cover-image {
-  background-image : url('/images/hero_bg.jpg')
+  background-image : url('/images/hero_bg.jpg');
+}
+
+.parallax {
+  /* Set a specific height */
+  min-height: 500px; 
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .hero-title {
@@ -46,7 +56,7 @@
 	}
 }
 
-@media(min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
+@media(min-width: 0) and (max-width: @screen-xs-max) {
 	.hero-column {
 		margin-top: 70px;
 	}
@@ -219,7 +229,7 @@
 }
 
 .service-card {
-	padding-bottom: 20px;
+	padding-bottom: 35px;
 }
 
 
