@@ -2,6 +2,9 @@
   .navbar.navbar-inverse
     .container
       .navbar-header
+        .brand-logo.pull-left
+          a(href='/')
+            img(src="/images/logo_white.png" alt="Home")
         button(type="button", data-toggle="collapse", data-target="#navbar-ex-collapse").navbar-toggle
           span.sr-only Toggle Navigation
           span.icon-bar
@@ -9,9 +12,6 @@
           span.icon-bar    
       .collapse#navbar-ex-collapse.navbar-collapse
         ul.nav.navbar-left.navbar-nav
-          li
-            a(href='/')
-              img(src="/images/logo_white.png" alt="Home")
           li.dropdown.nav-text
             a(href="/events", data-toggle="dropdown", role="button", aria-expanded="false").dropdown-toggle Events
               span.caret
