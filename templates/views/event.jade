@@ -22,7 +22,7 @@ block content
 										img(src="../../images/google.png").icon.social-icon
 							.post-content
 								if data.event.image.exists
-									img(src=data.event._.image.fit(750,450)).img-responsive.centered-image			
+									img(src=data.event._.image.fit(750,450) alt="Event image").img-responsive.centered-image			
 								!= data.event.content.full
 									table
 										if data.event.results

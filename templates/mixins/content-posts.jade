@@ -2,7 +2,7 @@ mixin content-post(post)
 	.row
 		if(post.image.exists)
 			.col-md-12
-				img(src=post._.image.fit(600,600)).media-object
+				img(src=post._.image.fit(600,600) alt="Event image").media-object
 		.col-md-12
 			.post-content: !{post.content.extended}
 
@@ -12,9 +12,9 @@ mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 		li.media.event-panel.border-top
 			.media-left
 				if(event.image.exists)
-					img(src=event._.image.fit(200,200)).media-object
+					img(src=event._.image.fit(200,200) alt="Thumb image").media-object
 				else if(showPlaceholder)
-					img(src="../images/event.jpg").media-object
+					img(src="../images/event.jpg" alt="Thumb image").media-object
 			.media-body
 				.media-heading.event-header
 					.event-title.pull-left
