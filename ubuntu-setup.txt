@@ -83,4 +83,9 @@ aws_secret_access_key=
 region=ca-central-1
 output=json
 
+sudo su
+crontab -e
+#everyday at 1am
+00 01 * * * /bin/bash /home/ubuntu/toronto-orienteering/backup.sh
+
 
