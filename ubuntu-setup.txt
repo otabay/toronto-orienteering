@@ -68,4 +68,19 @@ sudo service redis_6379 stop
 sudo service redis_6379 start
 sudo service redis_6379 restart
 
+#backup
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+unzip awscli-bundle.zip
+sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+
+~/.aws/credentials
+[toc_backup]
+aws_access_key_id=
+aws_secret_access_key=
+
+~/.aws/config
+[profile toc_backup]
+region=ca-central-1
+output=json
+
 
