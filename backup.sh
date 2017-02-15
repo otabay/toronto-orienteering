@@ -5,7 +5,7 @@ BACKUP_NAME="TOC-BACKUP-$TIMESTAMP"
 
 rm -rf dump
 
-mongodump
+mongodump --db toc
 
 mkdir -p $BACKUPS_DIR
 mv dump $BACKUP_NAME
