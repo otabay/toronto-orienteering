@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 TIMESTAMP=`date +%F-%H%M`
-BACKUPS_DIR="../backups"
+BACKUPS_DIR="~/backups"
 BACKUP_NAME="TOC-BACKUP-$TIMESTAMP"
 
 rm -rf dump
