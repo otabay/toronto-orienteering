@@ -33,6 +33,8 @@ mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 							a(href=event.location.locationMapUrl target="_blank") !{event.location.name}				
 				.btn-group
 					a(href=rootUrl + event.slug).btn.btn-primary More Info
+					if(event.hasClinic)
+						a(href=event.registrationLink).btn.btn-primary Register For Clinic
 
 mixin subscribe()
 	form(method="get" accept-charset='UTF-8' name='oi_form' action='http://link.whc.ca/oi/443/277481752927e3ac0bb55efd1ff07dca')

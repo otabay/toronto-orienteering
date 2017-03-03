@@ -149,7 +149,32 @@ Event.add({
 	cost: { type: Types.Html, wysiwyg: true, height: 200},
 	notes: { type: Types.Html, wysiwyg: true, height: 200 },
 	documents: { type: Types.Relationship, ref: 'Document', many: true },
-	results: {type: Types.Relationship, ref: 'Document', many: true}
+	results: {type: Types.Relationship, ref: 'Document', many: true},
+	hasClinic: {type: Boolean}
 });
+
+Event.schema.methods.eventsWithClinic = function(year, callback){
+
+		var q = keystone.list(type).model.find()
+		.populate('coordinator')
+		.where('state', 'published')
+		.where('hasClinic', true)
+		
+		if(year) {
+			var fromDate = new Date(year,0,0);
+			var toDate = new Date(year + 1,0,0);
+			q.where('startDate').gt(fromDate).lt(toDate);
+		}
+		q.sort('order -startDate')
+		
+		q.exec(function(err, posts) {
+			if (err) return callback(err);
+			if (!posts.length) {
+				callback();
+			} else {
+			 	callback(posts);
+			}
+		});
+};
 
 Event.register();
