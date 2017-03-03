@@ -34,8 +34,11 @@ mixin eventCard(event, actionTitle, titlePath, hasBorder)
 						a(href=event.location.locationMapUrl target="_blank") !{event.location.name}
 			.btn-group
 				a(href='/events/event/' + event.slug).btn.btn-primary More Info
-				if(event.registrationLink)
-					a(href=event.registrationLink target="_blank").btn.btn-primary= actionTitle
+				if(event.startDate > new Date())
+					if(event.hasClinic==true)
+						a(href=event.registrationLink?event.registrationLink:"mailto:info@torontoorienteering.com?subject=#{event.title}-#{event._.startDate.format('MMM, Do')}" target="_blank").btn.btn-primary Register for clinic
+					else if(event.registrationLink)
+						a(href=event.registrationLink target="_blank").btn.btn-primary= actionTitle 
 
 mixin newsCard(events, titlePath)
 	if events && events.length>0
