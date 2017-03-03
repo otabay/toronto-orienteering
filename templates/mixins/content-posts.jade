@@ -27,14 +27,18 @@ mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 						.event-date
 							p.small posted on !{event._.publishedDate.format('MMM, Do, YYYY')} by !{event.author.name.first}
 					!{event.content.brief}
+				//- if(event.results && event.results.length > 0)
+				//- 	each result in event.results
+				//- 		a(href="#{result.fullDocUrl}") Results #{result.title} 
 				if event.location
 					.card-location
 						span.icon.icon-location 
-							a(href=event.location.locationMapUrl target="_blank") !{event.location.name}				
+							a(href=event.location.locationMapUrl target="_blank") !{event.location.name}							
 				.btn-group
 					a(href=rootUrl + event.slug).btn.btn-primary More Info
-					if(event.hasClinic)
-						a(href=event.registrationLink).btn.btn-primary Register For Clinic
+					if(event.startDate > new Date())
+						if(event.hasClinic==true)
+							a(href=event.registrationLink?event.registrationLink:"mailto:info@torontoorienteering.com?subject=#{event.title}-#{event._.startDate.format('MMM, Do')}" target="_blank").btn.btn-primary Register for clinic	
 
 mixin subscribe()
 	form(method="get" accept-charset='UTF-8' name='oi_form' action='http://link.whc.ca/oi/443/277481752927e3ac0bb55efd1ff07dca')

@@ -60,6 +60,7 @@ Post.schema.methods.postsForCategory = function(categoryKey, type, year, callbac
 		.populate('author')
 		.populate('location')
 		.populate('coordinator')
+		.populate('results')
 		.where('categories').in([category.id])
 		.where('state', 'published')
 		if(type == 'Event') {
