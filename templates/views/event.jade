@@ -50,7 +50,34 @@ block content
 														b Time: 
 														!= data.event.registrationTime
 													if(data.event.registrationLink)	
-														p: a(href="#{data.event.registrationLink}") Register Online				
+														p: a(href="#{data.event.registrationLink}") Register Online	
+										if data.event.meetDirector.length>0 || data.event.courseSetter.length>0
+											tr 
+												td 
+													b Organizers
+												td 
+													if data.event.meetDirector.length>0
+														p
+															b Meet directors: 
+															each person in data.event.meetDirector 
+																a(href="mailto:#{person.email}?subject=#{data.event.title}")!= person.name.full
+													if data.event.courseSetter.length>0		
+														p
+															b Course setters: 
+															each person in data.event.courseSetter 
+																a(href="mailto:#{person.email}?subject=#{data.event.title}")!= person.name.full
+										if data.event.location && data.event.location.intersection.length > 0
+											tr
+												td
+													b Major intersection
+												td
+													!= data.event.location.intersection
+										if data.event.location && data.event.location.directions.length > 0
+											tr
+												td
+													b Directions
+												td
+													!= data.event.location.directions
 										if data.event.location
 											tr 
 												td 
@@ -58,20 +85,8 @@ block content
 												td 
 													a(href='#{data.event.location.locationMapUrl}') #{data.event.location.name}
 													br
-													!= data.event.location.locationMapEmbed
-										if data.event.location.intersection.length > 0
-											tr
-												td
-													b Major intersection
-												td
-													!= data.event.location.intersection
-										if data.event.location.directions.length > 0
-											tr
-												td
-													b Directions
-												td
-													!= data.event.location.directions
-										if data.event.location.map
+													!= data.event.location.locationMapEmbed			
+										if data.event.location && data.event.location.map
 											tr
 												td
 													b Map
@@ -86,20 +101,7 @@ block content
 														b Revisions: 
 														!= data.event.location.map.revision
 
-										if data.event.meetDirector || data.event.courseSetter
-											tr 
-												td 
-													b Organizers
-												td 
-													if data.event.meetDirector
-														p
-															b Meet directors: 
-															each person in data.event.meetDirector 
-																!= person.name.full
-														p
-															b Course setters: 
-															each person in data.event.courseSetter 
-																!= person.name.full		
+												
 										if data.event.format.length
 											tr 
 												td 
