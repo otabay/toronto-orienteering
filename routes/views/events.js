@@ -15,8 +15,10 @@ exports = module.exports = function(req, res) {
 	locals.year = req.params.year?parseInt(req.params.year):locals.defaultYear;
 
 	locals.data = {
-		events: [],
-		weeklySeries: [],
+		eventsPast: [],
+		eventsFuture: [],
+		weeklySeriesPast: [],
+		weeklySeriesFuture: [],
 		eventsContent: {},
 		weeklySeriesContent: {},
 		eventYears:[],
@@ -28,7 +30,16 @@ exports = module.exports = function(req, res) {
 		keystone.list('Post').schema.methods.postsForCategory(eventsCategoryName, 'Event', locals.year, (function(posts, err){
 			if(err) next(err);
 			if(typeof posts != "undefined")
-				locals.data.events = posts;
+				var today = new Date();
+				posts.forEach(function(post) {
+					if(post.startDate && post.startDate > today)
+					{
+						locals.data.eventsFuture.push(post);
+					} else {
+						locals.data.eventsPast.push(post);
+					}
+				}, this);
+				locals.data.eventsFuture.reverse();
 			next();
 		}));
 	});
@@ -38,7 +49,16 @@ exports = module.exports = function(req, res) {
 		keystone.list('Post').schema.methods.postsForCategory(weeklySeriesCategoryName, 'Event', locals.year, (function(posts, err){
 			if(err) next(err);
 			if(typeof posts != "undefined")
-				locals.data.weeklySeries = posts;
+				var today = new Date();
+				posts.forEach(function(post) {
+					if(post.startDate && post.startDate > today)
+					{
+						locals.data.weeklySeriesFuture.push(post);
+					} else {
+						locals.data.weeklySeriesPast.push(post);
+					}
+				}, this);
+				locals.data.weeklySeriesFuture.reverse();
 			next();
 		}));
 	});

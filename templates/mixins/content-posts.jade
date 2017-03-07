@@ -21,15 +21,19 @@ mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 						!{event.title}
 					if event.startDate
 							.event-date.pull-right 
-								p !{event._.startDate.format('MMM, Do')} 		
+								p !{event._.startDate.format('ddd, MMM, Do')} 		
 				.event-brief-main
 					if (event.publishedDate && showPublishedDate)
 						.event-date
 							p.small posted on !{event._.publishedDate.format('MMM, Do, YYYY')} by !{event.author.name.first}
 					!{event.content.brief}
-				//- if(event.results && event.results.length > 0)
-				//- 	each result in event.results
-				//- 		a(href="#{result.fullDocUrl}") Results #{result.title} 
+					if(event.results && event.results.length > 0)
+						ul.event-results
+							li 
+								b Results:
+							each result in event.results
+								li
+									a(href="#{result.fullDocUrl}" target="_blank") #{result.title} 
 				if event.location
 					.card-location
 						span.icon.icon-location 

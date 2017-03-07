@@ -17,7 +17,7 @@ mixin serviceCard(service, i)
 		.btn-group
 			a(href="/services#tab"+tabIndex).btn.btn-primary Learn More
 
-mixin eventCard(event, actionTitle, titlePath, hasBorder)
+mixin eventCard(event, actionTitle, titlePath, hasBorder, showClinic)
 	if event
 		div(class="#{ hasBorder? 'col-md-6 border-right event-col' : 'col-md-6 event-col' }") 
 			.event-header
@@ -35,8 +35,8 @@ mixin eventCard(event, actionTitle, titlePath, hasBorder)
 			.btn-group
 				a(href='/events/event/' + event.slug).btn.btn-primary More Info
 				if(event.startDate > new Date())
-					if(event.hasClinic==true)
-						a(href=event.registrationLink?event.registrationLink:"mailto:info@torontoorienteering.com?subject=#{event.title}-#{event._.startDate.format('MMM, Do')}" target="_blank").btn.btn-primary Register for clinic
+					if(event.hasClinic==true && showClinic==true)
+						a(href=event.registrationLink?event.registrationLink:"mailto:info@torontoorienteering.com?subject=#{event.title}-#{event._.startDate.format('MMM, Do')}").btn.btn-primary Signup for clinic
 					else if(event.registrationLink)
 						a(href=event.registrationLink target="_blank").btn.btn-primary= actionTitle 
 
@@ -66,8 +66,8 @@ block content
 					h2.section-title.border-bottom Upcoming Events
 						span.icon-title
 					.row
-						+eventCard(data.event, "Sign me up!", "/events/event/", true)
-						+eventCard(data.weeklySeriesEvent, "Sign me up!", "/events/event/", false)
+						+eventCard(data.event, "Sign me up!", "/events/event/", true, false)
+						+eventCard(data.weeklySeriesEvent, "Sign me up!", "/events/event/", false, true)
 				.col-md-4.news-col
 					h2.section-title.border-bottom Latest News
 						span.icon-title

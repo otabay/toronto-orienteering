@@ -68,6 +68,8 @@ sudo service redis_6379 stop
 sudo service redis_6379 start
 sudo service redis_6379 restart
 
+sudo timedatectl set-timezone EST
+
 #backup
 curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 unzip awscli-bundle.zip
