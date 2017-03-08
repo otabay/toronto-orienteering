@@ -21,7 +21,7 @@ mixin serviceCard(service, i)
 mixin eventCard(event, actionTitle, titlePath, hasBorder, showClinic)
 	if event
 		div(class="#{ hasBorder? 'col-md-6 border-right event-col' : 'col-md-6 event-col' }") 
-			.event-header
+			.event-header.event-header-main
 				.pull-left
 					p !{event.title}
 				if event.startDate

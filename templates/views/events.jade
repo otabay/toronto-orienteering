@@ -58,10 +58,12 @@ block content
 		.tab-content
 			div(role="tabpanel").tab-pane.active#tab1
 				.row
-					.col-md-4
-						h2.section-title Event Schedule
+					.col-md-8
+						+content-post(data.eventsContent)
+				.row
+					.col-md-8
+						h2.section-title.pull-left Event Schedule
 							span.icon-title
-					.col-md-4
 						+pastEvents(data.eventYears, '#tab1')
 				+displayEvents(data.eventsPast, data.eventsFuture, 'event')
 										

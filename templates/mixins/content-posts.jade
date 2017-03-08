@@ -20,11 +20,11 @@ mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 				else if(showPlaceholder)
 					img(src="../images/event.jpg" alt="Thumb image").media-object
 			.media-body
-				.media-heading.event-header
-					.event-title.pull-left
+				.media-heading.event-header.event-header-md
+					.event-title.event-title-md
 						!{event.title}
 					if event.startDate
-							.event-date.pull-right 
+							.event-date.event-date-md
 								p !{event._.startDate.format('ddd, MMM, Do')} 		
 				.event-brief-main
 					if (event.publishedDate && showPublishedDate)
