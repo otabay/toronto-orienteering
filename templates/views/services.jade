@@ -20,6 +20,30 @@ block content
 	.tab-content.container.main-container
 		div(role="tabpanel").tab-pane.active#tab1
 			+content-post(data.beginnersClinicContent)
+			if(data.beginnersClinicSchedule.length > 0)
+				h2.section-title Beginner Clinic Schedule
+					span.icon-title
+				table.table.table-striped
+					thead
+						tr
+							th Event
+							th Location
+							th Date
+							th 
+					each clinic in data.beginnersClinicSchedule
+						tbody
+							tr
+								td 
+									a(href='/events/event/' + clinic.slug) !{clinic.title}
+								td
+									if(clinic.location)
+										a(href='#{clinic.location.locationMapUrl}'  target='_blank') #{clinic.location.name}
+								td 
+									if(clinic.startDate)
+										!{clinic._.startDate.format('dddd, MMMM Do, h:mm a')}
+								td 
+									+registerForClinic(clinic)
+
 		div(role="tabpanel").tab-pane#tab2
 			+content-post(data.advancedClinicContent)
 		div(role="tabpanel").tab-pane#tab3

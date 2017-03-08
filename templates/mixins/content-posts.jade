@@ -6,6 +6,10 @@ mixin content-post(post)
 		.col-md-12
 			.post-content: !{post.content.extended}
 
+mixin registerForClinic(event)
+	if(event.startDate > new Date())
+		if(event.hasClinic==true)
+			a(href=event.registrationLink?event.registrationLink:"mailto:info@torontoorienteering.com?subject=#{event.title}-#{event._.startDate.format('MMM, Do')}").btn.btn-primary Signup for clinic	
 
 mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 	if event
@@ -40,9 +44,7 @@ mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 							a(href=event.location.locationMapUrl target="_blank") !{event.location.name}							
 				.btn-group
 					a(href=rootUrl + event.slug).btn.btn-primary More Info
-					if(event.startDate > new Date())
-						if(event.hasClinic==true)
-							a(href=event.registrationLink?event.registrationLink:"mailto:info@torontoorienteering.com?subject=#{event.title}-#{event._.startDate.format('MMM, Do')}" target="_blank").btn.btn-primary Register for clinic	
+					+registerForClinic(event)
 
 mixin subscribe()
 	form(method="get" accept-charset='UTF-8' name='oi_form' action='http://link.whc.ca/oi/443/277481752927e3ac0bb55efd1ff07dca')
@@ -52,5 +54,11 @@ mixin subscribe()
 			.input-group
 				input(type='email' id="email" placeholder="Enter your email" name='email' required).form-control
 				span.input-group-btn
-					button(type="submit").btn.btn-primary Subscribe								
+					button(type="submit").btn.btn-primary Subscribe
+
+mixin registerForClinic(event)
+	if(event.startDate > new Date())
+		if(event.hasClinic==true)
+			a(href=event.registrationLink?event.registrationLink:"mailto:info@torontoorienteering.com?subject=#{event.title}-#{event._.startDate.format('MMM, Do')}" target="_blank").btn.btn-primary Signup for clinic	
+
 	

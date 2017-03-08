@@ -59,7 +59,6 @@ Post.schema.methods.postsForCategory = function(categoryKey, type, year, callbac
 		var q = keystone.list(type).model.find()
 		.populate('author')
 		.populate('location')
-		.populate('coordinator')
 		.populate('results')
 		.where('categories').in([category.id])
 		.where('state', 'published')
@@ -154,26 +153,22 @@ Event.add({
 	hasClinic: {type: Boolean}
 });
 
-Event.schema.methods.eventsWithClinic = function(year, callback){
+Event.schema.methods.eventsWithClinic = function(callback){
 
-		var q = keystone.list(type).model.find()
-		.populate('coordinator')
+		var q = keystone.list('Event').model.find()
+		.populate('location')
+		.populate('meetDirector')
 		.where('state', 'published')
 		.where('hasClinic', true)
-		
-		if(year) {
-			var fromDate = new Date(year,0,0);
-			var toDate = new Date(year + 1,0,0);
-			q.where('startDate').gt(fromDate).lt(toDate);
-		}
-		q.sort('order -startDate')
+		.where('startDate').gt(new Date())
+		.sort('order -startDate')
 		
 		q.exec(function(err, posts) {
 			if (err) return callback(err);
 			if (!posts.length) {
 				callback();
 			} else {
-			 	callback(posts);
+			 	callback(err, posts);
 			}
 		});
 };

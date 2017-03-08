@@ -1,3 +1,4 @@
+include ../mixins/content-posts
 extends ../layouts/default
 
 block header-image
@@ -34,11 +35,10 @@ mixin eventCard(event, actionTitle, titlePath, hasBorder, showClinic)
 						a(href=event.location.locationMapUrl target="_blank") !{event.location.name}
 			.btn-group
 				a(href='/events/event/' + event.slug).btn.btn-primary More Info
-				if(event.startDate > new Date())
-					if(event.hasClinic==true && showClinic==true)
-						a(href=event.registrationLink?event.registrationLink:"mailto:info@torontoorienteering.com?subject=#{event.title}-#{event._.startDate.format('MMM, Do')}").btn.btn-primary Signup for clinic
-					else if(event.registrationLink)
-						a(href=event.registrationLink target="_blank").btn.btn-primary= actionTitle 
+				if(showClinic)
+					+registerForClinic(event)
+				else if(event.registrationLink)
+					a(href=event.registrationLink target="_blank").btn.btn-primary= actionTitle 	
 
 mixin newsCard(events, titlePath)
 	if events && events.length>0

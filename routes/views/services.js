@@ -18,13 +18,22 @@ exports = module.exports = function(req, res) {
 		beginnersClinicContent: {},
 		advancedClinicContent: {},
 		teamBuildingContent: {},
-		schoolEventsContent: {}
+		schoolEventsContent: {},
+		beginnersClinicSchedule:[]
 	};
 
 	//load beginner clinic content content
 	view.on('init', function(next) {
 		keystone.list('Post').schema.methods.loadPost(beginnersClinicContentSlug, function(err, result){
 			locals.data.beginnersClinicContent = result;
+			next(err);
+		});
+	});
+
+	//load beginner clinic schedule
+	view.on('init', function(next) {
+		keystone.list('Event').schema.methods.eventsWithClinic(function(err, result){
+			locals.data.beginnersClinicSchedule = result;
 			next(err);
 		});
 	});

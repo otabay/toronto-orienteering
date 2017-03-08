@@ -41,16 +41,19 @@ block content
 													b Start time
 												td 
 													| #{data.event._.startDate.format('dddd, MMMM Do, h:mm a')}
-										if data.event.registrationTime
+										if (data.event.registrationLink || data.event.hasClinic)
 											tr 
 												td 
 													b Registration
 												td
-													p 
-														b Time: 
-														!= data.event.registrationTime
+													if (data.event.registrationTime)
+														p 
+															b Time: 
+															!= data.event.registrationTime
 													if(data.event.registrationLink)	
-														p: a(href="#{data.event.registrationLink}") Register Online	
+														p: a(href="#{data.event.registrationLink}") Register Online
+													else if(data.event.hasClinic == true)
+														p: a(href="mailto:info@torontoorienteering.com?subject=#{data.event.title}-#{data.event._.startDate.format('MMM, Do')}" target="_blank") Register for clinic			
 										if data.event.meetDirector.length>0 || data.event.courseSetter.length>0
 											tr 
 												td 
