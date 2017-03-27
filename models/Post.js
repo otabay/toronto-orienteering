@@ -59,6 +59,7 @@ Post.schema.methods.postsForCategory = function(categoryKey, type, year, callbac
 		var q = keystone.list(type).model.find()
 		.populate('author')
 		.populate('location')
+		.populate('clinicCoordinator')
 		.populate('results')
 		.where('categories').in([category.id])
 		.where('state', 'published')
@@ -132,7 +133,7 @@ Post.schema.methods.loadPost = function(slug, callback){
 };
 
 
-Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
+Post.defaultColumns = 'title, author|20%, startDate|20%, publishedDate|20%';
 Post.register();
 
 
@@ -150,7 +151,8 @@ Event.add({
 	notes: { type: Types.Html, wysiwyg: true, height: 200 },
 	documents: { type: Types.Relationship, ref: 'Document', many: true },
 	results: {type: Types.Relationship, ref: 'Document', many: true},
-	hasClinic: {type: Boolean}
+	hasClinic: {type: Boolean},
+	clinicCoordinator: { type: Types.Relationship, ref: 'User'}
 });
 
 Event.schema.methods.eventsWithClinic = function(callback){
@@ -158,10 +160,11 @@ Event.schema.methods.eventsWithClinic = function(callback){
 		var q = keystone.list('Event').model.find()
 		.populate('location')
 		.populate('meetDirector')
+		.populate('clinicCoordinator')
 		.where('state', 'published')
 		.where('hasClinic', true)
 		.where('startDate').gt(new Date())
-		.sort('order -startDate')
+		.sort('order startDate')
 		
 		q.exec(function(err, posts) {
 			if (err) return callback(err);
@@ -172,5 +175,13 @@ Event.schema.methods.eventsWithClinic = function(callback){
 			}
 		});
 };
+
+Event.schema.virtual('clinicRegistrationUrl').get(function() {
+	if (!this.hasClinic) return '';
+	if (this.registrationLink) return this.registrationLink;
+	var emailSubject = '?subject=' + this.title + ',' + this._.startDate.format('MMM, Do');
+	if (this.clinicCoordinator) return 'mailto:' + this.clinicCoordinator.email + emailSubject;
+    return 'mailto:info@torontoorienteering.com' + emailSubject;
+});
 
 Event.register();

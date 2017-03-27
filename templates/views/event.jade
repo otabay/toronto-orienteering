@@ -53,22 +53,27 @@ block content
 													if(data.event.registrationLink)	
 														p: a(href="#{data.event.registrationLink}") Register Online
 													else if(data.event.hasClinic == true)
-														p: a(href="mailto:info@torontoorienteering.com?subject=#{data.event.title}-#{data.event._.startDate.format('MMM, Do')}" target="_blank") Register for clinic			
-										if data.event.meetDirector.length>0 || data.event.courseSetter.length>0
+														p: a(href=data.event.clinicRegistrationUrl target="_blank") Register for clinic			
+										if data.event.meetDirector.length>0 || data.event.courseSetter.length>0 || data.event.clinicCoordianator
 											tr 
 												td 
 													b Organizers
 												td 
 													if data.event.meetDirector.length>0
+														- var emailSubject = "?subject=" + data.event.title + "-" + data.event._.startDate.format('MMM, Do')
 														p
 															b Meet directors: 
 															each person in data.event.meetDirector 
-																a(href="mailto:#{person.email}?subject=#{data.event.title}")!= person.name.full
+																a(href="mailto:#{person.email}#{emailSubject}")!= person.name.full
 													if data.event.courseSetter.length>0		
 														p
 															b Course setters: 
 															each person in data.event.courseSetter 
-																a(href="mailto:#{person.email}?subject=#{data.event.title}")!= person.name.full
+																a(href="mailto:#{person.email}#{emailSubject}")!= person.name.full
+													if data.event.clinicCoordinator
+														p
+															b Clinic coordinator: 
+																a(href="mailto:#{data.event.clinicCoordinator.email}#{emailSubject}")!= data.event.clinicCoordinator.name.full		
 										if data.event.location && data.event.location.intersection.length > 0
 											tr
 												td

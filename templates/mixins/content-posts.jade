@@ -6,11 +6,6 @@ mixin content-post(post)
 		.col-md-12
 			.post-content: !{post.content.extended}
 
-mixin registerForClinic(event)
-	if(event.startDate > new Date())
-		if(event.hasClinic==true)
-			a(href=event.registrationLink?event.registrationLink:"mailto:info@torontoorienteering.com?subject=#{event.title}-#{event._.startDate.format('MMM, Do')}").btn.btn-primary Signup for clinic	
-
 mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 	if event
 		li.media.event-panel.border-top
@@ -59,6 +54,6 @@ mixin subscribe()
 mixin registerForClinic(event)
 	if(event.startDate > new Date())
 		if(event.hasClinic==true)
-			a(href=event.registrationLink?event.registrationLink:"mailto:info@torontoorienteering.com?subject=#{event.title}-#{event._.startDate.format('MMM, Do')}" target="_blank").btn.btn-primary Signup for clinic	
+			a(href=event.clinicRegistrationUrl target="_blank").btn.btn-primary Signup for clinic
 
 	
