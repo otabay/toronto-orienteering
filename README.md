@@ -32,3 +32,11 @@ npm install
 ```
 node keystone.js
 ```
+- Run the application in Visual Code
+    - Open Visual Code
+    - File -> Open -> Browse to the application directory
+    - Go to the Debug menu
+    - Add Configuration -> Node.js
+    - Launch
+- Open a browser and go to http://localhost:3000 to access the site
+   
