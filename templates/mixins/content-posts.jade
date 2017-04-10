@@ -1,10 +1,11 @@
 mixin content-post(post)
-	.row
-		if(post.image.exists)
+	if(post)
+		.row
+			if(post.image.exists)
+				.col-md-12
+					img(src=post._.image.fit(600,600) alt="Event image").media-object
 			.col-md-12
-				img(src=post._.image.fit(600,600) alt="Event image").media-object
-		.col-md-12
-			.post-content: !{post.content.extended}
+				.post-content: !{post.content.extended}
 
 mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 	if event

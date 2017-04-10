@@ -33,7 +33,16 @@ block content
 													ul
 													each result in data.event.results
 														li 
-															a(href="#{result.fullDocUrl}") #{result.title} 
+															a(href="#{result.fullDocUrl}") #{result.title}
+										if data.event.documents.length > 0
+											tr
+												td
+													b Documents
+												td
+													ul
+													each doc in data.event.documents
+														li 
+															a(href="#{doc.fullDocUrl}") #{doc.title}					 
 
 										if data.event.startDate
 											tr 
