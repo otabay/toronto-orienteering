@@ -152,6 +152,7 @@ Event.add({
 	documents: { type: Types.Relationship, ref: 'Document', many: true },
 	results: {type: Types.Relationship, ref: 'Document', many: true},
 	hasClinic: {type: Boolean},
+	clinicType: {type: Types.Select, options:['Beginner', 'Advanced']},
 	clinicCoordinator: { type: Types.Relationship, ref: 'User'}
 });
 
