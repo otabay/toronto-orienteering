@@ -3,7 +3,7 @@ extends ../layouts/default
 
 
 mixin displayClinic(clinicSchedule, title)
-	if(data.beginnersClinicSchedule && data.beginnersClinicSchedule.length > 0)
+	if(clinicSchedule && clinicSchedule.length > 0)
 		h2.section-title !{title}
 			span.icon-title
 		table.table.table-striped
