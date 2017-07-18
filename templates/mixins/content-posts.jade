@@ -30,7 +30,7 @@ mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 					if(event.results && event.results.length > 0)
 						ul.event-results
 							li 
-								b Results:
+								b Results: 
 							each result in event.results
 								li
 									a(href="#{result.fullDocUrl}" target="_blank") #{result.title} 

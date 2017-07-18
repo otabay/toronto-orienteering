@@ -72,13 +72,17 @@ block content
 														- var emailSubject = "?subject=" + data.event.title + "-" + data.event._.startDate.format('MMM, Do')
 														p
 															b Meet directors: 
-															each person in data.event.meetDirector 
+															each person, index in data.event.meetDirector 
 																a(href="mailto:#{person.email}#{emailSubject}")!= person.name.full
+																if index < data.event.meetDirector.length-1 
+																	, 
 													if data.event.courseSetter.length>0		
 														p
 															b Course setters: 
-															each person in data.event.courseSetter 
+															each person, index in data.event.courseSetter 
 																a(href="mailto:#{person.email}#{emailSubject}")!= person.name.full
+																if index < data.event.courseSetter.length-1 
+																	, 
 													if data.event.clinicCoordinator
 														p
 															b Clinic coordinator: 

@@ -28,11 +28,14 @@ mixin eventCard(event, actionTitle, titlePath, hasBorder, showClinic)
 						.event-date.pull-right 
 							p !{event._.startDate.format('MMM, Do')}
 			.event-brief
-				!{event.content.brief}		
-			if event.location
-				.card-location
-					span.icon.icon-location 
-						a(href=event.location.locationMapUrl target="_blank") !{event.location.name}
+				!{event.content.brief}
+
+			.card-location
+					span.icon.icon-location
+						if event.location
+							a(href=event.location.locationMapUrl target="_blank") !{event.location.name}
+						else 
+							a Coming soon
 			.btn-group
 				a(href='/events/event/' + event.slug).btn.btn-primary More Info
 				if(showClinic)
