@@ -34,14 +34,16 @@ exports = module.exports = function(req, res) {
 	//load beginner clinic schedule
 	view.on('init', function(next) {
 		keystone.list('Event').schema.methods.eventsWithClinic(function(err, results){
-			results.forEach(function(clinic) {
-				if(clinic.clinicType == "Beginner"){
-					locals.data.beginnersClinicSchedule.push(clinic);
-				}
-				if(clinic.clinicType == "Advanced") {
-					locals.data.advancedClinicSchedule.push(clinic);
-				} 	
-			}, this);
+			if(results){
+				results.forEach(function(clinic) {
+					if(clinic.clinicType == "Beginner"){
+						locals.data.beginnersClinicSchedule.push(clinic);
+					}
+					if(clinic.clinicType == "Advanced") {
+						locals.data.advancedClinicSchedule.push(clinic);
+					} 	
+				}, this);
+			}
 			next(err);
 		});
 	});
