@@ -26,7 +26,7 @@ mixin eventCard(event, actionTitle, titlePath, hasBorder, showClinic)
 					p !{event.title}
 				if event.startDate
 						.event-date.pull-right 
-							p !{event._.startDate.format('MMM, Do')}
+							p !{event._.startDate.format('MMM Do')}
 			.event-brief
 				!{event.content.brief}
 
@@ -52,7 +52,7 @@ mixin newsCard(events, titlePath)
 						p !{event.title}
 				if event.publishedDate
 					.event-date
-						p.small posted on !{event._.publishedDate.format('MMM, Do, YYYY')} by !{event.author.name.first}		
+						p.small posted on !{event._.publishedDate.format('MMM Do, YYYY')} by !{event.author.name.first}		
 				.news-brief.truncate-text
 					!{event.content.brief}
 				a(href=titlePath + event.slug).news-more Read More >

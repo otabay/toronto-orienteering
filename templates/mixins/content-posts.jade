@@ -21,11 +21,11 @@ mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 						!{event.title}
 					if event.startDate
 							.event-date.event-date-md
-								p !{event._.startDate.format('ddd, MMM, Do')} 		
+								p !{event._.startDate.format('ddd, MMM Do')} 		
 				.event-brief-main
 					if (event.publishedDate && showPublishedDate)
 						.event-date
-							p.small posted on !{event._.publishedDate.format('MMM, Do, YYYY')} by !{event.author.name.first}
+							p.small posted on !{event._.publishedDate.format('MMM Do, YYYY')} by !{event.author.name.first}
 					!{event.content.brief}
 					if(event.results && event.results.length > 0)
 						ul.event-results
