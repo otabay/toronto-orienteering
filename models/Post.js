@@ -76,7 +76,7 @@ Post.schema.methods.postsForCategory = function(categoryKey, type, year, callbac
 		q.exec(function(err, posts) {
 			if (err) return callback(err);
 			if (!posts.length) {
-				callback();
+				callback([]);
 			} else {
 			 	callback(posts);
 			}
