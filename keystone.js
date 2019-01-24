@@ -4,6 +4,7 @@ require('dotenv').config();
 
 // Require keystone
 var keystone = require('keystone');
+require('connect-mongo');
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
@@ -29,6 +30,7 @@ keystone.init({
 
 	'cloudinary config': process.env.CLOUDINARY_URL,
 	'cookie secret': process.env.COOKIE_SECRET || 'demo',
+	'session store': 'connect-mongo',
 	'mongo': process.env.MONGO_URI || process.env.MONGOLAB_URI || 'mongodb://mongo/toc',
 
 	'wysiwyg override toolbar': false,

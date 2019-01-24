@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 TIMESTAMP=`date +%F-%H%M`
-BACKUPS_DIR="~/backups"
+BACKUPS_DIR="backups"
 BACKUP_NAME="TOC-BACKUP-$TIMESTAMP"
 
 rm -rf dump
 
-mongodump --db toc
+docker-compose run mongo mongodump --host mongo:27017 --db toc
 
 mkdir -p $BACKUPS_DIR
 mv dump $BACKUP_NAME

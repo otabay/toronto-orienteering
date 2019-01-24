@@ -7,6 +7,10 @@ WORKDIR /usr/src/app
 #Install netcat so you can check if mongo is up
 RUN apt-get update && apt-get install -y netcat
 
+#set EST timezone
+ENV TZ=EST5EDT
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # Install app dependencies
 COPY package.json /usr/src/app/
 COPY *.env* /usr/src/app/
@@ -17,8 +21,6 @@ RUN npm install -g nodemon
 
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
-
-USER node
 
 EXPOSE 3000
 

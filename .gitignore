@@ -34,3 +34,6 @@ node_modules
 dump
 #database data folder
 mongo
+
+#backup folder
+backups
