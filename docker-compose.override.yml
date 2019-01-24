@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  
+  mongo:
+    ports:
+      - "27017:27017"
+  
+  keystone:
+    command: sh -c './wait-for.sh mongo:27017 -t 30 -- nodemon -L --inspect=0.0.0.0'
+    ports:
+      - "3000:3000"
+      - "9229:9229"

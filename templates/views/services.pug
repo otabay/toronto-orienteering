@@ -1,10 +1,10 @@
-include ../mixins/content-posts
 extends ../layouts/default
+include ../mixins/content-posts
 
 
 mixin displayClinic(clinicSchedule, title)
 	if(clinicSchedule && clinicSchedule.length > 0)
-		h2.section-title !{title}
+		h2.section-title #{title}
 			span.icon-title
 		table.table.table-striped
 			thead
@@ -17,13 +17,13 @@ mixin displayClinic(clinicSchedule, title)
 				tbody
 					tr
 						td 
-							a(href='/events/event/' + clinic.slug) !{clinic.title}
+							a(href='/events/event/' + clinic.slug) #{clinic.title}
 						td
 							if(clinic.location)
 								a(href='#{clinic.location.locationMapUrl}'  target='_blank') #{clinic.location.name}
 						td 
 							if(clinic.startDate)
-								!{clinic._.startDate.format('dddd, MMMM Do, h:mm a')}
+								#{clinic._.startDate.format('dddd, MMMM Do, h:mm a')}
 						td 
 							+registerForClinic(clinic)
 

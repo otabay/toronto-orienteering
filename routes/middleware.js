@@ -8,7 +8,7 @@
  * modules in your project's /lib directory.
  */
 
-var _ = require('underscore');
+var _ = require('lodash');
 var keystone = require('keystone');
 
 
@@ -94,7 +94,7 @@ exports.flashMessages = function(req, res, next) {
 		error: req.flash('error')
 	};
 
-	res.locals.messages = _.any(flashMessages, function(msgs) { return msgs.length; }) ? flashMessages : false;
+	res.locals.messages = _.some(flashMessages, function(msgs) { return msgs.length; }) ? flashMessages : false;
 
 	next();
 

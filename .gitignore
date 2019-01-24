@@ -29,3 +29,8 @@ node_modules
 
 # Ignore .DS_Store files on OS X
 .DS_Store
+
+#databse dump directory
+dump
+#database data folder
+mongo

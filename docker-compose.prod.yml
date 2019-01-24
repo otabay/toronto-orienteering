@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  
+  mongo:
+    restart: always
+  
+  keystone:
+    ports:
+      - "80:3000"
+    environment:
+      - NODE_ENV=production

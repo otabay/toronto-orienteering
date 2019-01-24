@@ -1,5 +1,5 @@
-include ../mixins/content-posts
 extends ../layouts/default
+include ../mixins/content-posts
 
 block header-image
 	include ../includes/layouts/header_image
@@ -12,28 +12,30 @@ mixin serviceCard(service, i)
 		-var cardClass = cardClass + " border-right";
 	- var tabIndex = i + 1;	
 	div(class=cardClass)
-		.h3 !{service.friendlyTitle}
+		.h3 #{service.friendlyTitle}
 		.service-brief
-			!{service.content.brief}
+			!= service.content.brief
 		.btn-group
 			a(href="/services#tab"+tabIndex).btn.btn-primary Learn More
 
 mixin eventCard(event, actionTitle, titlePath, hasBorder, showClinic)
 	if event
-		div(class="#{ hasBorder? 'col-md-6 border-right event-col' : 'col-md-6 event-col' }") 
+		- var cardClass = "col-md-6 event-col"
+		if (hasBorder)
+			- var cardClass = cardClass + " border-right"
+		div(class=cardClass) 
 			.event-header.event-header-main
 				.pull-left
-					p !{event.title}
+					p #{event.title}
 				if event.startDate
 						.event-date.pull-right 
-							p !{event._.startDate.format('MMM Do')}
+							p #{event._.startDate.format('MMM Do')}
 			.event-brief
-				!{event.content.brief}
-
+				!= event.content.brief
 			.card-location
 					span.icon.icon-location
 						if event.location
-							a(href=event.location.locationMapUrl target="_blank") !{event.location.name}
+							a(href=event.location.locationMapUrl target="_blank") #{event.location.name}
 						else 
 							a Coming soon
 			.btn-group
@@ -49,12 +51,12 @@ mixin newsCard(events, titlePath)
 			.col-md-12.news-content-col 
 				.news-header
 					.event-title
-						p !{event.title}
+						p #{event.title}
 				if event.publishedDate
 					.event-date
-						p.small posted on !{event._.publishedDate.format('MMM Do, YYYY')} by !{event.author.name.first}		
+						p.small posted on #{event._.publishedDate.format('MMM Do, YYYY')} by #{event.author.name.first}
 				.news-brief.truncate-text
-					!{event.content.brief}
+					!= event.content.brief
 				a(href=titlePath + event.slug).news-more Read More >
 
 		.btn-group.news-btn-group
@@ -75,7 +77,7 @@ block content
 					h2.section-title.border-bottom Latest News
 						span.icon-title
 					.row
-						+newsCard(data.news, "/blog/post/")				
+						+newsCard(data.news, "/blog/post/")
 	.section
 		.container
 			.row
@@ -87,7 +89,6 @@ block content
 	.section.services-section
 		.container
 			h2.section-title.border-bottom How can we help?
-					span.icon-title																
+				span.icon-title
 			each service,i in data.servicesContent
-				+serviceCard(service,i)				
-
+				+serviceCard(service,i)
