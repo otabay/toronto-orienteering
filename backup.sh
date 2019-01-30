@@ -5,7 +5,7 @@ BACKUP_NAME="TOC-BACKUP-$TIMESTAMP"
 
 rm -rf dump
 
-docker-compose run mongo mongodump --host mongo:27017 --db toc
+mongodump --host mongo:27017 --db toc
 
 mkdir -p $BACKUPS_DIR
 mv dump $BACKUP_NAME
@@ -15,7 +15,7 @@ rm -rf $BACKUP_NAME
 if [ -e $BACKUPS_DIR/$BACKUP_NAME.tgz ]; then
 	
 	#push to S3
-	aws s3 cp $BACKUPS_DIR/$BACKUP_NAME.tgz s3://toc.app.backup/$BACKUP_NAME.tgz --profile toc_backup
+	aws s3 cp $BACKUPS_DIR/$BACKUP_NAME.tgz s3://toc.app.backup/$BACKUP_NAME.tgz
 	
 	# Test result of last command run
     if [ "$?" -ne "0" ]; then

@@ -3,16 +3,28 @@ version: '3'
 services:
   
   mongo:
-    image: mongo
+    build:
+      context: .
+      dockerfile: docker/mongo.dockerfile
+      args:
+        - VERSION=${MONGO_VERSION}
+    image: toc-mongo:${APP_VERSION}
     volumes:
       - ./mongo/data:/data/db
       - ./dump:/dump
+    environment:
+      #set AWS-CLI credentials
+      - AWS_ACCESS_KEY_ID=${S3_KEY}
+      - AWS_SECRET_ACCESS_KEY=${S3_SECRET}
+      - AWS_DEFAULT_REGION=${S3_REGION}
   
   keystone:
     build: 
       context: .
-      dockerfile: node.dockerfile
-    image: toc-web
+      dockerfile: docker/node.dockerfile
+      args:
+        - VERSION=${NODE_VERSION}
+    image: toc-web:${APP_VERSION}
     depends_on:
       - mongo
     volumes:

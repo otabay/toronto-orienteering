@@ -1,4 +1,5 @@
-FROM node:latest
+ARG VERSION=latest
+FROM node:${VERSION}
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -15,7 +16,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY package.json /usr/src/app/
 COPY *.env* /usr/src/app/
 COPY wait-for.sh /usr/src/app/
-RUN chown node /usr/src/app/wait-for.sh
+#RUN chown node /usr/src/app/wait-for.sh
 RUN npm install --quiet
 RUN npm install -g nodemon
 
