@@ -25,12 +25,5 @@ services:
       args:
         - VERSION=${NODE_VERSION}
     image: toc-web:${APP_VERSION}
-    depends_on:
-      - mongo
-    volumes:
-      - ./keystone.js:/usr/src/app/keystone.js
-      - ./models:/usr/src/app/models
-      - ./routes:/usr/src/app/routes
-      - ./templates:/usr/src/app/templates
-      - ./updates:/usr/src/app/updates
-      - ./public:/usr/src/app/public
+    environment:
+      - MONGO_URI=${MONGO_PROD_URI} 

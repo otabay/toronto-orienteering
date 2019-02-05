@@ -11,3 +11,12 @@ services:
     ports:
       - "3000:3000"
       - "9229:9229"
+    depends_on:
+      - mongo  
+    volumes:
+      - ./keystone.js:/usr/src/app/keystone.js
+      - ./models:/usr/src/app/models
+      - ./routes:/usr/src/app/routes
+      - ./templates:/usr/src/app/templates
+      - ./updates:/usr/src/app/updates
+      - ./public:/usr/src/app/public 
