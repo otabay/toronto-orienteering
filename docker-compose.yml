@@ -28,4 +28,4 @@ services:
       dockerfile: docker/node.dockerfile
       args:
         - VERSION=${NODE_VERSION}
-    image: toc-web:${APP_VERSION} 
+    image: toc-web:${APP_VERSION}

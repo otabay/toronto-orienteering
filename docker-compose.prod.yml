@@ -3,7 +3,16 @@ version: '3'
 services:
   
   keystone:
-    ports:
-      - "80:3000"
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=production 
+
+  webserver:
+    image: nginx:mainline-alpine
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - keystone  
