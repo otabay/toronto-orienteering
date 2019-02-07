@@ -25,5 +25,4 @@ ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
 
 EXPOSE 3000
-
-CMD [ "node", "."]
+CMD [ "./wait-for.sh", "mongo:27017", "-t", "30", "--", "node", "."]

@@ -39,4 +39,3 @@ node keystone.js
     - Add Configuration -> Node.js
     - Launch
 - Open a browser and go to http://localhost:3000 to access the site
-   

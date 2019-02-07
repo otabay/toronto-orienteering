@@ -2,10 +2,6 @@ version: '3'
 
 services:
   
-  mongo:
-    ports:
-      - "27017:27017"
-  
   keystone:
     command: sh -c './wait-for.sh mongo:27017 -t 30 -- nodemon -L --inspect=0.0.0.0'
     ports:
@@ -19,4 +15,4 @@ services:
       - ./routes:/usr/src/app/routes
       - ./templates:/usr/src/app/templates
       - ./updates:/usr/src/app/updates
-      - ./public:/usr/src/app/public 
+      - ./public:/usr/src/app/public
