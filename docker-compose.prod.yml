@@ -6,13 +6,12 @@ services:
     environment:
       - NODE_ENV=production 
 
-  webserver:
-    image: nginx:mainline-alpine
-    container_name: webserver
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx.dockerfile
     restart: unless-stopped
     ports:
       - "80:80"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
     depends_on:
       - keystone  

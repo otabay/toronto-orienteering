@@ -11,8 +11,6 @@ services:
     image: toc-mongo:${APP_VERSION}
     volumes:
       - ./mongo/data:/data/db
-      - ./backup.sh:/usr/src/backup/backup.sh
-      - ./dump.zip:/usr/src/backup/dump.zip
     ports:
       - "27017:27017"
     environment:
