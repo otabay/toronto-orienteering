@@ -20,7 +20,7 @@ keystone.init({
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'pug',
-	
+
 	'emails': 'templates/emails',
 	
 	'auto update': true,
@@ -84,7 +84,7 @@ keystone.set('nav', {
 keystone.set('baseUrl', (keystone.get('env') == 'production') ? 'http://torontoorienteering.com/' : 'http://localhost:3000/');
 
 keystone.set('googleAnalyticsId', process.env.GOOGLE_ANALYTICS_TRACKING_ID);
-keystone.set('s3bucket', process.env.S3_BUCKET);
+keystone.set('s3bucket', process.env.AWS_S3_BUCKET);
 
 // Start Keystone to connect to your database and initialise the web server
 

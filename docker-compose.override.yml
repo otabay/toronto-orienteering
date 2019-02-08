@@ -16,3 +16,5 @@ services:
       - ./templates:/usr/src/app/templates
       - ./updates:/usr/src/app/updates
       - ./public:/usr/src/app/public
+    # environment:
+    #   - DEBUG=keystone:*,keystone-s3:*

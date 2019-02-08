@@ -16,9 +16,9 @@ services:
     environment:
       - MONGO_URI="mongo:27017"
       #set AWS-CLI credentials for backup/restore tasks
-      - AWS_ACCESS_KEY_ID=${S3_KEY}
-      - AWS_SECRET_ACCESS_KEY=${S3_SECRET}
-      - AWS_DEFAULT_REGION=${S3_REGION}    
+      - AWS_ACCESS_KEY_ID=${AWS_S3_KEY}
+      - AWS_SECRET_ACCESS_KEY=${AWS_S3_SECRET}
+      - AWS_DEFAULT_REGION=${AWS_S3_REGION}
 
   keystone:
     build: 
