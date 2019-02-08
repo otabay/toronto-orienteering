@@ -18,9 +18,12 @@ var s3Storage = new keystone.Storage({
 		secret: process.env.AWS_S3_SECRET,
 		bucket: process.env.AWS_S3_BUCKET,
 		region: process.env.AWS_S3_REGION,
-
 		uploadParams: { // optional; add S3 upload params; see below for details
 			ACL: 'public-read',
+		},
+		generateFilename: function(file){
+			// prefix file name with object id
+			return file.originalname + '-' + file.filename;
 		}
 	},
 });
@@ -31,11 +34,7 @@ Document.add({
 	title: { type: String },
 	documentContent: {
 		type: Types.File,
-		storage:s3Storage,
-		filename: function(item, filename){
-			// prefix file name with object id
-			return item.key + '-' + filename;
-		}
+		storage:s3Storage
 	}
 });
 

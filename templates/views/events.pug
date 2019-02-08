@@ -18,26 +18,26 @@ mixin displayEvents(past, future, prefix)
 			.col-md-8
 				ul.nav.nav-pills.event-nav
 					li.active
-						a(href='##{prefix}upcoming' data-toggle='pill') Upcoming Events
+						a(href='#'+prefix+'upcoming' data-toggle='pill') Upcoming Events
 					li
-						a(href='##{prefix}past' data-toggle='pill') Past Events	
+						a(href='#'+ prefix+'past' data-toggle='pill') Past Events	
 
 	.row
 		.col-md-8
 			.tab-content
 				if(future.length>0)
-					.tab-pane.fade.in.active(id='#{prefix}upcoming')
+					.tab-pane.fade.in.active(id=prefix+'upcoming')
 						ul.media-list
 							each event in future
 								+event(event, true, false, '/events/event/')
 				if(past.length>0)
 					if(future.length > 0)
-						.tab-pane.fade(id='#{prefix}past')
+						.tab-pane.fade(id=prefix+'past')
 							ul.media-list
 								each event in past
 									+event(event, true, false, '/events/event/')
 					else
-						.tab-pane.fade.in.active(id='#{prefix}past')
+						.tab-pane.fade.in.active(id=prefix+'past')
 							ul.media-list
 								each event in past
 									+event(event, true, false, '/events/event/')
