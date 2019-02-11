@@ -14,7 +14,7 @@ Create a working directory and download the latest code. You can configure Sourc
 git clone https://github.com/otabay/toronto-orienteering
 ```
 ### Configure
-In the application directory create a file called .env and copy the content of [this file](https://docs.google.com/document/d/1ilKxrsREtoByE8tXPlfOMcXdd0ImPynTpDSz5txEuUw/edit) in it.
+In the application directory create a file called .env and copy the content of [this file](https://drive.google.com/open?id=1mIlZdYcyEo1n2nizvuhM4s8Mc_EjUCSdkRlz6TPOfv0) in it.
 ### Start the server
 - Execute docker-compose
 ```
