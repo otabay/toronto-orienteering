@@ -22,6 +22,11 @@ docker-compose up --build -d
 ```
 This will launch a mongo database and a nodejs server. It will take a bit of time first time you run it since it will download all required applications and dependencies
 ### Import data
+- Unzip the mongo dump file
+```
+unzip dump.zip
+```
+
 - In the application directory import the data using the following command:
 ```
 docker-compose run --rm mongo mongorestore --drop --noIndexRestore --host mongo:27017
@@ -36,7 +41,7 @@ docker-compose run --rm mongo mongorestore --drop --noIndexRestore --host mongo:
     - Launch
 
 # Production Setup
-##Install && configure docker-machine
+## Install && configure docker-machine
 - https://docs.docker.com/machine/install-machine/
 - https://docs.docker.com/machine/examples/aws/
 
