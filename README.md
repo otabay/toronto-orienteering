@@ -37,8 +37,8 @@ docker-compose run --rm mongo mongorestore --drop --noIndexRestore --host mongo:
     - Open Visual Code
     - File -> Open -> Browse to the application directory
     - Go to the Debug menu
-    - Add Configuration -> Node.js
-    - Launch
+    - Add Configuration -> Docker: Attach to Node.js
+    - If you want to debug the nodejs libraries that the app depend one, you will have to run npm install in your directory
 
 # Production Setup
 ## Install && configure docker-machine
