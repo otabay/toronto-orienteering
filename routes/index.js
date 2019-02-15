@@ -54,9 +54,8 @@ exports = module.exports = function(app) {
 	app.all('/', routes.views.index);
 	app.get('/events/:year?', routes.views.events);
 	app.get('/services', routes.views.services);
-	app.get('/education', routes.views.education);
+	app.get('/programs', routes.views.programs);
 	app.get('/maps', routes.views.maps);
-	app.get('/volunteers', routes.views.volunteers);
 	app.get('/blog/:category?', routes.views.blog);
 	app.get('/blog/post/:post', routes.views.post);
 	app.get('/events/event/:event', routes.views.event);
