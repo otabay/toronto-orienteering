@@ -5,9 +5,10 @@ exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 
-	var youthEducationContentSlug='content-youth-education';
+	var youthProgramContentSlug='content-youth-program';
 	var beginnersClinicContentSlug='content-beginners-clinic';
 	var advancedClinicContentSlug='content-advanced-clinic';
+	var certificationsContentSlug='content-certifications';
 	var teamBuildingContentSlug='content-team-building';
 	var schoolEventsContentSlug='content-orienteering-for-schools';
 
@@ -16,9 +17,10 @@ exports = module.exports = function(req, res) {
 	locals.section = 'education';
 
 	locals.data = {
-		youthEducationContent: {},
+		youthProgramContent: {},
 		beginnersClinicContent: {},
 		advancedClinicContent: {},
+		certificationsContent: {},
 		teamBuildingContent: {},
 		schoolEventsContent: {},
 		beginnersClinicSchedule:[],
@@ -50,7 +52,7 @@ exports = module.exports = function(req, res) {
 				next(err);
 			});
 		});
-	
+
 		//load advanced clinic content content
 		view.on('init', function(next) {
 			keystone.list('Post').schema.methods.loadPost(advancedClinicContentSlug, function(err, result){
@@ -75,13 +77,21 @@ exports = module.exports = function(req, res) {
 			});
 		});
 
-		//load directors content content
+		//youth program content
 		view.on('init', function(next) {
-			keystone.list('Post').schema.methods.loadPost(youthEducationContentSlug, function(err, result){
-				locals.data.educationContent = result;
+			keystone.list('Post').schema.methods.loadPost(youthProgramContentSlug, function(err, result){
+				locals.data.youthProgramContent = result;
 				next(err);
+			});
 		});
-	});
+
+		//certifications content
+		view.on('init', function(next) {
+			keystone.list('Post').schema.methods.loadPost(certificationsContentSlug, function(err, result){
+				locals.data.certificationsContent = result;
+				next(err);
+			});
+		});
 
 	// Render the view
 	view.render('programs');
