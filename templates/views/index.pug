@@ -10,13 +10,12 @@ mixin serviceCard(service, i)
 		- var cardClass = cardClass + " border-bottom";
 	if( i%2 ==0 ) 
 		-var cardClass = cardClass + " border-right";
-	- var tabIndex = i + 1;	
 	div(class=cardClass)
 		.h3 #{service.friendlyTitle}
 		.service-brief
 			!= service.content.brief
 		.btn-group
-			a(href="/services#tab"+tabIndex).btn.btn-primary Learn More
+			a(href="/programs#tab"+service.order).btn.btn-primary Learn More
 
 mixin eventCard(event, actionTitle, titlePath, hasBorder, showClinic)
 	if event

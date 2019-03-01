@@ -7,6 +7,7 @@ exports = module.exports = function(req, res) {
 
 	var directorsContentSlug='content-board-of-directors';
 	var orienteeringLinksContentSlug='content-orienteering-links';
+	var volunteersContentSlug='content-volunteers';
 
 	// locals.section is used to set the currently selected
 	// item in the header navigation.
@@ -14,11 +15,12 @@ exports = module.exports = function(req, res) {
 
 	locals.data = {
 		directorsContent: {},
-		orienteeringLinksContent: {}
+		orienteeringLinksContent: {},
+		volunteersContent: {}
 	};
 
 
-	//load directors content content
+	//load directors content
 	view.on('init', function(next) {
 		keystone.list('Post').schema.methods.loadPost(directorsContentSlug, function(err, result){
 			locals.data.directorsContent = result;
@@ -26,7 +28,15 @@ exports = module.exports = function(req, res) {
 		});
 	});
 
-	//load links content content
+	//load volunteers content
+	view.on('init', function(next) {
+		keystone.list('Post').schema.methods.loadPost(volunteersContentSlug, function(err, result){
+			locals.data.volunteersContent = result;
+			next(err);
+		});
+	});
+
+	//load links content
 	view.on('init', function(next) {
 		keystone.list('Post').schema.methods.loadPost(orienteeringLinksContentSlug, function(err, result){
 			locals.data.orienteeringLinksContent = result;

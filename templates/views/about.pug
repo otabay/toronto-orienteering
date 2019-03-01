@@ -7,15 +7,19 @@ block sub-header
 			.col-md-12
 				ul.nav.nav-tabs#myTabs
 					li(role="presentation").active
-						a(href="#tab1" role="tab" data-toggle="tab") Board of Directors
+						a(href="#board" role="tab" data-toggle="tab") Board of Directors
 					li(role="presentation")
-						a(href="#tab2" role="tab" data-toggle="tab") Orienteering Links	
+						a(href="#volunteers" role="tab" data-toggle="tab") Volunteers
+					li(role="presentation")
+						a(href="#links" role="tab" data-toggle="tab") Orienteering Links	
 			
 block content
 	.tab-content.container.main-container
-		div(role="tabpanel").tab-pane.active#tab1
+		div(role="tabpanel").tab-pane.active#board
 			+content-post(data.directorsContent)
-		div(role="tabpanel").tab-pane#tab2
+		div(role="tabpanel").tab-pane.active#volunteers
+			+content-post(data.volunteersContent)
+		div(role="tabpanel").tab-pane#links
 			+content-post(data.orienteeringLinksContent)
 
 block js
