@@ -14,11 +14,11 @@ block content
 							header
 								h1.pull-left= data.event.title
 								.post-social
-									a(href="https://twitter.com/intent/tweet?text=" + #{data.event.title} + "&url=" + #{data.event.fullEventUrl} onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;")
+									a(href="https://twitter.com/intent/tweet?text=" + data.event.title + "&url=" + data.event.fullEventUrl onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;")
 										img(src="../../images/twitter.png").icon.social-icon
-									a(href="https://www.facebook.com/sharer/sharer.php?u=" + #{data.event.fullPostUrl} onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;")
+									a(href="https://www.facebook.com/sharer/sharer.php?u=" + data.event.fullPostUrl onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;")
 										img(src="../../images/facebook.png").icon.social-icon
-									a(href="https://plus.google.com/share?url=#{data.event.fullPostUrl}" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;")
+									a(href="https://plus.google.com/share?url=" + data.event.fullPostUrl onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;")
 										img(src="../../images/google.png").icon.social-icon
 							.post-content
 								if data.event.image.exists
