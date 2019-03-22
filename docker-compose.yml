@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  mongo:
+    build:
+      context: .
+      dockerfile: docker/mongo.dockerfile
+      args:
+        - VERSION=${MONGO_VERSION}
+    image: toc-mongo:${APP_VERSION}
+    volumes:
+      - ./mongo/data:/data/db
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_URI="mongo:27017"
+      #set AWS-CLI credentials for backup/restore tasks
+      - AWS_ACCESS_KEY_ID=${AWS_S3_KEY}
+      - AWS_SECRET_ACCESS_KEY=${AWS_S3_SECRET}
+      - AWS_DEFAULT_REGION=${AWS_S3_REGION}
+
+  keystone:
+    build: 
+      context: .
+      dockerfile: docker/node.dockerfile
+      args:
+        - VERSION=${NODE_VERSION}
+    image: toc-web:${APP_VERSION}

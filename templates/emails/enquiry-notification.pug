@@ -18,7 +18,7 @@ block body-contents
 	if enquiry.enquiryType
 		p.text-larger #{enquiry._.enquiryType.format()}
 	if enquiry.message
-		.text-larger !{enquiry.message.html}
+		.text-larger #{enquiry.message.html}
 	p.text-muted Sent #{enquiry._.createdAt.format()}
 	p &nbsp;
 	+button({ url: '/keystone/enquiries/' + enquiry.id, label: 'Open Keystone' })

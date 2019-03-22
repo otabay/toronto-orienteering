@@ -1,0 +1,50 @@
+include ../../mixins/content-posts
+
+.footer.section.section-primary
+  .container
+    .row.footer-contact
+      .col-md-4.col-md-offset-4
+        p.footer-label Contact us
+        a(href="https://www.facebook.com/TorontoOrienteeringClub/")
+          .fa.fa-2x.fa-fw.fa-facebook.text-inverse
+        a(href="mailto:info@torontoorienteering.com")
+          .fa.fa-2x.fa-fw.fa-envelope.text-inverse            
+    .row.border-bottom
+      .col-md-6.col-md-offset-3
+        p.footer-label Newsletter 
+        +subscribe()      
+    .row.footer-links
+      .col-md-2
+        h4 Events
+        ul
+          li <a href='/events#tab1'>#{defaultYear} Event Schedule</a>
+          li <a href='/events#tab2'>Weekly Park Series</a>
+      //- .col-md-3
+      //-   h4 Services
+      //-   ul
+      //-     li <a href='/services#tab1'>Beginners Clinic</a>
+      //-     li <a href='/services#tab2'>Intermediate Clinic</a>
+      //-     li <a href='/services#tab3'>Team Building</a>  
+      //-     li <a href='/services#tab4'>Orienteering for Schools</a>
+      .col-md-2
+        h4 Education
+        ul
+          li <a href='/programs#tab1'>Youth Program</a>
+          li <a href='/programs#tab2'>Clinics</a>
+          li <a href='/programs#tab4'>Orienteering in Schools</a>  
+          li <a href='/programs#tab5'>Certifications</a>
+          li <a href='/programs#tab6'>Corporate Programs</a>
+      .col-md-2
+        h4 News
+        ul
+          li <a href='/blog'>All News</a>
+      .col-md-2
+        h4 Maps
+        ul
+          li <a href='/blog'>Maps</a>    
+      .col-md-2
+        h4 About
+        ul
+          li <a href='/about#board'>Board of Directors</a>
+          li <a href='/about#volunteers'>Board of Directors</a>
+          li <a href='/about#links'>Orienteering Links</a>    

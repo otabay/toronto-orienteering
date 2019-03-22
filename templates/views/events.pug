@@ -1,17 +1,16 @@
-include ../mixins/content-posts
 extends ../layouts/default
-							
+include ../mixins/content-posts	
 
 mixin pastEvents(years, tab)
 	if (years.length > 0)
 		.section-title.pull-right
 			.dropdown.dropdown-years.h2
-				a(href="#" data-toggle="dropdown").dropdown-toggle !{year}
+				a(href="#" data-toggle="dropdown").dropdown-toggle #{year}
 					span.caret-lg
 				ul.dropdown-menu
 					each year in years
 						li 
-							a(href='/events/' + year + tab) !{year}
+							a(href='/events/' + year + tab) #{year}
 
 mixin displayEvents(past, future, prefix)
 	if past.length >0 && future.length>0
@@ -19,29 +18,29 @@ mixin displayEvents(past, future, prefix)
 			.col-md-8
 				ul.nav.nav-pills.event-nav
 					li.active
-						a(href='##{prefix}upcoming' data-toggle='pill') Upcoming Events
+						a(href='#'+prefix+'upcoming' data-toggle='pill') Upcoming Events
 					li
-						a(href='##{prefix}past' data-toggle='pill') Past Events	
+						a(href='#'+ prefix+'past' data-toggle='pill') Past Events	
 
 	.row
 		.col-md-8
 			.tab-content
 				if(future.length>0)
-					.tab-pane.fade.in.active(id='#{prefix}upcoming')
+					.tab-pane.fade.in.active(id=prefix+'upcoming')
 						ul.media-list
 							each event in future
 								+event(event, true, false, '/events/event/')
 				if(past.length>0)
 					if(future.length > 0)
-						.tab-pane.fade(id='#{prefix}past')
+						.tab-pane.fade(id=prefix+'past')
 							ul.media-list
 								each event in past
 									+event(event, true, false, '/events/event/')
 					else
-						.tab-pane.fade.in.active(id='#{prefix}past')
+						.tab-pane.fade.in.active(id=prefix+'past')
 							ul.media-list
 								each event in past
-									+event(event, true, false, '/events/event/')														
+									+event(event, true, false, '/events/event/')
 
 block sub-header
 	.container.sub-nav
@@ -49,7 +48,7 @@ block sub-header
 			.col-md-12
 				ul.nav.nav-tabs#myTabs
 					li(role="presentation").active
-						a(href="#tab1" role="tab" data-toggle="tab") !{defaultYear} Event Schedule
+						a(href="#tab1" role="tab" data-toggle="tab") #{defaultYear} Event Schedule
 					li(role="presentation")
 						a(href="#tab2" role="tab" data-toggle="tab") Weekly Park Series	
 
@@ -66,7 +65,7 @@ block content
 							span.icon-title
 						+pastEvents(data.eventYears, '#tab1')
 				+displayEvents(data.eventsPast, data.eventsFuture, 'event')
-										
+
 			div(role="tabpanel").tab-pane#tab2
 				.row
 					.col-md-8
@@ -77,4 +76,4 @@ block content
 							span.icon-title
 					.col-md-2
 						+pastEvents(data.weeklySeriesYears, '#tab2')
-				+displayEvents(data.weeklySeriesPast, data.weeklySeriesFuture, 'wed')			
+				+displayEvents(data.weeklySeriesPast, data.weeklySeriesFuture, 'wed')

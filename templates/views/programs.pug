@@ -1,10 +1,10 @@
-include ../mixins/content-posts
 extends ../layouts/default
-
+include ../mixins/content-posts
+			
 
 mixin displayClinic(clinicSchedule, title)
 	if(clinicSchedule && clinicSchedule.length > 0)
-		h2.section-title !{title}
+		h2.section-title #{title}
 			span.icon-title
 		table.table.table-striped
 			thead
@@ -17,13 +17,13 @@ mixin displayClinic(clinicSchedule, title)
 				tbody
 					tr
 						td 
-							a(href='/events/event/' + clinic.slug) !{clinic.title}
+							a(href='/events/event/' + clinic.slug) #{clinic.title}
 						td
 							if(clinic.location)
 								a(href='#{clinic.location.locationMapUrl}'  target='_blank') #{clinic.location.name}
 						td 
 							if(clinic.startDate)
-								!{clinic._.startDate.format('dddd, MMMM Do, h:mm a')}
+								#{clinic._.startDate.format('dddd, MMMM Do, h:mm a')}
 						td 
 							+registerForClinic(clinic)
 
@@ -34,25 +34,31 @@ block sub-header
 			.col-md-12
 				ul.nav.nav-tabs#myTabs
 					li(role="presentation").active
-						a(href="#tab1" role="tab" data-toggle="tab") Beginners Clinic
+						a(href="#tab1" role="tab" data-toggle="tab") Youth Program
 					li(role="presentation")
-						a(href="#tab2" role="tab" data-toggle="tab") Intermediate Clinic
+						a(href="#tab2" role="tab" data-toggle="tab") Beginner Clinics
 					li(role="presentation")
-						a(href="#tab3" role="tab" data-toggle="tab") Team Building
+						a(href="#tab3" role="tab" data-toggle="tab") Intermediate Clinics	
 					li(role="presentation")
-						a(href="#tab4" role="tab" data-toggle="tab") School Events		
+						a(href="#tab4" role="tab" data-toggle="tab") Orienteering for Schools
+					li(role="presentation")
+						a(href="#tab5" role="tab" data-toggle="tab") Certifications
+					li(role="presentation")
+						a(href="#tab6" role="tab" data-toggle="tab") Corporate Prorgams	
 			
 block content
 	.tab-content.container.main-container
 		div(role="tabpanel").tab-pane.active#tab1
+			+content-post(data.youthProgramContent)
+		div(role="tabpanel").tab-pane#tab2
 			+content-post(data.beginnersClinicContent)
 			+displayClinic(data.beginnersClinicSchedule, "Beginners Clinic Schedule")
-		div(role="tabpanel").tab-pane#tab2
+		div(role="tabpanel").tab-pane#tab3
 			+content-post(data.advancedClinicContent)
 			+displayClinic(data.advancedClinicSchedule, "Intermediate Clinic Schedule")
-		div(role="tabpanel").tab-pane#tab3
-			+content-post(data.teamBuildingContent)
 		div(role="tabpanel").tab-pane#tab4
 			+content-post(data.schoolEventsContent)
-
-block js
+		div(role="tabpanel").tab-pane#tab5
+			+content-post(data.certificationsContent)
+		div(role="tabpanel").tab-pane#tab6
+			+content-post(data.teamBuildingContent)

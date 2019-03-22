@@ -8,7 +8,7 @@
  * modules in your project's /lib directory.
  */
 
-var _ = require('underscore');
+var _ = require('lodash');
 var keystone = require('keystone');
 
 
@@ -27,9 +27,12 @@ exports.initLocals = function(req, res, next) {
 	locals.navLinks = [
 		{ label: 'Home',		key: 'home',		href: '/' },
 		{ label: 'Events',		key: 'events',		href: '/events' },
+		{ label: 'Education',	key: 'education',	href: '/education' },
 		{ label: 'Services',	key: 'services',	href: '/services' },
 		{ label: 'News',		key: 'blog',		href: '/blog' },
+		{ label: 'Maps',		key: 'maps',		href: '/maps' },
 		{ label: 'About',		key: 'about',		href: '/about' },
+		{ label: 'Volunteers',	key: 'volunteers',	href: '/volunteers' },
 		{ label: 'Join!',		key: 'join',		href: '/join' }
 	];
 
@@ -94,7 +97,7 @@ exports.flashMessages = function(req, res, next) {
 		error: req.flash('error')
 	};
 
-	res.locals.messages = _.any(flashMessages, function(msgs) { return msgs.length; }) ? flashMessages : false;
+	res.locals.messages = _.some(flashMessages, function(msgs) { return msgs.length; }) ? flashMessages : false;
 
 	next();
 

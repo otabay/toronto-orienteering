@@ -5,7 +5,7 @@ mixin content-post(post)
 				.col-md-12
 					img(src=post._.image.fit(600,600) alt="Event image").media-object
 			.col-md-12
-				.post-content: !{post.content.extended}
+				.post-content: != post.content.extended
 
 mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 	if event
@@ -18,26 +18,26 @@ mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 			.media-body
 				.media-heading.event-header.event-header-md
 					.event-title.event-title-md
-						!{event.title}
+						!= event.title
 					if event.startDate
 							.event-date.event-date-md
-								p !{event._.startDate.format('ddd, MMM Do')} 		
+								p #{event._.startDate.format('ddd, MMM Do')}
 				.event-brief-main
 					if (event.publishedDate && showPublishedDate)
 						.event-date
-							p.small posted on !{event._.publishedDate.format('MMM Do, YYYY')} by !{event.author.name.first}
-					!{event.content.brief}
+							p.small posted on #{event._.publishedDate.format('MMM Do, YYYY')} by #{event.author.name.first}
+					!= event.content.brief
 					if(event.results && event.results.length > 0)
 						ul.event-results
 							li 
 								b Results: 
 							each result in event.results
 								li
-									a(href="#{result.fullDocUrl}" target="_blank") #{result.title} 
+									a(href=result.fullDocUrl target="_blank") #{result.title} 
 				if event.location
 					.card-location
 						span.icon.icon-location 
-							a(href=event.location.locationMapUrl target="_blank") !{event.location.name}							
+							a(href=event.location.locationMapUrl target="_blank") #{event.location.name}
 				.btn-group
 					a(href=rootUrl + event.slug).btn.btn-primary More Info
 					+registerForClinic(event)
@@ -56,6 +56,4 @@ mixin subscribe()
 mixin registerForClinic(event)
 	if(event.startDate > new Date())
 		if(event.hasClinic==true)
-			a(href=event.clinicRegistrationUrl target="_blank").btn.btn-primary Signup for clinic
-
-	
+			a(href=event.clinicRegistrationUrl target="_blank").btn.btn-primary Signup for clinic	
