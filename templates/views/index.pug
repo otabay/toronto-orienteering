@@ -2,7 +2,8 @@ extends ../layouts/default
 include ../mixins/content-posts
 
 block header-image
-	include ../includes/layouts/header_image
+	include ../includes/layouts/header-image
+
 
 mixin serviceCard(service, i)
 	- var cardClass = "col-md-6 service-card"
@@ -63,6 +64,8 @@ mixin newsCard(events, titlePath)
 
 
 block content
+	.section
+		include ../includes/layouts/promo-banner
 	.section.events-news-section
 		.container
 			.row

@@ -20,7 +20,7 @@ mixin displayClinic(clinicSchedule, title)
 							a(href='/events/event/' + clinic.slug) #{clinic.title}
 						td
 							if(clinic.location)
-								a(href='#{clinic.location.locationMapUrl}'  target='_blank') #{clinic.location.name}
+								a(href=clinic.location.locationMapUrl  target='_blank') #{clinic.location.name}
 						td 
 							if(clinic.startDate)
 								#{clinic._.startDate.format('dddd, MMMM Do, h:mm a')}
