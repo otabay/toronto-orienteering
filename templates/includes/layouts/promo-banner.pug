@@ -1,9 +1,20 @@
-if(locals.promoBanner && locals.promoBanner.enabled)
+if(promoBanner && promoBanner.enabled)
+	style.
+		@media (max-width: 760px){
+			.promo-image{
+				background-image:url(#{promoBanner.image_small_screen.url});
+				min-height: 250px;
+			}
+			.promo-container{
+				height: 250px;
+			}
+		}
+		@media (min-width: 760px){
+			.promo-image{
+				background-image:url(#{promoBanner.image_large_screen.url});
+			}
+		}
 	.container.promo-container
 		.row
-			.col-md-12
-				.promo-image(style="background-image:url(" + locals.promoBanner.image_large_screen.url + ");")
-				.promo-text.promo-title.text-inverse Ontario Orienteering Championship 2019
-				.promo-text.promo-subtitle.text-inverse Presented by Toronto Orienteering Club and Ukrainian Orienteering Club
-				.promo-text.promo-subtitle.text-inverse.bold November 2nd and 3rd
-					a(href='/join').promo-text.promo-link See Details
+			.col-md-12.promo-col
+				div !{promoBanner.snippet}
