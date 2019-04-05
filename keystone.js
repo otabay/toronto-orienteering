@@ -14,7 +14,7 @@ keystone.init({
 
 	'name': 'TOC',
 	'brand': 'TOC',
-	
+
 	'less': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
@@ -22,7 +22,7 @@ keystone.init({
 	'view engine': 'pug',
 
 	'emails': 'templates/emails',
-	
+
 	'auto update': true,
 	'session': true,
 	'auth': true,
@@ -37,14 +37,14 @@ keystone.init({
 	'wysiwyg menubar': true,
 	'wysiwyg images': true,
 	'wysiwyg skin': 'lightgray',
-	'wysiwyg additional buttons': 'searchreplace visualchars,'
-	+ ' charmap ltr rtl pagebreak paste, forecolor backcolor,'
-	+' emoticons media, preview',
-	'wysiwyg additional plugins': 'table, advlist, anchor,'
-	+ ' autolink, autosave, charmap, contextmenu, '
-	+ ' directionality, emoticons, hr, media, pagebreak,'
-	+ ' paste, preview, searchreplace, textcolor,'
-	+ ' visualblocks, visualchars, wordcount',
+	'wysiwyg additional buttons': 'searchreplace visualchars,' +
+		' charmap ltr rtl pagebreak paste, forecolor backcolor,' +
+		' emoticons media, preview',
+	'wysiwyg additional plugins': 'table, advlist, anchor,' +
+		' autolink, autosave, charmap, contextmenu, ' +
+		' directionality, emoticons, hr, media, pagebreak,' +
+		' paste, preview, searchreplace, textcolor,' +
+		' visualblocks, visualchars, wordcount',
 
 });
 
@@ -77,8 +77,8 @@ keystone.set('nav', {
 	'posts': ['posts', 'post-categories'],
 	'enquiries': 'enquiries',
 	'users': 'users',
-	'configurations': 'configurations'
-
+	'configurations': 'configurations',
+	'promo-banners': 'promo-banners'
 });
 
 keystone.set('baseUrl', (keystone.get('env') == 'production') ? 'http://torontoorienteering.com/' : 'http://localhost:3000/');

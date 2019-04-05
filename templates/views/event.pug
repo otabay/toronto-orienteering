@@ -1,141 +1,154 @@
 extends ../layouts/default
 
-block content
+mixin displayEvent(event, isSubEvent)
 	.container
 		.row
 			.col-md-10
-				p: a(href='/events') &larr; back to the events
-				hr
-				if !data.event
+				if(!isSubEvent)
+					p: a(href='/events') &larr; back to the events
+					hr
+				if !event
 					h2 Invalid Event.
 				else
-					.row
-						.col-md-10
-							header
-								h1.pull-left= data.event.title
-								.post-social
-									a(href="https://twitter.com/intent/tweet?text=" + data.event.title + "&url=" + data.event.fullEventUrl onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;")
-										img(src="../../images/twitter.png").icon.social-icon
-									a(href="https://www.facebook.com/sharer/sharer.php?u=" + data.event.fullPostUrl onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;")
-										img(src="../../images/facebook.png").icon.social-icon
-									a(href="https://plus.google.com/share?url=" + data.event.fullPostUrl onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;")
-										img(src="../../images/google.png").icon.social-icon
-							.post-content
-								if data.event.image.exists
-									img(src=data.event._.image.fit(750,450) alt="Event image").img-responsive.centered-image
-								!= data.event.content.full
-								table
-									if data.event.results.length > 0
-										tr
-											td
-												b Results
-											td
-												ul
-												each result in data.event.results
-													li
-														a(href=result.fullDocUrl target="_blank") #{result.title}
-									if data.event.documents.length > 0
-										tr
-											td
-												b Documents
-											td
-												ul
-												each doc in data.event.documents
-													li
-														a(href=doc.fullDocUrl target="_blank") #{doc.title}					 
+					header.post-title
+						h1.pull-left= event.title
+						if(!isSubEvent)
+							.post-social
+								a(href="https://twitter.com/intent/tweet?text=" + event.title + "&url=" + event.fullEventUrl onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;")
+									img(src="../../images/twitter.png").icon.social-icon
+								a(href="https://www.facebook.com/sharer/sharer.php?u=" + event.fullPostUrl onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;")
+									img(src="../../images/facebook.png").icon.social-icon
 
-									if data.event.startDate
-										tr 
-											td 
-												b Start time
-											td 
-												| #{data.event._.startDate.format('dddd, MMMM Do, h:mm a')}
-									if (data.event.registrationLink || data.event.hasClinic)
-										tr 
-											td 
-												b Registration
-											td
-												if (data.event.registrationTime)
-													p 
-														b Time: 
-														!= data.event.registrationTime
-												if(data.event.registrationLink)	
-													p: a(href="#{data.event.registrationLink}") Register Online
-												else if(data.event.hasClinic == true)
-													p: a(href=data.event.clinicRegistrationUrl target="_blank") Register for clinic			
-									if data.event.meetDirector.length>0 || data.event.courseSetter.length>0 || data.event.clinicCoordianator
-										tr 
-											td 
-												b Organizers
-											td 
-												if data.event.meetDirector.length>0
-													- var emailSubject = "?subject=" + data.event.title + "-" + data.event._.startDate.format('MMM, Do')
-													p
-														b Meet directors: 
-														each person, index in data.event.meetDirector 
-															a(href="mailto:#{person.email}#{emailSubject}")!= person.name.full
-															if index < data.event.meetDirector.length-1
-												if data.event.courseSetter.length>0
-													p
-														b Course setters: 
-														each person, index in data.event.courseSetter
-															a(href="mailto:#{person.email}#{emailSubject}")!= person.name.full
-															if index < data.event.courseSetter.length-1
-												if data.event.clinicCoordinator
-													p
-														b Clinic coordinator: 
-															a(href="mailto:#{data.event.clinicCoordinator.email}#{emailSubject}")!= data.event.clinicCoordinator.name.full
-									if data.event.location && data.event.location.intersection.length > 0
-										tr
-											td
-												b Major intersection
-											td
-												!= data.event.location.intersection
-									if data.event.location && data.event.location.directions.length > 0
-										tr
-											td
-												b Directions
-											td
-												!= data.event.location.directions
-									if data.event.location
-										tr
-											td 
-												b Location	
-											td 
-												a(href='#{data.event.location.locationMapUrl}') #{data.event.location.name}
-												br
-												!= data.event.location.locationMapEmbed			
-									if data.event.location && data.event.location.map
-										tr
-											td
-												b Map
-											td
-												p
-													b Scale: 
-													| #{data.event.location.map.scale.replace('/',':')}
-												p 
-													b Contour Interval: 
-													| #{data.event.location.map.contourInterval.replace('M','m')}						
-												p
-													b Revisions: 
-													!= data.event.location.map.revision
+					.post-content
+						if event.image.exists
+							img(src=event._.image.fit(750,450) alt="Event image").img-responsive.centered-image
+						!= event.content.full
+						table
+							if event.results.length > 0
+								tr
+									td
+										b Results
+									td
+										ul
+										each result in event.results
+											li
+												a(href=result.fullDocUrl target="_blank") #{result.title}
+							if event.documents.length > 0
+								tr
+									td
+										b Documents
+									td
+										ul
+										each doc in event.documents
+											li
+												a(href=doc.fullDocUrl target="_blank") #{doc.title}					 
 
-											
-									if data.event.format.length
-										tr 
-											td 
-												b Format	
-											td 
-												!= data.event.format
-									if data.event.cost
-										tr 
-											td 
-												b Cost	
-											td 
-												!= data.event.cost
-									if data.event.notes
-										tr 
-											td 
-												b Notes
-											td
-												!= data.event.notes
+							if event.startDate
+								tr 
+									td 
+										b Start time
+									td 
+										| #{event._.startDate.format('dddd, MMMM Do, h:mm a')}
+							if (event.registrationLink || event.hasClinic)
+								tr 
+									td 
+										b Registration
+									td
+										if (event.registrationTime)
+											p 
+												b Time: 
+												!= event.registrationTime
+										if(event.registrationLink)	
+											p: a(href="#{event.registrationLink}") Register Online
+										else if(event.hasClinic == true)
+											p: a(href=event.clinicRegistrationUrl target="_blank") Register for clinic			
+							if event.meetDirector.length>0 || event.courseSetter.length>0 || event.clinicCoordianator
+								tr 
+									td 
+										b Organizers
+									td 
+										if event.meetDirector.length>0
+											- var emailSubject = "?subject=" + event.title + "-" + event._.startDate.format('MMM, Do')
+											p
+												b Meet directors: 
+												each person, index in event.meetDirector 
+													a(href="mailto:"+ person.email + emailSubject) #{person.name.full}
+													if index < event.meetDirector.length-1
+										if event.courseSetter.length>0
+											p
+												b Course setters: 
+												each person, index in event.courseSetter
+													a(href="mailto:" + person.email+ emailSubject) #{person.name.full}
+													if index < event.courseSetter.length-1
+										if event.clinicCoordinator
+											p
+												b Clinic coordinator: 
+													a(href="mailto:" + event.clinicCoordinator.email + emailSubject) #{event.clinicCoordinator.name.full}
+							if event.location && event.location.intersection.length > 0
+								tr
+									td
+										b Major intersection
+									td
+										!= event.location.intersection
+							if event.location && event.location.directions.length > 0
+								tr
+									td
+										b Directions
+									td
+										!= event.location.directions
+							if event.location
+								tr
+									td 
+										b Location	
+									td 
+										a(href=event.location.locationMapUrl) #{event.location.name}
+										br
+										!= event.location.locationMapEmbed			
+							if event.location && event.location.map
+								tr
+									td
+										b Map
+									td
+										p
+											b Scale: 
+											| #{event.location.map.scale.replace('/',':')}
+										p 
+											b Contour Interval: 
+											| #{event.location.map.contourInterval.replace('M','m')}						
+										p
+											b Revisions: 
+											!= event.location.map.revision
+
+									
+							if event.format.length
+								tr 
+									td 
+										b Format	
+									td 
+										!= event.format
+							if event.cost
+								tr 
+									td 
+										b Cost	
+									td 
+										!= event.cost
+							if event.notes
+								tr 
+									td 
+										b Notes
+									td
+										!= event.notes
+
+block content
+	+displayEvent(data.event, false)
+	if(data.event.subEvents)
+		.container.sub-nav
+			.col-md-12
+				ul.nav.nav-tabs#eventTabs
+					each subEvent, i in data.event.subEvents
+						li(role="presentation" class=(i==0)?"active":"") 
+							a(href="#tab" + i role="tab" data-toggle="tab") #{subEvent.title}
+		.tab-content.container.main-container
+			each subEvent, i in data.event.subEvents
+				div(role="tabpanel" class=(i==0)?"active":"" id="tab" + i).tab-pane
+					+displayEvent(subEvent, true)
