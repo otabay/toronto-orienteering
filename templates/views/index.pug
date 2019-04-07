@@ -29,7 +29,7 @@ mixin eventCard(event, actionTitle, titlePath, hasBorder, showClinic)
 					p #{event.title}
 				if event.startDate
 						.event-date.pull-right 
-							p #{event._.startDate.format('MMM Do')}
+							p #{event.eventDate}
 			.event-brief
 				!= event.content.brief
 			.card-location

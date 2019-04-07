@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+var moment = require('moment');
 var Types = keystone.Field.Types;
 
 /**
@@ -291,5 +292,26 @@ Event.schema.virtual('clinicRegistrationUrl').get(function () {
 	if (this.clinicCoordinator) return 'mailto:' + this.clinicCoordinator.email + emailSubject;
 	return 'mailto:info@torontoorienteering.com' + emailSubject;
 });
+
+Event.schema.virtual('eventDate').get(function () {
+
+	if (!this.startDate) return '';
+
+	var start = this.startDate.setHours(0, 0, 0, 0);
+	var end = this.endDate.setHours(0, 0, 0, 0);
+	var dateDiff = (end - start);
+	var dateString = this._.startDate.format('MMM Do');
+
+	if (dateDiff > 0) {
+		const tempDate = new Date(start + dateDiff);
+		if (this.startDate.getMonth() == tempDate.getMonth()) {
+			dateString = dateString + " - " + moment(tempDate).format('Do');
+		} else {
+			dateString = dateString + " - " + moment(tempDate).format('MMM Do');
+		}
+	}
+	return dateString;
+});
+
 
 Event.register();

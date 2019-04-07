@@ -44,11 +44,18 @@ mixin displayEvent(event, isSubEvent)
 												a(href=doc.fullDocUrl target="_blank") #{doc.title}					 
 
 							if event.startDate
-								tr 
-									td 
-										b Start time
-									td 
-										| #{event._.startDate.format('dddd, MMMM Do, h:mm a')}
+								if !event.subEvents.length > 0		
+									tr 
+										td 
+											b Start time
+										td 
+											| #{event._.startDate.format('dddd, MMMM Do, h:mm a')}
+								else
+									tr 
+										td 
+											b Dates:
+										td 
+											| #{event.eventDate}			
 							if (event.registrationLink || event.hasClinic)
 								tr 
 									td 
@@ -72,13 +79,13 @@ mixin displayEvent(event, isSubEvent)
 											p
 												b Meet directors: 
 												each person, index in event.meetDirector 
-													a(href="mailto:"+ person.email + emailSubject) #{person.name.full}
+													a(href="mailto:"+ person.email + emailSubject) #{person.name.full} 
 													if index < event.meetDirector.length-1
 										if event.courseSetter.length>0
 											p
 												b Course setters: 
 												each person, index in event.courseSetter
-													a(href="mailto:" + person.email+ emailSubject) #{person.name.full}
+													a(href="mailto:" + person.email+ emailSubject) #{person.name.full} 
 													if index < event.courseSetter.length-1
 										if event.clinicCoordinator
 											p
@@ -143,12 +150,11 @@ block content
 	+displayEvent(data.event, false)
 	if(data.event.subEvents)
 		.container.sub-nav
-			.col-md-12
-				ul.nav.nav-tabs#eventTabs
-					each subEvent, i in data.event.subEvents
-						li(role="presentation" class=(i==0)?"active":"") 
-							a(href="#tab" + i role="tab" data-toggle="tab") #{subEvent.title}
-		.tab-content.container.main-container
+			ul.nav.nav-tabs
+				each subEvent, i in data.event.subEvents
+					li(class=(i==0)?"active nav-item":"nav-item") 
+						a(data-target="#tab" + i role="tab" data-toggle="tab" class="nav-link") #{subEvent.title}
+		.tab-content
 			each subEvent, i in data.event.subEvents
-				div(role="tabpanel" class=(i==0)?"active":"" id="tab" + i).tab-pane
+				div(role="tabpanel" class=(i==0)?"active":"" id="tab" + i).tab-pane.container
 					+displayEvent(subEvent, true)
