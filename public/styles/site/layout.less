@@ -1,9 +1,11 @@
+@toc-orange: #FF9A00;
+
 .sub-nav {
 	margin-top: 50px;
 	text-transform: uppercase;
 }
 
-.nav-tabs{
+.nav-tabs {
 	padding-left: 15px;
 	padding-right: 15px;
 }
@@ -14,10 +16,10 @@
 }
 
 .nav-text {
-	padding-top:12px;
+	padding-top: 12px;
 }
 
-.brand-logo{
+.brand-logo {
 	padding-left: 10px;
 	padding-top: 3px;
 	padding-bottom: 3px;
@@ -25,17 +27,17 @@
 }
 
 .cover-image {
-  background-image : url('/images/hero_bg.jpg');
+	background-image: url('/images/hero_bg.jpg');
 }
 
 .parallax {
-  /* Set a specific height */
-  min-height: 500px; 
-  /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+	/* Set a specific height */
+	min-height: 500px;
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .hero-title {
@@ -56,6 +58,45 @@
 	min-height: 500px;
 }
 
+.promo-container {
+	min-height: 140px;
+}
+
+.promo-image {
+	z-index: -1;
+	position: absolute;
+	height: 130px;
+	width: 100%;
+	background-size: cover;
+	background-position: center;
+}
+
+.promo-text {
+	text-shadow: -3px 3px 3px black;
+	margin-top: 10px;
+	margin-left: 30px;
+	padding-top: 5px;
+}
+
+.promo-title {
+	color: @toc-orange;
+	font-size: 24px;
+}
+
+.promo-subtitle {
+	font-size: 20px;
+}
+
+.promo-link,
+.promo-link:hover {
+	color: @toc-orange;
+	margin-left: 10px;
+}
+
+.promo-col {
+	padding-left: 0px,
+}
+
 .media {
 	margin-top: 10px;
 }
@@ -64,19 +105,24 @@
 	.hero-column {
 		margin-top: 110px;
 	}
+
 	.media-left img {
 		width: 200px;
 		height: 200px;
 	}
+
 	.discover-image img {
 		min-height: 500px;
 	}
+
 	.event-title-md {
 		float: left;
 	}
+
 	.event-date-md {
-		float:right;
+		float: right;
 	}
+
 	.event-header-md {
 		padding-bottom: 30px;
 	}
@@ -86,6 +132,7 @@
 	.hero-column {
 		margin-top: 70px;
 	}
+
 	.media-left img {
 		width: 100px;
 		height: 100px;
@@ -150,7 +197,10 @@
 	border-color: #0997c9;
 }
 
-.news-btn:hover, .news-btn:focus, .news-btn:active, .news-btn.active {
+.news-btn:hover,
+.news-btn:focus,
+.news-btn:active,
+.news-btn.active {
 	background-color: #0887c0;
 }
 
@@ -169,8 +219,9 @@
 .event-brief {
 	min-height: 140px;
 	padding-top: 20px;
+
 	p {
-	margin-bottom: 0px;
+		margin-bottom: 0px;
 	}
 }
 
@@ -181,6 +232,7 @@
 .event-header {
 	font-size: 20px;
 }
+
 .event-header-main {
 	padding-bottom: 30px;
 }
@@ -190,10 +242,12 @@
 	list-style: none;
 	padding-left: 0px;
 	padding-bottom: 10px;
+
 	li {
 		margin-left: 0px;
 		display: inline;
 	}
+
 	p {
 		margin-bottom: 0px;
 	}
@@ -220,8 +274,8 @@
 	padding-bottom: 10px;
 }
 
-@media (min-width: 992px){
-	.border-right{
+@media (min-width: 992px) {
+	.border-right {
 		border-right: 1px solid @gray-light;
 	}
 }
@@ -235,7 +289,7 @@
 }
 
 .event-date {
-  color: #FF9A00;
+	color: @toc-orange;
 }
 
 .event-col {
@@ -243,7 +297,7 @@
 	margin-top: 10px;
 }
 
-.discover-text{
+.discover-text {
 	background-color: @brand-primary;
 	color: white;
 	height: 500px;
@@ -263,12 +317,12 @@
 	font-size: 18px;
 }
 
-.discover-image{
+.discover-image {
 	padding-right: 0px;
 	padding-left: 0px;
 }
 
-.services-section{
+.services-section {
 	padding-bottom: 30px;
 }
 
@@ -282,7 +336,7 @@
 }
 
 .post-content {
-	float: inherit;	
+	float: inherit;
 }
 
 .post-content table {
@@ -312,7 +366,7 @@
 
 .card-location {
 	padding-bottom: 20px;
-	padding-top:10px;
+	padding-top: 10px;
 }
 
 .card-location a {
@@ -321,16 +375,17 @@
 }
 
 .btn-primary {
-  border-radius: 0px;
-  text-transform: uppercase;
-  margin-right: 20px;
-  margin-bottom: 5px;
+	border-radius: 0px;
+	text-transform: uppercase;
+	margin-right: 20px;
+	margin-bottom: 5px;
 }
 
 .icon {
 	background-position: left center;
 	background-repeat: no-repeat;
-	padding-left: 20px; /* Or size of icon + spacing */
+	padding-left: 20px;
+	/* Or size of icon + spacing */
 	padding-top: 8px;
 }
 
@@ -346,6 +401,7 @@
 .event-list-item {
 	border-radius: 10px;
 }
+
 .event-list-item .mdl-card__title {
 	padding: 0px;
 }
@@ -355,69 +411,74 @@
 	width: 98%;
 	overflow: initial;
 }
- .contact-message textarea {
-	 width: inherit;
- }
 
- .event-list-item p {
-	 padding-left: 10px;
- }
+.contact-message textarea {
+	width: inherit;
+}
 
- .centered-image {
-	 display: block;
-	 margin-left: auto;
-	 margin-right: auto;
-	 margin-top: 10px;
-	 margin-bottom: 10px;
- }
+.event-list-item p {
+	padding-left: 10px;
+}
 
- .post-subtitle {
-	 float: left;
- }
+.centered-image {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 
- .post-social {
-	 float: right;
-	 height: 80px;
- }
+.post-title {
+	height: 80px;
+}
 
- .social-icon {
-	 height: 60px;
- }
+.post-subtitle {
+	float: left;
+}
+
+.post-social {
+	float: right;
+}
+
+.social-icon {
+	height: 60px;
+}
 
 .footer-label {
 	float: left;
 	padding-right: 20px;
 	padding-top: 5px;
 }
-.footer-contact {
-	 margin-top: 30px;
-	 margin-bottom: 20px;
- }
 
- .subscribe-message {
-	 text-align: center;
- }
+.footer-contact {
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+.subscribe-message {
+	text-align: center;
+}
 
 .caret-lg {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: 3px;
-    vertical-align: middle;
-    border-top: 8px dashed;
-    border-right: 8px solid transparent;
-    border-left: 8px solid transparent;
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 3px;
+	vertical-align: middle;
+	border-top: 8px dashed;
+	border-right: 8px solid transparent;
+	border-left: 8px solid transparent;
 }
 
 .caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: 3px;
-    vertical-align: middle;
-    border-top: 4px dashed;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 3px;
+	vertical-align: middle;
+	border-top: 4px dashed;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
 }
 
 .dropdown-years a {
@@ -426,42 +487,44 @@
 }
 
 .truncate-text {
-  /* hide text if it more than N lines  */
-  overflow: hidden;
-  /* for set '...' in absolute position */
-  position: relative; 
-  /* use this value to count block height */
-  //line-height: 1.2em;
-  /* max-height = line-height (1.2) * lines max number (3) */
-  max-height: 4.3em; 
-  /* fix problem when last visible word doesn't adjoin right side  */
-  text-align: justify;  
-  /* place for '...' */
-  margin-right: -1em;
-  padding-right: 1em;
+	/* hide text if it more than N lines  */
+	overflow: hidden;
+	/* for set '...' in absolute position */
+	position: relative;
+	/* use this value to count block height */
+	//line-height: 1.2em;
+	/* max-height = line-height (1.2) * lines max number (3) */
+	max-height: 4.3em;
+	/* fix problem when last visible word doesn't adjoin right side  */
+	text-align: justify;
+	/* place for '...' */
+	margin-right: -1em;
+	padding-right: 1em;
 }
+
 /* create the ... */
 .truncate-text:before {
-  /* points in the end */
-  content: '...';
-  /* absolute position */
-  position: absolute;
-  /* set position to right bottom corner of block */
-  right: 0;
-  bottom: 0;
+	/* points in the end */
+	content: '...';
+	/* absolute position */
+	position: absolute;
+	/* set position to right bottom corner of block */
+	right: 0;
+	bottom: 0;
 }
+
 /* hide ... if we have text, which is less than or equal to max lines */
 .truncate-text:after {
-  /* points in the end */
-  content: '';
-  /* absolute position */
-  position: absolute;
-  /* set position to right bottom corner of text */
-  right: 0;
-  /* set width and height */
-  width: 1em;
-  height: 1em;
-  margin-top: 0.2em;
-  /* bg color = bg color under block */
-  background: white;
+	/* points in the end */
+	content: '';
+	/* absolute position */
+	position: absolute;
+	/* set position to right bottom corner of text */
+	right: 0;
+	/* set width and height */
+	width: 1em;
+	height: 1em;
+	margin-top: 0.2em;
+	/* bg color = bg color under block */
+	background: white;
 }

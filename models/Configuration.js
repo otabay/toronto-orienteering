@@ -11,8 +11,15 @@ var Configuration = new keystone.List('Configuration', {
 });
 
 Configuration.add({
-	currentYear: { type: Number, required: true, default: new Date().getFullYear() }
+	currentYear: {
+		type: Number,
+		required: true,
+		default: new Date().getFullYear()
+	},
+	promoBanner: {
+		type: Types.Relationship,
+		ref: 'PromoBanner'
+	}
 });
-
 
 Configuration.register();

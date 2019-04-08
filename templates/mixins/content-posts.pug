@@ -21,7 +21,7 @@ mixin event(event, showPlaceholder, showPublishedDate, rootUrl)
 						!= event.title
 					if event.startDate
 							.event-date.event-date-md
-								p #{event._.startDate.format('ddd, MMM Do')}
+								p #{event.eventDate}
 				.event-brief-main
 					if (event.publishedDate && showPublishedDate)
 						.event-date

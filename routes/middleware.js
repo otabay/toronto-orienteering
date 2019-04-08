@@ -20,39 +20,77 @@ var keystone = require('keystone');
 	or replace it with your own templates / logic.
 */
 
-exports.initLocals = function(req, res, next) {
+exports.initLocals = function (req, res, next) {
 
 	var locals = res.locals;
 
-	locals.navLinks = [
-		{ label: 'Home',		key: 'home',		href: '/' },
-		{ label: 'Events',		key: 'events',		href: '/events' },
-		{ label: 'Education',	key: 'education',	href: '/education' },
-		{ label: 'Services',	key: 'services',	href: '/services' },
-		{ label: 'News',		key: 'blog',		href: '/blog' },
-		{ label: 'Maps',		key: 'maps',		href: '/maps' },
-		{ label: 'About',		key: 'about',		href: '/about' },
-		{ label: 'Volunteers',	key: 'volunteers',	href: '/volunteers' },
-		{ label: 'Join!',		key: 'join',		href: '/join' }
+	locals.navLinks = [{
+			label: 'Home',
+			key: 'home',
+			href: '/'
+		},
+		{
+			label: 'Events',
+			key: 'events',
+			href: '/events'
+		},
+		{
+			label: 'Education',
+			key: 'education',
+			href: '/education'
+		},
+		{
+			label: 'Services',
+			key: 'services',
+			href: '/services'
+		},
+		{
+			label: 'News',
+			key: 'blog',
+			href: '/blog'
+		},
+		{
+			label: 'Maps',
+			key: 'maps',
+			href: '/maps'
+		},
+		{
+			label: 'About',
+			key: 'about',
+			href: '/about'
+		},
+		{
+			label: 'Volunteers',
+			key: 'volunteers',
+			href: '/volunteers'
+		},
+		{
+			label: 'Join!',
+			key: 'join',
+			href: '/join'
+		}
 	];
 
 	locals.user = req.user;
 
 	/**
- 	* Base url for the site
- 	*/
+	 * Base url for the site
+	 */
 	locals.baseUrl = keystone.get('baseUrl');
 	locals.googleAnalyticsId = keystone.get('googleAnalyticsId');
 
-	if(!locals.defaultYear){
-		locals.defaultYear  = new Date().getFullYear();
+	if (!locals.defaultYear) {
+		locals.defaultYear = new Date().getFullYear();
 	}
-	keystone.list('Configuration').model.findOne().exec(function(err,config){
-		if(err) {
+	keystone.list('Configuration').model.findOne().populate('promoBanner').exec(function (err, config) {
+		if (err) {
 			console.log("Could not get configuration");
 			next();
-		} else if (config){
+		} else if (config) {
 			locals.defaultYear = config.currentYear;
+			if (config.promoBanner) {
+				locals.promoBanner = config.promoBanner;
+			}
 			next();
 		}
 	});
@@ -62,9 +100,9 @@ exports.initLocals = function(req, res, next) {
 /**
 Inits the error handler functions into `res`
 */
-exports.initErrorHandlers = function(req, res, next) {
-	
-	res.err = function(err, title, message) {
+exports.initErrorHandlers = function (req, res, next) {
+
+	res.err = function (err, title, message) {
 		console.log(err);
 		res.status(500).render('errors/500', {
 			err: err,
@@ -72,23 +110,23 @@ exports.initErrorHandlers = function(req, res, next) {
 			errorMsg: message
 		});
 	}
-	
-	res.notfound = function(title, message) {
+
+	res.notfound = function (title, message) {
 		res.status(404).render('errors/404', {
 			errorTitle: title,
 			errorMsg: message
 		});
 	}
-	
+
 	next();
-	
+
 };
 
 /**
 	Fetches and clears the flashMessages before a view is rendered
 */
 
-exports.flashMessages = function(req, res, next) {
+exports.flashMessages = function (req, res, next) {
 
 	var flashMessages = {
 		info: req.flash('info'),
@@ -97,7 +135,9 @@ exports.flashMessages = function(req, res, next) {
 		error: req.flash('error')
 	};
 
-	res.locals.messages = _.some(flashMessages, function(msgs) { return msgs.length; }) ? flashMessages : false;
+	res.locals.messages = _.some(flashMessages, function (msgs) {
+		return msgs.length;
+	}) ? flashMessages : false;
 
 	next();
 
@@ -108,7 +148,7 @@ exports.flashMessages = function(req, res, next) {
 	Prevents people from accessing protected pages when they're not signed in
  */
 
-exports.requireUser = function(req, res, next) {
+exports.requireUser = function (req, res, next) {
 
 	if (!req.user) {
 		req.flash('error', 'Please sign in to access this page.');
