@@ -7,7 +7,11 @@ var Types = keystone.Field.Types;
  */
 
 var Document = new keystone.List('Document', {
-	autokey: { from: 'name', path: 'key', unique: true }
+	autokey: {
+		from: 'name',
+		path: 'key',
+		unique: true
+	}
 });
 
 var s3Storage = new keystone.Storage({
@@ -21,25 +25,29 @@ var s3Storage = new keystone.Storage({
 		uploadParams: { // optional; add S3 upload params; see below for details
 			ACL: 'public-read',
 		},
-		generateFilename: function(file){
+		generateFilename: function (file) {
 			// prefix file name with object id
-			return file.originalname + '-' + file.filename;
+			return file.filename + '-' + file.originalname;
 		}
 	},
 });
-  
 
 Document.add({
-	name: { type: String, required: true },
-	title: { type: String },
+	name: {
+		type: String,
+		required: true
+	},
+	title: {
+		type: String
+	},
 	documentContent: {
 		type: Types.File,
-		storage:s3Storage
+		storage: s3Storage
 	}
 });
 
-Document.schema.virtual('fullDocUrl').get(function() {
-    return 'https://s3.amazonaws.com/' + keystone.get('s3bucket') + '/' + this.documentContent.filename;
+Document.schema.virtual('fullDocUrl').get(function () {
+	return 'https://s3.amazonaws.com/' + keystone.get('s3bucket') + '/' + this.documentContent.filename;
 });
 
 Document.register();

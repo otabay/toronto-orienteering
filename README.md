@@ -55,7 +55,7 @@ docker-machine create --driver amazonec2 --amazonec2-open-port 3000 --amazonec2-
 ```
 eval $(docker-machine env toc-prod)
 ```
-- To switch bac to the local docker environment use 
+- To switch back to the local docker environment use 
 ```
 eval $(docker-machine env -u)
 ```
