@@ -64,6 +64,10 @@ eval $(docker-machine env -u)
 ```
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
 ```
+## Deploy only the web application the server in production mode
+```
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
+```
 ## Import data
 - In the application directory import the data using the following command:
 ```

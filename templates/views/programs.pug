@@ -23,7 +23,7 @@ mixin displayClinic(clinicSchedule, title)
 								a(href=clinic.location.locationMapUrl  target='_blank') #{clinic.location.name}
 						td 
 							if(clinic.startDate)
-								#{clinic._.startDate.format('dddd, MMMM Do, h:mm a')}
+								p #{clinic._.startDate.format('dddd, MMMM Do, h:mm a')}
 						td 
 							+registerForClinic(clinic)
 
