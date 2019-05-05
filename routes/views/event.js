@@ -24,6 +24,12 @@ exports = module.exports = function (req, res) {
 				slug: locals.filters.event
 			}).populate('author clinicCoordinator categories location meetDirector courseSetter documents results')
 			.populate({
+				path: 'location',
+				populate: {
+					path: 'map'
+				}
+			})
+			.populate({
 				path: 'subEvents',
 				populate: {
 					path: 'clinicCoordinator meetDirector courseSetter location documents results'
