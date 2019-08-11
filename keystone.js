@@ -15,6 +15,15 @@ keystone.init({
 	'name': 'TOC',
 	'brand': 'TOC',
 
+	'ssl port': process.env.SSLPORT,
+
+	letsencrypt: (process.env.NODE_ENV === 'production') && {
+		email: 'it@@torontoorienteering.com',
+		domains: ['www.torontoorienteering.com', 'torontoorienteering.com'],
+		register: true,
+		tos: true,
+	},
+
 	'less': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
