@@ -1,17 +1,11 @@
-version: '3'
+version: "3"
 
 services:
-  
   keystone:
     environment:
-      - NODE_ENV=production 
-
-  nginx:
-    build:
-      context: .
-      dockerfile: docker/nginx.dockerfile
-    restart: unless-stopped
+      - NODE_ENV=production
+      - PORT=3000
+      - SSLPORT=3001
     ports:
-      - "80:80"
-    depends_on:
-      - keystone
+      - "80:3000"
+      - "443:3001"

@@ -20,7 +20,7 @@ keystone.init({
 	ssl: 'force',
 
 	letsencrypt: (process.env.NODE_ENV === 'production') && {
-		production: true,
+		production: false,
 		email: 'it@@torontoorienteering.com',
 		domains: ['www.torontoorienteering.com', 'torontoorienteering.com'],
 		register: true,
