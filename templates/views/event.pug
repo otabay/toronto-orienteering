@@ -111,7 +111,7 @@ mixin displayEvent(event, isSubEvent)
 										a(href=event.location.locationMapUrl) #{event.location.name}
 										br
 										!= event.location.locationMapEmbed			
-							if event.location && event.location.map
+							if event.location && event.location.map && event.location.map.scale
 								tr
 									td
 										b Map
