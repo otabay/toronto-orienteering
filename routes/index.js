@@ -28,18 +28,18 @@ keystone.pre('routes', middleware.initErrorHandlers);
 keystone.pre('render', middleware.flashMessages);
 
 // Handle 404 errors
-keystone.set('404', function(req, res, next) {
-    res.notfound();
+keystone.set('404', function (req, res, next) {
+	res.notfound();
 });
 
 // Handle other errors
-keystone.set('500', function(err, req, res, next) {
-    var title, message;
-    if (err instanceof Error) {
-        message = err.message;
-        err = err.stack;
-    }
-    res.err(err, title, message);
+keystone.set('500', function (err, req, res, next) {
+	var title, message;
+	if (err instanceof Error) {
+		message = err.message;
+		err = err.stack;
+	}
+	res.err(err, title, message);
 });
 
 // Import Route Controllers
@@ -48,7 +48,7 @@ var routes = {
 };
 
 // Setup Route Bindings
-exports = module.exports = function(app) {
+exports = module.exports = function (app) {
 
 	// Views
 	app.all('/', routes.views.index);
@@ -58,6 +58,7 @@ exports = module.exports = function(app) {
 	app.get('/blog/:category?', routes.views.blog);
 	app.get('/blog/post/:post', routes.views.post);
 	app.get('/events/event/:event', routes.views.event);
+	app.all('/shop', routes.views.shop);
 	app.all('/about', routes.views.about);
 	app.all('/join', routes.views.join);
 	app.all('/contact', routes.views.contact);
