@@ -49,7 +49,7 @@ exports = module.exports = function (req, res) {
 				var nextPost = posts[0];
 				var today = new Date();
 				posts.forEach(function (post) {
-					if (post.startDate && post.startDate > today) {
+					if (post.startDate && post.startDate > today || post.endDate && post.endDate > today) {
 						nextPost = post;
 					}
 				}, this);
