@@ -3,16 +3,17 @@ FROM mongo:${VERSION}
 
 RUN apt-get update && \
     apt-get install -y \
-        python3 \
-        python3-pip \
-        python3-setuptools \
-        groff \
-        less \
-        unzip \
-    && pip3 install --upgrade pip \
+    groff \
+    less \
+    curl \
+    unzip \
     && apt-get clean
 
-RUN pip3 --no-cache-dir install --upgrade awscli
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip \
+    && ./aws/install
+
+RUN aws --version
 #set EST timezone
 ENV TZ=EST5EDT
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
